@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新时代内在领导力 Leadership from Within · Gaya Spiritual Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="course.css">
+  <style>
+    /* ── HERO ── */
+    .lfw-hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: var(--nav-h); padding-bottom: 80px;
+      background: #0D3D4F;
+    }
+    .lfw-hero-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0.28;
+      filter: saturate(0.6) brightness(0.7);
+    }
+    .lfw-hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(201,162,39,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(42,172,184,0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .lfw-hero-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 40%, rgba(201,162,39,0.12) 0%, transparent 55%),
+                  radial-gradient(ellipse at 15% 70%, rgba(42,172,184,0.10) 0%, transparent 45%);
+    }
+    .lfw-hero-inner {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 60px; align-items: center;
+    }
+    .lfw-hero-left { max-width: 640px; }
+
+    /* Gold badge */
+    .lfw-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,162,39,0.12); border: 1px solid rgba(201,162,39,0.35);
+      padding: 6px 16px; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .lfw-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: badge-pulse 2s ease-in-out infinite; }
+    @keyframes badge-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.6)} }
+
+    /* Hero right: 3-cycle visual */
+    .lfw-cycles { flex-shrink: 0; width: 240px; }
+    .lfw-cycle-row {
+      display: flex; align-items: flex-start; gap: 16px; margin-bottom: 0;
+    }
+    .lfw-cycle-pillar { display: flex; flex-direction: column; align-items: center; }
+    .lfw-cycle-dot {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 0.85rem; font-weight: 600;
+      flex-shrink: 0; position: relative; z-index: 2; color: white;
+    }
+    .lfw-cycle-dot.c1 { background: rgba(42,172,184,0.7); box-shadow: 0 0 0 4px rgba(42,172,184,0.15); }
+    .lfw-cycle-dot.c2 { background: rgba(42,172,184,0.85); box-shadow: 0 0 0 4px rgba(42,172,184,0.2); }
+    .lfw-cycle-dot.c3 { background: var(--gold); box-shadow: 0 0 0 4px rgba(201,162,39,0.2); }
+    .lfw-cycle-line { width: 1px; flex: 1; min-height: 28px; background: linear-gradient(to bottom, rgba(201,162,39,0.3), rgba(42,172,184,0.15)); }
+    .lfw-cycle-content { padding: 6px 0 28px; }
+    .lfw-cycle-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .lfw-cycle-title { font-family: var(--font-display); font-size: 0.9rem; color: white; font-weight: 300; margin-bottom: 2px; }
+    .lfw-cycle-price { font-size: 0.72rem; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; }
+
+    /* ── OVERVIEW / CHALLENGE section ── */
+    .lfw-challenge-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .lfw-quote-block {
+      border-left: 3px solid var(--gold);
+      padding: 32px 36px;
+      background: linear-gradient(135deg, rgba(201,162,39,0.04), rgba(201,162,39,0.01));
+    }
+    .lfw-quote-text {
+      font-family: var(--font-display); font-size: clamp(1.1rem,1.6vw,1.4rem);
+      font-style: italic; color: var(--text-dark); line-height: 1.65; margin-bottom: 16px;
+    }
+    .lfw-quote-attr { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-soft); }
+
+    .lfw-challenge-list { margin-top: 24px; }
+    .lfw-challenge-item {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+    }
+    .lfw-challenge-item:last-child { border-bottom: none; }
+    .lfw-challenge-icon { color: var(--gold); font-size: 1rem; margin-top: 2px; flex-shrink: 0; }
+    .lfw-challenge-text { font-size: 0.9rem; color: var(--text-mid); line-height: 1.6; }
+
+    /* ── 3 CYCLES SECTION ── */
+    .lfw-cycles-section { background: #0D3D4F; padding: 100px 0; }
+    .lfw-cycles-header { text-align: center; margin-bottom: 72px; }
+    .lfw-cycles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .lfw-cycle-card {
+      padding: 52px 40px; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative; overflow: hidden;
+      transition: all 0.3s var(--ease);
+    }
+    .lfw-cycle-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-4px); }
+    .lfw-cycle-card.featured-cycle { background: rgba(201,162,39,0.06); border-color: rgba(201,162,39,0.2); }
+    .lfw-cycle-card.featured-cycle:hover { background: rgba(201,162,39,0.1); }
+    .lfw-cycle-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; }
+    .lfw-cycle-card:nth-child(1)::before { background: var(--teal-bright); }
+    .lfw-cycle-card:nth-child(2)::before { background: linear-gradient(to right, var(--teal-bright), var(--gold)); }
+    .lfw-cycle-card:nth-child(3)::before { background: var(--gold); }
+    .lfw-cycle-num {
+      font-family: var(--font-display); font-size: 3.5rem; font-weight: 300;
+      color: rgba(255,255,255,0.06); position: absolute; top: 16px; right: 24px;
+      line-height: 1;
+    }
+    .lfw-cycle-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 12px; }
+    .lfw-cycle-tag.teal { color: var(--teal-bright); }
+    .lfw-cycle-tag.grad { color: var(--gold); }
+    .lfw-cycle-card-title {
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 300;
+      color: white; line-height: 1.2; margin-bottom: 6px;
+    }
+    .lfw-cycle-card-sub { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 24px; }
+    .lfw-cycle-divider { width: 28px; height: 1px; background: rgba(255,255,255,0.15); margin-bottom: 24px; }
+    .lfw-cycle-items { list-style: none; margin-bottom: 32px; }
+    .lfw-cycle-items li {
+      font-size: 0.87rem; color: rgba(255,255,255,0.55);
+      padding: 6px 0 6px 18px; position: relative; line-height: 1.5;
+    }
+    .lfw-cycle-items li::before { content: '◇'; position: absolute; left: 0; color: var(--teal-bright); font-size: 0.5rem; top: 10px; }
+    .lfw-cycle-card.featured-cycle .lfw-cycle-items li::before { color: var(--gold); }
+    .lfw-cycle-invest {
+      padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .lfw-invest-label { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 6px; }
+    .lfw-invest-amount {
+      font-family: var(--font-display); font-size: 1.6rem; color: var(--teal-bright);
+    }
+    .lfw-cycle-card.featured-cycle .lfw-invest-amount { color: var(--gold-bright, #e8b933); }
+    .lfw-invest-days { font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 2px; letter-spacing: 0.08em; }
+    .lfw-closing-session {
+      margin-top: 60px; padding: 48px 56px;
+      background: rgba(201,162,39,0.06); border: 1px solid rgba(201,162,39,0.18);
+      display: grid; grid-template-columns: 60px 1fr; gap: 28px; align-items: start;
+    }
+    .lfw-closing-icon { font-size: 2rem; margin-top: 4px; }
+    .lfw-closing-title { font-family: var(--font-display); font-size: 1.2rem; color: var(--gold); margin-bottom: 10px; font-style: italic; }
+    .lfw-closing-text { font-size: 0.92rem; color: rgba(255,255,255,0.5); line-height: 1.85; font-weight: 300; }
+
+    /* ── FOR WHOM ── */
+    .lfw-for-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .lfw-for-list { margin-top: 28px; }
+    .lfw-for-item {
+      padding: 18px 0 18px 20px; border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .lfw-for-item::before { content: '✦'; position: absolute; left: 0; top: 20px; color: var(--gold); font-size: 0.55rem; }
+    .lfw-for-item:last-child { border-bottom: none; }
+    .lfw-for-item strong { display: block; font-size: 0.92rem; color: var(--text-dark); font-weight: 600; margin-bottom: 4px; }
+    .lfw-for-item span { font-size: 0.83rem; color: var(--text-soft); line-height: 1.6; }
+    .lfw-not-for {
+      margin-top: 28px; padding: 24px 28px;
+      background: rgba(27,95,117,0.04); border-left: 2px solid var(--teal-bright);
+    }
+    .lfw-not-for p { font-size: 0.85rem; color: var(--text-mid); line-height: 1.8; font-style: italic; }
+
+    /* ── FACILITATORS ── */
+    .ac-facilitators { margin-top: 28px; display: flex; flex-direction: column; gap: 24px; }
+    .ac-fac-card { display: flex; gap: 16px; align-items: flex-start; }
+    .ac-fac-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .ac-fac-name { font-size: 0.95rem; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+    .ac-fac-role { font-size: 0.72rem; letter-spacing: 0.08em; color: var(--teal-bright); margin-bottom: 8px; text-transform: uppercase; }
+    .ac-fac-bio { font-size: 0.85rem; color: var(--text-mid); line-height: 1.75; font-weight: 300; }
+
+    /* ── TESTIMONIALS ── */
+    .lfw-testimonials { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
+    .lfw-testi-card {
+      padding: 36px; border: 1px solid var(--border);
+      background: white; position: relative;
+      transition: all 0.3s var(--ease);
+    }
+    .lfw-testi-card:hover { border-color: rgba(201,162,39,0.3); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(27,95,117,0.07); }
+    .lfw-testi-quote { font-family: var(--font-display); font-size: 3rem; color: var(--gold); opacity: 0.3; line-height: 0.8; margin-bottom: 16px; }
+    .lfw-testi-text { font-size: 0.9rem; color: var(--text-mid); line-height: 1.85; font-weight: 300; font-style: italic; margin-bottom: 16px; }
+    .lfw-testi-author { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-soft); }
+
+    /* ── REGISTER SECTION ── */
+    .lfw-register-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .price-block { margin-top: 32px; }
+    .price-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 0;
+    }
+    .price-label { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+    .price-early { font-family: var(--font-display); font-size: 1.1rem; color: white; }
+    .price-row-total { border-top: 1px solid rgba(255,255,255,0.12) !important; padding-top: 20px !important; }
+    .price-total-amount { font-family: var(--font-display); font-size: 2rem; color: var(--gold-bright, #e8b933); }
+
+    /* ── PATH PREREQUISITE ── */
+    .lfw-prereq {
+      padding: 32px 36px; margin-bottom: 40px;
+      background: rgba(201,162,39,0.06); border: 1px solid rgba(201,162,39,0.2);
+      display: flex; gap: 20px; align-items: flex-start;
+    }
+    .lfw-prereq-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .lfw-prereq-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .lfw-prereq-text { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.75; font-weight: 300; }
+    .lfw-prereq-text a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ── CLOSING BANNER ── */
+    .lfw-banner-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+      color: white; font-weight: 300; line-height: 1.4;
+      margin-bottom: 20px;
+    }
+    .lfw-banner-quote em { font-style: italic; color: var(--gold); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .lfw-hero-inner { grid-template-columns: 1fr; }
+      .lfw-cycles { display: none; }
+      .lfw-challenge-grid, .lfw-for-grid, .lfw-register-grid { grid-template-columns: 1fr; gap: 48px; }
+      .lfw-cycles-grid { grid-template-columns: 1fr; }
+      .lfw-testimonials { grid-template-columns: 1fr; }
+      .lfw-closing-session { grid-template-columns: 1fr; gap: 12px; }
+    }
+.wa-float {
+  position: fixed; bottom: 28px; right: 28px;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  z-index: 9999; text-decoration: none;
+}
+.wa-float svg { width: 28px; height: 28px; fill: white; }
+  </style>
+</head>
+<body>
+
+<header id="nav" class="nav"></header>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="lfw-hero">
+  <img class="lfw-hero-img"
+    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80"
+    alt="Leadership from Within">
+  <div class="lfw-hero-grid"></div>
+  <div class="lfw-hero-glow"></div>
+  <div class="container">
+    <div class="lfw-hero-inner">
+      <div class="lfw-hero-left">
+        <div class="lfw-badge">
+          <span class="lfw-badge-dot"></span>
+          <span data-zh="亚洲首次登陆 · 高阶内在领导力" data-en="Asia Premiere · Advanced Inner Leadership">亚洲首次登陆 · 高阶内在领导力</span>
+        </div>
+        <span class="cif-title-en">Leadership<br><em>from Within</em></span>
+        <span class="cif-title-zh" data-zh="新时代内在领导力" data-en="New Era Inner Leadership">新时代内在领导力</span>
+
+        <p class="cif-hero-tagline" style="margin-top:24px;"
+          data-zh="掌握自己。转化你的世界。"
+          data-en="Mastering Yourself. Transforming Your World.">掌握自己。转化你的世界。</p>
+
+        <p class="cif-hero-sub"
+          data-zh="18天 · 三循环的深度内在领导力培训。亚洲最先进的内在领导力发展项目，由 Bonshuwa Chua 与欧洲意识领导力权威 Insha Gabriele Holz 联合主持。"
+          data-en="18 days · Three cycles of deep inner leadership development. Asia's most advanced inner leadership programme, co-facilitated by Bonshuwa Chua and European conscious leadership authority Insha Gabriele Holz.">
+          18天 · 三循环的深度内在领导力培训。亚洲最先进的内在领导力发展项目，由 Bonshuwa Chua 与欧洲意识领导力权威 Insha Gabriele Holz 联合主持。
+        </p>
+
+        <div class="cif-meta-row">
+          <div class="cif-meta-item">
+            <span class="meta-label" data-zh="培训结构" data-en="Structure">培训结构</span>
+            <span class="meta-val" data-zh="18天 · 3 Cycles · 各6天" data-en="18 Days · 3 Cycles · 6 Days Each">18天 · 3 Cycles · 各6天</span>
+          </div>
+          <div class="cif-meta-item">
+            <span class="meta-label" data-zh="地点" data-en="Venue">地点</span>
+            <span class="meta-val">Gaya Spiritual Academy, KL</span>
+          </div>
+          <div class="cif-meta-item">
+            <span class="meta-label" data-zh="起步投资" data-en="Starting From">起步投资</span>
+            <span class="meta-val cif-earlybird">MYR 9,000</span>
+          </div>
+        </div>
+
+        <a href="#register" class="btn-gold" style="margin-right:12px;">
+          <span data-zh="咨询与报名" data-en="Enquire & Enrol">咨询与报名</span><span>→</span>
+        </a>
+        <a href="#cycles" class="btn-outline" style="color:rgba(255,255,255,0.6);border-color:rgba(255,255,255,0.2);">
+          <span data-zh="了解三循环" data-en="Explore Three Cycles">了解三循环</span>
+        </a>
+      </div>
+
+      <!-- Right: 3-cycle visualiser -->
+      <div class="lfw-cycles" aria-hidden="true">
+        <div class="lfw-cycle-row">
+          <div class="lfw-cycle-pillar">
+            <div class="lfw-cycle-dot c1">I</div>
+            <div class="lfw-cycle-line"></div>
+          </div>
+          <div class="lfw-cycle-content">
+            <div class="lfw-cycle-label" data-zh="Cycle 1 · 6天" data-en="Cycle 1 · 6 Days">Cycle 1 · 6天</div>
+            <div class="lfw-cycle-title" data-zh="自我认知与基础" data-en="Self-Knowledge & Foundation">自我认知与基础</div>
+            <div class="lfw-cycle-price">MYR 9,000</div>
+          </div>
+        </div>
+        <div class="lfw-cycle-row">
+          <div class="lfw-cycle-pillar">
+            <div class="lfw-cycle-dot c2">II</div>
+            <div class="lfw-cycle-line"></div>
+          </div>
+          <div class="lfw-cycle-content">
+            <div class="lfw-cycle-label" data-zh="Cycle 2 · 6天" data-en="Cycle 2 · 6 Days">Cycle 2 · 6天</div>
+            <div class="lfw-cycle-title" data-zh="领导力原则与临在" data-en="Principles & Presence">领导力原则与临在</div>
+            <div class="lfw-cycle-price">MYR 18,000</div>
+          </div>
+        </div>
+        <div class="lfw-cycle-row">
+          <div class="lfw-cycle-pillar">
+            <div class="lfw-cycle-dot c3">III</div>
+          </div>
+          <div class="lfw-cycle-content">
+            <div class="lfw-cycle-label" data-zh="Cycle 3 · 6天" data-en="Cycle 3 · 6 Days">Cycle 3 · 6天</div>
+            <div class="lfw-cycle-title" data-zh="掌握、愿景与传承" data-en="Mastery, Vision & Legacy">掌握、愿景与传承</div>
+            <div class="lfw-cycle-price">MYR 27,000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ THE LEADERSHIP CHALLENGE ══════════ -->
+<section class="section">
+  <div class="container">
+    <div class="lfw-challenge-grid">
+      <div class="reveal">
+        <div class="section-label" data-zh="来自 Bonshuwa 的话" data-en="A Message from Bonshuwa">来自 Bonshuwa 的话</div>
+        <h2 class="section-title"
+          data-zh="天花板，<em>永远是内在的</em>"
+          data-en="The Ceiling Is Always <em>Internal</em>">天花板，<em>永远是内在的</em></h2>
+        <div class="gold-line"></div>
+
+        <div class="lfw-quote-block" style="margin-top:32px;">
+          <p class="lfw-quote-text"
+            data-zh="「最伟大的企业不只是靠战略建立的。它们是靠领导者的内在掌握建立的。」"
+            data-en="&ldquo;The greatest companies in the world are not built on strategy alone. They are built on the inner mastery of their leaders.&rdquo;">
+            「最伟大的企业不只是靠战略建立的。它们是靠领导者的内在掌握建立的。」
+          </p>
+          <div class="lfw-quote-attr">— Bonshuwa Chua, Gaya Spiritual Academy</div>
+        </div>
+
+        <p style="margin-top:28px;font-size:0.93rem;color:var(--text-mid);line-height:1.9;font-weight:300;"
+          data-zh="多年来，我见过一再出现的同一个模式：高度聪明、深度投入的领导者，掌握了每一种外部技能——却碰到了天花板。没有任何战略、MBA学位或效率系统能突破它。天花板永远是内在的。"
+          data-en="In my years of working with leaders across Asia, I have seen the same pattern again and again: highly intelligent, deeply committed professionals who have mastered every external skill – and yet they hit a ceiling. No strategy, no MBA, no productivity system has been able to break through it. The ceiling is always internal.">
+          多年来，我见过一再出现的同一个模式：高度聪明、深度投入的领导者，掌握了每一种外部技能——却碰到了天花板。没有任何战略、MBA学位或效率系统能突破它。天花板永远是内在的。
+        </p>
+      </div>
+
+      <div class="reveal">
+        <div class="section-label" data-zh="领导力的内在挑战" data-en="The Inner Leadership Challenge">领导力的内在挑战</div>
+        <h2 class="section-title"
+          data-zh="你是否认识<em>这些问题</em>？"
+          data-en="Do You Recognise <em>These?</em>">你是否认识<em>这些问题</em>？</h2>
+        <div class="gold-line"></div>
+        <div class="lfw-challenge-list">
+          <div class="lfw-challenge-item">
+            <div class="lfw-challenge-icon">◇</div>
+            <div class="lfw-challenge-text" data-zh="为什么聪明的领导者会失去团队的信任？" data-en="Why do brilliant leaders lose the confidence of their teams?">为什么聪明的领导者会失去团队的信任？</div>
+          </div>
+          <div class="lfw-challenge-item">
+            <div class="lfw-challenge-icon">◇</div>
+            <div class="lfw-challenge-text" data-zh="为什么有远见的高管在压力下做出自我破坏的决定？" data-en="Why do visionary executives make self-defeating decisions under pressure?">为什么有远见的高管在压力下做出自我破坏的决定？</div>
+          </div>
+          <div class="lfw-challenge-item">
+            <div class="lfw-challenge-icon">◇</div>
+            <div class="lfw-challenge-text" data-zh="为什么建立在人才上的组织仍然无法发挥潜力？" data-en="Why do organisations built on talent still fail to reach their potential?">为什么建立在人才上的组织仍然无法发挥潜力？</div>
+          </div>
+          <div class="lfw-challenge-item">
+            <div class="lfw-challenge-icon">◇</div>
+            <div class="lfw-challenge-text" data-zh="为什么成功有时感觉空洞，甚至令人精疲力竭？" data-en="Why does success sometimes feel empty – and exhausting?">为什么成功有时感觉空洞，甚至令人精疲力竭？</div>
+          </div>
+        </div>
+        <p style="margin-top:20px;padding:16px 20px;background:rgba(42,172,184,0.05);border-left:2px solid var(--teal-bright);font-size:0.88rem;color:var(--text-mid);line-height:1.75;font-style:italic;"
+          data-zh="答案永远相同：当内在发展没有跟上外在成就的步伐，领导者就成了瓶颈。这个培训的存在，就是为了彻底解决这个问题。"
+          data-en="The answer is always the same: when inner development has not kept pace with outer achievement, the leader becomes the bottleneck. This programme exists to solve that problem — permanently.">
+          答案永远相同：当内在发展没有跟上外在成就的步伐，领导者就成了瓶颈。这个培训的存在，就是为了彻底解决这个问题。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CORE INSIGHT ══════════ -->
+<section class="section" style="background:var(--teal-pale);padding:80px 0;">
+  <div class="container">
+    <div class="reveal text-center" style="max-width:760px;margin:0 auto;">
+      <div class="section-label" style="justify-content:center;" data-zh="核心洞见" data-en="The Core Insight">核心洞见</div>
+      <blockquote style="font-family:var(--font-display);font-size:clamp(1.2rem,2vw,1.7rem);font-style:italic;color:var(--teal-deep);line-height:1.6;margin:24px 0;">
+        <span data-zh="「你的能量中心——你人类系统的深层力量场——承载着你最大的未开发领导潜力。当它们对齐，领导力自然流动。当它们受阻，你就在与他人、与环境、与自己对抗。」"
+          data-en="&ldquo;Your energy centres — the deep power fields of your human system — carry your greatest untapped leadership potential. When they are aligned, leadership flows effortlessly. When they are blocked, you fight — against others, against circumstances, against yourself.&rdquo;">
+          「你的能量中心——你人类系统的深层力量场——承载着你最大的未开发领导潜力。当它们对齐，领导力自然流动。当它们受阻，你就在与他人、与环境、与自己对抗。」
+        </span>
+      </blockquote>
+      <p style="font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-soft);">— Insha Gabriele Holz</p>
+      <div class="gold-line center" style="margin-top:24px;"></div>
+      <p style="margin-top:20px;font-size:0.9rem;color:var(--text-mid);line-height:1.9;font-weight:300;"
+        data-zh="这个培训系统地、深刻地、永久地开启这些中心。这不是理论。这是直接的身心体验。"
+        data-en="This programme opens those centres. Systematically. Profoundly. Permanently. It is not theory. It is direct, embodied experience.">
+        这个培训系统地、深刻地、永久地开启这些中心。这不是理论。这是直接的身心体验。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ THREE CYCLES ══════════ -->
+<section class="lfw-cycles-section" id="cycles">
+  <div class="container">
+    <div class="lfw-cycles-header reveal">
+      <div class="section-label" style="justify-content:center;color:rgba(255,255,255,0.35);" data-zh="培训路径" data-en="Programme Structure">培训路径</div>
+      <h2 class="section-title" style="color:white;text-align:center;"
+        data-zh="三个循环。<em>十八天。一次转化。</em>"
+        data-en="Three Cycles. <em>Eighteen Days. One Transformation.</em>">三个循环。<em>十八天。一次转化。</em></h2>
+      <div class="gold-line center"></div>
+      <p style="margin-top:20px;font-size:0.9rem;color:rgba(255,255,255,0.4);max-width:600px;margin-left:auto;margin-right:auto;line-height:1.9;text-align:center;font-weight:300;"
+        data-zh="每个循环独立成就，带来完整的转化。三者合一，代表着亚洲今日最全面的内在领导力发展。"
+        data-en="Each cycle stands alone and delivers complete transformation. Together, they represent the most comprehensive inner leadership development available in Asia today.">
+        每个循环独立成就，带来完整的转化。三者合一，代表着亚洲今日最全面的内在领导力发展。
+      </p>
+    </div>
+
+    <div class="lfw-cycles-grid reveal">
+      <!-- CYCLE 1 -->
+      <div class="lfw-cycle-card">
+        <div class="lfw-cycle-num" aria-hidden="true">I</div>
+        <div class="lfw-cycle-tag teal" data-zh="Cycle One · 基础" data-en="Cycle One · Foundation">Cycle One · 基础</div>
+        <h3 class="lfw-cycle-card-title" data-zh="与自己的相遇" data-en="The Meeting with Yourself">与自己的相遇</h3>
+        <div class="lfw-cycle-card-sub" data-zh="自我认知与基础 · 6天" data-en="Self-Knowledge & Foundation · 6 Days">自我认知与基础 · 6天</div>
+        <div class="lfw-cycle-divider"></div>
+        <ul class="lfw-cycle-items">
+          <li data-zh="激活你的领导之光：产生自然权威的无条件临在" data-en="Activating your Leadership Light: unconditional presence that generates natural authority">激活你的领导之光：产生自然权威的无条件临在</li>
+          <li data-zh="深度感知力：从深处读懂人——他们的潜力、状态、跟随意愿" data-en="Advanced perception: reading people at depth — potential, state, readiness to follow">深度感知力：从深处读懂人——他们的潜力与跟随意愿</li>
+          <li data-zh="将想法与愿景物化：从内在清晰到外在现实" data-en="Materialising visions: from inner clarity to outer reality, without friction">将想法与愿景物化：从内在清晰到外在现实</li>
+          <li data-zh="情绪场掌握：转移整个团队的情绪氛围" data-en="Emotional field mastery: shift the emotional climate of an entire team">情绪场掌握：转移整个团队的情绪氛围</li>
+          <li data-zh="思想领导力：识别并永久溶解限制力量的思维模式" data-en="Thought leadership: dissolving thought patterns that bind your power">思想领导力：识别并永久溶解限制力量的思维模式</li>
+          <li data-zh="发现你最深的领导使命：你为何在此，被召唤去创造什么" data-en="Discovering your deepest leadership purpose: why you are here">发现你最深的领导使命：你真正被召唤去创造什么</li>
+        </ul>
+        <div class="lfw-cycle-invest">
+          <div class="lfw-invest-label" data-zh="Cycle 1 投资" data-en="Cycle 1 Investment">Cycle 1 投资</div>
+          <div class="lfw-invest-amount">MYR 9,000</div>
+          <div class="lfw-invest-days" data-zh="6天 · 含个人一对一闭幕环节" data-en="6 Days · incl. personal closing session">6天 · 含个人一对一闭幕环节</div>
+        </div>
+      </div>
+
+      <!-- CYCLE 2 -->
+      <div class="lfw-cycle-card featured-cycle">
+        <div class="lfw-cycle-num" aria-hidden="true">II</div>
+        <div class="lfw-cycle-tag grad" data-zh="Cycle Two · 原则" data-en="Cycle Two · Principles">Cycle Two · 原则</div>
+        <h3 class="lfw-cycle-card-title" data-zh="领导力与命运" data-en="Leadership and Destiny">领导力与命运</h3>
+        <div class="lfw-cycle-card-sub" data-zh="魅力、原则与临在 · 6天" data-en="Charisma, Principles & Presence · 6 Days">魅力、原则与临在 · 6天</div>
+        <div class="lfw-cycle-divider" style="background:rgba(201,162,39,0.3);"></div>
+        <ul class="lfw-cycle-items">
+          <li data-zh="真诚无误：将你的内在现实与外在行动完全对齐" data-en="Truthfulness: bringing your inner reality and outer actions into complete alignment">真诚无误：将你的内在现实与外在行动完全对齐</li>
+          <li data-zh="行动中的诚信：重新对齐能量中心，朝向真正的服务与价值创造" data-en="Integrity in Action: realigning to authentic service and genuine value creation">行动中的诚信：重新对齐能量中心朝向真正的服务</li>
+          <li data-zh="全然之爱：武士尊重原则——不取代他人，而是激励他人" data-en="All-Encompassing Love: The Samurai Principle — inspire, not displace">全然之爱：武士尊重原则——激励而非取代他人</li>
+          <li data-zh="和平作为力量之源：内在平静中和外部干扰力量" data-en="Peace as a Power Source: neutralising disruptive forces through inner stillness">和平作为力量之源：透过内在平静中和外部干扰</li>
+          <li data-zh="非强制性掌握：以喜悦与掌握体验领导力与生命本身" data-en="Non-Coercive Mastery: experiencing leadership as a game of joy and mastery">非强制性掌握：以喜悦与掌握体验领导力</li>
+        </ul>
+        <div class="lfw-cycle-invest">
+          <div class="lfw-invest-label" data-zh="Cycle 2 投资" data-en="Cycle 2 Investment">Cycle 2 投资</div>
+          <div class="lfw-invest-amount">MYR 18,000</div>
+          <div class="lfw-invest-days" data-zh="6天 · 五大领导力支柱" data-en="6 Days · Five Leadership Pillars">6天 · 五大领导力支柱</div>
+        </div>
+      </div>
+
+      <!-- CYCLE 3 -->
+      <div class="lfw-cycle-card">
+        <div class="lfw-cycle-num" aria-hidden="true">III</div>
+        <div class="lfw-cycle-tag grad" data-zh="Cycle Three · 传承" data-en="Cycle Three · Legacy">Cycle Three · 传承</div>
+        <h3 class="lfw-cycle-card-title" data-zh="掌握与愿景" data-en="Mastery and Vision">掌握与愿景</h3>
+        <div class="lfw-cycle-card-sub" data-zh="宇宙法则、直觉与传承 · 6天" data-en="Universal Laws, Intuition & Legacy · 6 Days">宇宙法则、直觉与传承 · 6天</div>
+        <div class="lfw-cycle-divider" style="background:rgba(201,162,39,0.3);"></div>
+        <ul class="lfw-cycle-items">
+          <li data-zh="信念的力量：目标与真正的内在对齐——成为已承载目标的人" data-en="The Power of Belief: goal-setting with inner alignment — become the person who already carries the goal">信念的力量：目标与真正的内在对齐</li>
+          <li data-zh="金字塔原则：阅读组织内部能量结构，找到你在宇宙秩序中的正确位置" data-en="The Pyramid Principle: read organisational energy structures, find your correct place">金字塔原则：读懂组织能量结构与你的正确位置</li>
+          <li data-zh="直觉的力量：将直觉系统地整合到决策中，阅读并影响思维模式" data-en="The Power of Intuition: integrating intuition systematically into decision-making">直觉的力量：系统整合直觉于决策之中</li>
+          <li data-zh="愿景与银箭：在静默的深处找到愿景，像银箭一样精准而有力地释放它" data-en="Vision & the Silver Arrow: find vision in stillness, release it precisely and powerfully">愿景与银箭：从静默深处接收并精准释放愿景</li>
+        </ul>
+        <div class="lfw-cycle-invest">
+          <div class="lfw-invest-label" data-zh="Cycle 3 投资" data-en="Cycle 3 Investment">Cycle 3 投资</div>
+          <div class="lfw-invest-amount" style="color:var(--gold-bright,#e8b933);">MYR 27,000</div>
+          <div class="lfw-invest-days" data-zh="6天 · 完整转化之巅" data-en="6 Days · Peak of Complete Transformation">6天 · 完整转化之巅</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PERSONAL CLOSING SESSION -->
+    <div class="lfw-closing-session reveal">
+      <div class="lfw-closing-icon">✦</div>
+      <div>
+        <div class="lfw-closing-title" data-zh="每个Cycle的个人闭幕环节" data-en="Personal Closing Session — Each Cycle">每个Cycle的个人闭幕环节</div>
+        <p class="lfw-closing-text"
+          data-zh="每个循环结束时，Insha Gabriele Holz 将与你进行一对一个人环节——直接认出你独特的领导力天赋、你的领导召唤，以及你今生带来的特定礼物，以及如何将它们发挥到极致。这不是一般性指导，而是与你灵魂领导使命的深度个人相遇。"
+          data-en="Each cycle concludes with a personal one-to-one session with Insha Gabriele Holz — a direct recognition of your unique gifts, your leadership calling, and the specific gifts you have brought into this world, and how to use them to their full potential. This is not general guidance. It is a deeply personal encounter with your own soul's leadership mission.">
+          每个循环结束时，Insha Gabriele Holz 将与你进行一对一个人环节——直接认出你独特的领导力天赋、你的领导召唤，以及你今生带来的特定礼物，以及如何将它们发挥到极致。这不是一般性指导，而是与你灵魂领导使命的深度个人相遇。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOR WHOM + FACILITATORS ══════════ -->
+<section class="section section-gold-pale">
+  <div class="container">
+    <div class="lfw-for-grid">
+      <div class="reveal">
+        <div class="section-label" data-zh="这适合你吗？" data-en="Is This For You?">这适合你吗？</div>
+        <h2 class="section-title"
+          data-zh="这个培训，<em>为你而设</em>"
+          data-en="This Programme Is <em>For You</em> If…">这个培训，<em>为你而设</em></h2>
+        <div class="gold-line"></div>
+        <div class="lfw-for-list">
+          <div class="lfw-for-item">
+            <strong data-zh="你已经成功——并感知到有更大的可能性" data-en="You are already successful — and sense something greater is possible">你已经成功——并感知到有更大的可能性</strong>
+            <span data-zh="你知道自己内在有更多等待被活出" data-en="You know there is more in you waiting to be lived">你知道自己内在有更多等待被活出</span>
+          </div>
+          <div class="lfw-for-item">
+            <strong data-zh="你愿意对自己彻底诚实" data-en="You are willing to be radically honest with yourself">你愿意对自己彻底诚实</strong>
+            <span data-zh="包括你的阴影、你的模式、你的极限" data-en="Including your shadows, patterns, and limitations">包括你的阴影、你的模式、你的极限</span>
+          </div>
+          <div class="lfw-for-item">
+            <strong data-zh="你理解权力与伟大之间的区别" data-en="You understand the difference between power and greatness">你理解权力与伟大之间的区别</strong>
+            <span data-zh="你想要以爱而非控制来领导" data-en="You want to lead from love, not from control">你想要以爱而非控制来领导</span>
+          </div>
+          <div class="lfw-for-item">
+            <strong data-zh="你准备好留下传承——而不只是一份记录" data-en="You are ready to leave a legacy — not just a track record">你准备好留下传承——而不只是一份记录</strong>
+            <span data-zh="你感到这是你生命中最重要的投资之一" data-en="You sense this is one of the most important investments of your life">你感到这是你生命中最重要的投资之一</span>
+          </div>
+          <div class="lfw-for-item">
+            <strong data-zh="你已完成 CIF 意识智能先修培训" data-en="You have completed the CIF Conscious Intelligence Foundation">你已完成 CIF 意识智能先修培训</strong>
+            <span data-zh="这是进入领导力路径的必要前提" data-en="This is the prerequisite for the Leadership from Within path">这是进入领导力路径的必要前提</span>
+          </div>
+        </div>
+        <div class="lfw-not-for">
+          <p data-zh="「如果你在寻找速效的领导力培训，这不是它。如果你准备好了真正的转化——这就是一切。」" data-en="&ldquo;If you are looking for a quick-fix leadership programme, this is not it. If you are ready for real transformation — this is everything.&rdquo;">「如果你在寻找速效的领导力培训，这不是它。如果你准备好了真正的转化——这就是一切。」</p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="section-label" data-zh="你的引领老师" data-en="Your Facilitators">你的引领老师</div>
+        <h2 class="section-title"
+          data-zh="与<em>大师同行</em>"
+          data-en="Walking With <em>Masters</em>">与<em>大师同行</em></h2>
+        <div class="gold-line"></div>
+        <div class="ac-facilitators">
+          <div class="ac-fac-card">
+            <img src="../assets/img/bonshuwa.jpg" alt="Dr. Bonshuwa Chua" class="ac-fac-img">
+            <div>
+              <div class="ac-fac-name">Dr. Bonshuwa Chua</div>
+              <div class="ac-fac-role" data-zh="迦雅灵性学院创始人 · 亚洲首席引领人" data-en="Founder, Gaya Spiritual Academy · Asia Lead">迦雅灵性学院创始人 · 亚洲首席引领人</div>
+              <p class="ac-fac-bio" data-zh="灵性启蒙导师、意识智能专家。马来西亚最具影响力教育家（MIE 2023）。超过10年陪伴亚洲领导者内在转化，亲历 Insha 的领导力工作之深度，确信：「这是我所遇过最先进的领导力发展。」" data-en="Spiritual awakening teacher and conscious intelligence expert. Malaysia's Most Influential Educator (MIE 2023). Over 10 years accompanying Asian leaders in inner transformation. Having personally experienced the depth of Insha's work: 'This is the most advanced leadership development I have ever encountered.'">灵性启蒙导师、意识智能专家。马来西亚最具影响力教育家（MIE 2023）。超过10年陪伴亚洲领导者内在转化，亲历 Insha 的领导力工作之深度，确信：「这是我所遇过最先进的领导力发展。」</p>
+            </div>
+          </div>
+          <div class="ac-fac-card">
+            <img src="../assets/img/insha.jpg" alt="Insha Gabriele Holz" class="ac-fac-img">
+            <div>
+              <div class="ac-fac-name">Insha Gabriele Holz</div>
+              <div class="ac-fac-role" data-zh="INSHA 国际学院创始人 · 26年灵性导师" data-en="Founder, INSHA International · 26 Years as Spiritual Teacher">INSHA 国际学院创始人 · 26年灵性导师</div>
+              <p class="ac-fac-bio" data-zh="欧洲最受尊重的意识领导力导师之一，26年经验。宝瓶世纪教练体系国际创始人，INSHA 自然神圣疗愈学院创始人。通过七大宇宙系统、脉轮与神秘学校，看见人的灵魂光芒，带领人回归最深的领导使命。" data-en="One of Europe's most respected teachers of conscious leadership, 26 years of experience. International creator of the Aquarius Coach system and INSHA Academy. Through 7 cosmic systems, chakras and mystery schools, she sees the soul's true light and leads people back to their deepest leadership mission.">欧洲最受尊重的意识领导力导师之一，26年经验。宝瓶世纪教练体系国际创始人，带领人回归最深的领导使命。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<section class="section section-mid">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:0;">
+      <div class="section-label" style="justify-content:center;" data-zh="真实的转变见证" data-en="Real Testimonials">真实的转变见证</div>
+      <h2 class="section-title" style="color:var(--ivory);"
+        data-zh="参与者怎么说"
+        data-en="What Participants Say">参与者怎么说</h2>
+      <div class="gold-line center"></div>
+    </div>
+    <div class="lfw-testimonials reveal">
+      <div class="lfw-testi-card">
+        <div class="lfw-testi-quote">"</div>
+        <p class="lfw-testi-text"
+          data-zh="以爱与信仰领导，是并将成为我的呼召。这些天如此丰盛，如此高频，如此脚踏实地，从心而说的每一句话。"
+          data-en="Leadership with love and faith is and will become my calling. These days were so enriching, so high-vibrational, so down-to-earth and heartfelt in everything that was said.">
+          以爱与信仰领导，是并将成为我的呼召。这些天如此丰盛，如此高频，如此脚踏实地，从心而说的每一句话。
+        </p>
+        <div class="lfw-testi-author">— Julia</div>
+      </div>
+      <div class="lfw-testi-card">
+        <div class="lfw-testi-quote">"</div>
+        <p class="lfw-testi-text"
+          data-zh="认知，记起，我真正是谁，我真正能做什么。我记起了我的力量与能力，以谦卑与无条件的爱给予他人与自己。"
+          data-en="Recognition, remembering — who am I really and what can I really do. I remembered my power and might, and use them in humility and unconditional love towards others and myself.">
+          认知，记起，我真正是谁，我真正能做什么。我记起了我的力量与能力，以谦卑与无条件的爱给予他人与自己。
+        </p>
+        <div class="lfw-testi-author">— Ayana</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ REGISTER / CTA ══════════ -->
+<section class="section section-teal" id="register">
+  <div class="container">
+    <div class="lfw-register-grid">
+      <div class="reveal">
+        <div class="section-label" data-zh="开始你的旅程" data-en="Begin Your Journey">开始你的旅程</div>
+        <h2 class="section-title" data-zh="准备好了吗？" data-en="Are You Ready?">准备好了吗？</h2>
+        <div class="gold-line"></div>
+
+        <!-- PREREQUISITE NOTE -->
+        <div class="lfw-prereq" style="margin-top:28px;">
+          <div class="lfw-prereq-icon">⚠</div>
+          <div>
+            <div class="lfw-prereq-label" data-zh="报名前提" data-en="Prerequisite">报名前提</div>
+            <p class="lfw-prereq-text"
+              data-zh="参与本培训需先完成 CIF 意识智能先修培训。CIF 是进入领导力路径与宝瓶世纪教练路径的共同基础。如尚未参加，欢迎先了解 CIF。"
+              data-en="Completion of CIF Conscious Intelligence Foundation is required before joining this programme. CIF is the shared foundation for both the Leadership and Aquarius Coach paths. If you haven't joined yet, we welcome you to learn about CIF first.">
+              参与本培训需先完成 CIF 意识智能先修培训。CIF 是进入领导力路径与宝瓶世纪教练路径的共同基础。如尚未参加，欢迎先了解
+              <a href="cif.html" data-zh="意识智能先修培训 CIF" data-en="CIF Conscious Intelligence Foundation">意识智能先修培训 CIF</a>。
+            </p>
+          </div>
+        </div>
+
+        <p style="color:rgba(255,255,255,0.6);font-size:0.93rem;line-height:1.9;margin-bottom:28px;font-weight:300;"
+          data-zh="报名前将进行简短了解通话（15–20分钟），确认适合性与时间安排。每个Cycle独立报名，可按自己的节奏前行。培训以小班形式进行，确保每位参与者获得足够的个人关注深度。"
+          data-en="A brief getting-to-know call (15–20 min) will be arranged before enrolment to confirm suitability and timing. Each Cycle is enrolled separately — progress at your own pace. The programme is conducted in intimate cohort groups to ensure individual depth.">
+          报名前将进行简短了解通话（15–20分钟），确认适合性与时间安排。每个Cycle独立报名，可按自己的节奏前行。培训以小班形式进行，确保每位参与者获得足够的个人关注深度。
+        </p>
+
+        <div class="price-block">
+          <div class="price-row" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+            <span class="price-label" data-zh="Cycle 1 · 自我认知与基础 · 6天" data-en="Cycle 1 · Self-Knowledge & Foundation · 6 Days">Cycle 1 · 自我认知与基础 · 6天</span>
+            <span class="price-early">MYR 9,000</span>
+          </div>
+          <div class="price-row" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+            <span class="price-label" data-zh="Cycle 2 · 领导力原则与临在 · 6天" data-en="Cycle 2 · Leadership Principles & Presence · 6 Days">Cycle 2 · 领导力原则与临在 · 6天</span>
+            <span class="price-early">MYR 18,000</span>
+          </div>
+          <div class="price-row price-row-early" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+            <span class="price-label" data-zh="Cycle 3 · 掌握、愿景与传承 · 6天" data-en="Cycle 3 · Mastery, Vision & Legacy · 6 Days">Cycle 3 · 掌握、愿景与传承 · 6天</span>
+            <span class="price-early">MYR 27,000</span>
+          </div>
+          <div class="price-row price-row-total">
+            <span class="price-label" data-zh="三Cycle总计 · 18天完整培训" data-en="All Three Cycles · 18-Day Complete Programme">三Cycle总计 · 18天完整培训</span>
+            <div style="text-align:right;">
+              <div style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:4px;" data-zh="总投资" data-en="Total Investment">总投资</div>
+              <div class="price-total-amount">MYR 54,000</div>
+              <div style="font-size:0.7rem;color:rgba(255,255,255,0.3);margin-top:2px;" data-zh="分阶段支付 · 可洽谈安排" data-en="Paid by cycle · Arrangement available">分阶段支付 · 可洽谈安排</div>
+            </div>
+          </div>
+        </div>
+        <p style="margin-top:14px;font-size:0.78rem;color:rgba(255,255,255,0.3);line-height:1.7;"
+          data-zh="* 本培训以欧元计价。马来西亚林吉特付款方式请洽询。每个Cycle可单独参加，亦可连续参与全三循环。"
+          data-en="* This programme is priced in EUR. For MYR payment arrangements, please enquire. Each Cycle can be attended individually or as a complete three-cycle journey.">
+          * 本培训以欧元计价。马来西亚林吉特付款方式请洽询。每个Cycle可单独参加，亦可连续参与全三循环。
+        </p>
+      </div>
+
+      <div class="reveal">
+        <div class="cif-cta-box">
+          <span class="cta-diamond">✦</span>
+          <p class="cta-quote"
+            data-zh="这个世界需要新型领导者。不是发号施令的人，而是吸引人心的人。不是控制他人的人，而是创造的人。不是耗尽周围人的人，而是提升他们的人。那个领导者已经在你之中。"
+            data-en="The world needs a new kind of leader. Not one who commands, but one who draws. Not one who controls, but one who creates. Not one who depletes the people around them, but one who elevates them. That leader is already within you.">
+            这个世界需要新型领导者。不是发号施令的人，而是吸引人心的人。不是控制他人的人，而是创造的人。那个领导者已经在你之中。
+          </p>
+          <p class="cta-sub"
+            data-zh="这个培训将帮助你找到他。你准备好承担你真正的领导使命了吗？"
+            data-en="This programme will help you find them. Are you ready to take on your true leadership mission?">
+            这个培训将帮助你找到他。你准备好承担你真正的领导使命了吗？
+          </p>
+          <a href="https://wa.me/60126011607?text=Hello%2C%20I%27m%20interested%20in%20Leadership%20from%20Within" class="btn-gold" style="width:100%;justify-content:center;margin-bottom:12px;">
+            <span data-zh="WhatsApp 咨询 · 开启对话" data-en="WhatsApp Us · Start the Conversation">WhatsApp 咨询 · 开启对话</span>
+          </a>
+          <div class="cta-divider"><span data-zh="或" data-en="or">或</span></div>
+          <a href="mailto:info@gayaspiritualacademy.com?subject=Leadership%20from%20Within%20Enquiry" class="btn-outline" style="width:100%;justify-content:center;color:rgba(255,255,255,0.6);border-color:rgba(255,255,255,0.2);">
+            <span data-zh="发送电邮咨询" data-en="Send an Email Enquiry">发送电邮咨询</span>
+          </a>
+          <p class="seats-warning" style="margin-top:20px;"
+            data-zh="✦ 名额严格限制 · 小班制深度培训 · 以心而决"
+            data-en="✦ Strictly limited places · Intimate cohort · Decide from your heart">
+            ✦ 名额严格限制 · 小班制深度培训 · 以心而决
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CLOSING BANNER ══════════ -->
+<section class="section section-teal-mid" style="padding:80px 0;">
+  <div class="container">
+    <div class="reveal text-center" style="max-width:720px;margin:0 auto;">
+      <div class="section-label" style="justify-content:center;" data-zh="内在领导力的时代" data-en="The Era of Inner Leadership">内在领导力的时代</div>
+      <h2 class="lfw-banner-quote">
+        <span data-zh="「你不会永远被战略支撑。<em>真正决定你能走多远的，是你的意识、稳定度，与内在位置。</em>」"
+          data-en="&ldquo;You will not be sustained by strategy forever. <em>What truly determines how far you can go is your consciousness, your stability, and the place you stand within yourself.</em>&rdquo;">
+          「你不会永远被战略支撑。<em>真正决定你能走多远的，是你的意识、稳定度，与内在位置。</em>」
+        </span>
+      </h2>
+      <div class="gold-line center"></div>
+      <p style="color:rgba(255,255,255,0.4);font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:36px;">— Bonshuwa Chua</p>
+      <a href="https://wa.me/60126011607" class="btn-primary">
+        <span data-zh="与 Dr. Bonshuwa 对话" data-en="Speak With Dr. Bonshuwa">与 Dr. Bonshuwa 对话</span><span>→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="footer"></footer>
+
+<a href="https://wa.me/60126011607" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+  renderNav('../');
+  renderFooter('../');
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.09 });
+  reveals.forEach(el => io.observe(el));
+  document.addEventListener('click', e => {
+    if (e.target.closest('.nav-hamburger')) document.querySelector('.nav-links')?.classList.toggle('open');
+  });
+</script>
+</body>
+</html>
+

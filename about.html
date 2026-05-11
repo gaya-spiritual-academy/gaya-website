@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于 Dr. Bonshuwa Chua · Gaya Spiritual Academy</title>
+  <meta name="description" content="Dr. Bonshuwa Chua — 统计学博士、灵性启蒙老师、Gaya Spiritual Academy 创办人。从「我是谁？」出发，走向亚洲最具影响力的灵性领导力教育家。">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .about-hero{min-height:100vh;padding-top:var(--nav-h);display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+    .hero-photo-col{position:relative;background:var(--teal-pale);overflow:hidden;min-height:600px}
+    .hero-photo-col img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;position:relative;z-index:2;}
+    .hero-photo-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(160deg,var(--teal-pale) 0%,#daf2f4 100%);z-index:1;}
+    .hero-photo-placeholder .ph-icon{font-size:3.5rem;color:rgba(42,172,184,0.25)}
+    .hero-photo-placeholder .ph-name{font-family:var(--font-display);font-size:1.3rem;color:var(--teal-deep)}
+    .hero-photo-placeholder .ph-hint{font-size:0.72rem;color:var(--text-soft);max-width:200px;text-align:center;line-height:1.6}
+    .hero-photo-badge{position:absolute;bottom:0;left:0;right:0;background:rgba(27,95,117,0.9);backdrop-filter:blur(8px);padding:18px 24px}
+    .badge-year{font-size:0.65rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal-light);margin-bottom:4px}
+    .badge-award{font-size:0.85rem;color:rgba(255,255,255,0.9);line-height:1.5}
+    .hero-text-col{display:flex;align-items:center;padding:clamp(40px,6vw,80px) clamp(32px,5vw,72px);background:white;position:relative}
+    .hero-text-col::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--teal-bright),var(--gold))}
+    .about-hero-name{font-family:var(--font-display);font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;line-height:1.05;color:var(--text-dark);margin-bottom:4px}
+    .about-hero-title{font-family:var(--font-display);font-size:clamp(1rem,2vw,1.25rem);font-style:italic;color:var(--teal-bright);margin-bottom:28px}
+    .about-hero-tagline{font-family:var(--font-display);font-size:clamp(1.1rem,2vw,1.45rem);font-weight:300;line-height:1.6;color:var(--text-dark);border-left:2px solid var(--gold);padding-left:20px;margin-bottom:28px}
+    .about-hero-sub{font-size:0.93rem;color:var(--text-mid);line-height:1.9;margin-bottom:36px;font-weight:300}
+    .contact-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .contact-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:var(--teal-pale);border:1px solid rgba(42,172,184,0.2);font-size:0.8rem;color:var(--teal-deep);border-radius:2px;transition:all .2s;text-decoration:none}
+    .contact-chip:hover{background:var(--teal-bright);color:white}
+    .question-section{background:var(--teal-deep);color:white;padding:var(--section-pad) 0;text-align:center;position:relative;overflow:hidden}
+    .question-bg-q{position:absolute;top:-40px;left:50%;transform:translateX(-50%);font-family:var(--font-display);font-size:clamp(12rem,30vw,22rem);font-weight:300;line-height:1;color:rgba(255,255,255,0.04);pointer-events:none;white-space:nowrap}
+    .question-eyebrow{font-size:0.7rem;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--teal-light);margin-bottom:24px}
+    .question-text{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.8rem);font-weight:300;line-height:1.25;color:white;max-width:760px;margin:0 auto 12px;font-style:italic}
+    .question-text .hl{color:var(--gold-bright);font-style:normal}
+    .question-year{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal-light);margin-bottom:56px}
+    .journey-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:920px;margin:0 auto}
+    .jc{background:rgba(255,255,255,0.06);padding:32px 28px;border:1px solid rgba(255,255,255,0.08);text-align:left;transition:all .25s}
+    .jc:hover{background:rgba(255,255,255,0.1)}
+    .jc-num{font-size:0.65rem;font-weight:700;letter-spacing:0.22em;color:var(--teal-bright);margin-bottom:12px}
+    .jc-title{font-family:var(--font-display);font-size:1.45rem;font-weight:300;color:white;margin-bottom:6px}
+    .jc-sub{font-size:0.78rem;color:rgba(255,255,255,0.4);margin-bottom:12px;letter-spacing:0.05em}
+    .jc-desc{font-size:0.86rem;color:rgba(255,255,255,0.65);line-height:1.8}
+    .stats-section{background:var(--off-white);padding:var(--section-pad) 0}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+    .stat-card{background:white;padding:40px 24px;text-align:center;border:1px solid rgba(42,172,184,0.1);transition:all .25s}
+    .stat-card:hover{border-color:rgba(42,172,184,0.3);transform:translateY(-3px);box-shadow:0 12px 40px rgba(27,95,117,0.08)}
+    .stat-num{font-family:var(--font-display);font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:300;color:var(--teal-deep);line-height:1;margin-bottom:8px}
+    .stat-num s{color:var(--teal-bright);font-style:normal;text-decoration:none}
+    .stat-label{font-size:0.82rem;color:var(--text-mid);line-height:1.55}
+    .identity-section{background:white;padding:var(--section-pad) 0}
+    .identity-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .id-card{padding:36px 28px;border:1px solid rgba(42,172,184,0.1);position:relative;overflow:hidden;transition:all .3s}
+    .id-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+    .id-card.scholar::before{background:var(--teal-bright)}
+    .id-card.healer::before{background:var(--mint)}
+    .id-card.teacher::before{background:var(--gold)}
+    .id-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(27,95,117,0.09)}
+    .id-icon{font-size:1.8rem;margin-bottom:16px}
+    .id-title{font-family:var(--font-display);font-size:1.5rem;font-weight:300;color:var(--text-dark);margin-bottom:4px}
+    .id-tag{font-size:0.65rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;display:block}
+    .scholar .id-tag{color:var(--teal-bright)}
+    .healer .id-tag{color:#5a9e4a}
+    .teacher .id-tag{color:var(--gold-dark)}
+    .id-line{width:32px;height:1.5px;background:rgba(42,172,184,0.2);margin-bottom:14px}
+    .id-points{list-style:none}
+    .id-points li{font-size:0.86rem;color:var(--text-mid);padding:7px 0 7px 14px;border-bottom:1px solid rgba(0,0,0,0.04);position:relative;line-height:1.5}
+    .id-points li::before{content:'·';position:absolute;left:0;color:var(--teal-bright);font-weight:700}
+    .healer .id-points li::before{color:#5a9e4a}
+    .teacher .id-points li::before{color:var(--gold)}
+    .timeline-section{background:var(--teal-pale);padding:var(--section-pad) 0}
+    .tl-wrap{position:relative;max-width:860px;margin:0 auto}
+    .tl-spine{position:absolute;left:90px;top:8px;bottom:8px;width:1.5px;background:linear-gradient(to bottom,var(--teal-bright),var(--gold),var(--teal-bright));opacity:.35}
+    .tl-item{display:grid;grid-template-columns:90px 1fr;gap:0 28px;margin-bottom:4px;align-items:start}
+    .tl-year-col{text-align:right;padding:20px 0;position:relative}
+    .tl-year{font-family:var(--font-display);font-size:1.1rem;font-weight:300;color:var(--teal-deep);line-height:1}
+    .tl-dot{position:absolute;right:-7.5px;top:23px;width:14px;height:14px;border-radius:50%;background:white;border:2px solid var(--teal-bright);transition:all .2s}
+    .tl-item:hover .tl-dot{background:var(--teal-bright);transform:scale(1.3)}
+    .tl-content-col{padding:14px 0}
+    .tl-card{background:white;padding:16px 22px;border:1px solid rgba(42,172,184,0.1);transition:all .25s}
+    .tl-item:hover .tl-card{border-color:rgba(42,172,184,0.3);box-shadow:0 6px 20px rgba(27,95,117,0.07)}
+    .tl-keyword{font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-bright);margin-bottom:5px}
+    .tl-text{font-size:0.87rem;color:var(--text-mid);line-height:1.7}
+    .tl-badge{display:inline-block;font-size:0.65rem;font-weight:600;padding:2px 10px;background:var(--gold-pale);color:var(--gold-dark);border:1px solid rgba(201,162,39,0.2);margin-top:8px}
+    .tl-milestone .tl-card{background:var(--teal-pale);border-color:rgba(42,172,184,0.25)}
+    .tl-milestone .tl-dot{border-color:var(--gold);background:var(--gold-pale)}
+    .tl-milestone .tl-keyword{color:var(--gold-dark)}
+    .tl-now .tl-year{color:var(--gold-dark);font-weight:400}
+    .tl-now .tl-dot{border-color:var(--gold);background:var(--gold)}
+    .tl-now .tl-card{background:var(--gold-pale);border-color:rgba(201,162,39,0.3)}
+    .tl-now .tl-keyword{color:var(--gold-dark)}
+    .vision-section{background:white;padding:var(--section-pad) 0}
+    .vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+    .vision-quote{font-family:var(--font-display);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:300;line-height:1.55;color:var(--text-dark);font-style:italic;border-left:3px solid var(--teal-bright);padding-left:24px;margin-bottom:20px}
+    .vision-quote .zh{display:block;font-size:.72em;color:var(--text-soft);margin-top:8px;font-style:normal}
+    .vision-attr{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal-bright)}
+    .collab-cards{display:flex;flex-direction:column;gap:14px}
+    .collab-card{display:flex;gap:18px;align-items:flex-start;padding:18px 20px;background:var(--off-white);border:1px solid rgba(42,172,184,0.1);transition:all .2s}
+    .collab-card:hover{border-color:rgba(42,172,184,0.3)}
+    .collab-avatar{width:46px;height:46px;border-radius:50%;flex-shrink:0;background:var(--teal-pale);border:2px solid rgba(42,172,184,0.2);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1rem;color:var(--teal-deep)}
+    .collab-name{font-size:0.93rem;font-weight:500;color:var(--text-dark);margin-bottom:3px}
+    .collab-role{font-size:0.78rem;color:var(--text-soft);margin-bottom:6px}
+    .collab-tag{display:inline-block;font-size:0.65rem;font-weight:600;padding:2px 10px;background:var(--teal-pale);color:var(--teal-deep);border:1px solid rgba(42,172,184,0.2)}
+    .about-cta{background:var(--teal-deep);padding:var(--section-pad) 0}
+    .about-cta-inner{display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
+    .cta-q{font-family:var(--font-display);font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:300;font-style:italic;color:white;margin-bottom:12px}
+    .cta-sub{font-size:0.9rem;color:rgba(255,255,255,0.5);line-height:1.75}
+    .cta-btns{display:flex;flex-direction:column;gap:12px;min-width:210px}
+    .text-center{text-align:center}
+    @media(max-width:900px){
+      .about-hero{grid-template-columns:1fr}
+      .hero-photo-col{min-height:360px}
+      .journey-cards{grid-template-columns:1fr}
+      .stats-grid{grid-template-columns:1fr 1fr}
+      .identity-grid{grid-template-columns:1fr}
+      .vision-grid{grid-template-columns:1fr;gap:40px}
+      .about-cta-inner{grid-template-columns:1fr}
+      .cta-btns{flex-direction:row;flex-wrap:wrap}
+      .tl-spine{left:72px}
+      .tl-item{grid-template-columns:72px 1fr}
+    }
+    @media(max-width:560px){
+      .stats-grid{grid-template-columns:1fr 1fr}
+      .hero-text-col{padding:28px 20px}
+      .tl-spine{display:none}
+      .tl-item{grid-template-columns:60px 1fr;gap:0 16px}
+    }
+  </style>
+</head>
+<body>
+<header class="nav" id="nav"></header>
+
+<!-- ① HERO -->
+<section class="about-hero">
+  <div class="hero-photo-col">
+    <img id="photo-bonshuwa" alt="Dr. Bonshuwa Chua" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
+    <div class="hero-photo-placeholder">
+      <div class="ph-icon">◆</div>
+      <div class="ph-name">Dr. Bonshuwa Chua</div>
+      <div class="ph-hint" data-zh="请将照片上传至 assets/img/bonshuwa.jpg" data-en="Upload photo to assets/img/bonshuwa.jpg">请将照片上传至 assets/img/bonshuwa.jpg</div>
+    </div>
+    <div class="hero-photo-badge">
+      <div class="badge-year">MIE 2023 · MIEBA 2024 · SHIPBA 2025</div>
+      <div class="badge-award" data-zh="最具影响力教育家 · 教育品牌 · 年度杰出企业家" data-en="Most Influential Educator · Education Brand · Prominent Entrepreneur of the Year">最具影响力教育家 · 教育品牌 · 年度杰出企业家</div>
+    </div>
+  </div>
+  <div class="hero-text-col">
+    <div style="width:100%;">
+      <div class="hero-eyebrow" data-zh="Gaya Spiritual Academy 创办人" data-en="Founder · Gaya Spiritual Academy">Gaya Spiritual Academy 创办人</div>
+      <h1 class="about-hero-name">Dr. Bonshuwa<br><em style="font-style:italic;color:var(--teal-bright);">Chua</em></h1>
+      <div class="about-hero-title" data-zh="灵性启蒙老师 · 意识智能体系联合创建者" data-en="Spiritual Awakening Teacher · Co-creator, Conscious Intelligence™">灵性启蒙老师 · 意识智能体系联合创建者</div>
+      <div class="about-hero-tagline" data-zh="我帮助领导者和疗愈师，<em style='font-style:italic;color:var(--teal-bright);'>从意识的深处</em>，找回真正的力量。" data-en="I help leaders and healers rediscover their truest power — <em style='font-style:italic;color:var(--teal-bright);'>from the depths of consciousness.</em>">我帮助领导者和疗愈师，<em style="font-style:italic;color:var(--teal-bright);">从意识的深处</em>，找回真正的力量。</div>
+      <p class="about-hero-sub" data-zh="统计学博士、前大学助理教授。2015年，一个问题改变了一切：「我是谁？」自此，他走上了一条跨越学术、疗愈与灵性领导力的道路，创立 Gaya Spiritual Academy，并成为亚洲最具影响力的灵性教育家之一。" data-en="PhD in Statistics, former university professor. In 2015, one question changed everything: 'Who am I?' He walked a path spanning academia, healing, and spiritual leadership — founding Gaya Spiritual Academy and becoming one of Asia's most influential spiritual educators.">统计学博士、前大学助理教授。2015年，一个问题改变了一切：「我是谁？」自此，他走上了一条跨越学术、疗愈与灵性领导力的道路，创立 Gaya Spiritual Academy，成为亚洲最具影响力的灵性教育家之一。</p>
+      <div class="contact-row">
+        <a href="https://wa.me/60126011607" target="_blank" class="contact-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span data-zh="WhatsApp" data-en="WhatsApp">WhatsApp</span>
+        </a>
+        <a href="mailto:info@gayaspiritualacademy.com" class="contact-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+          <span data-zh="Email" data-en="Email">Email</span>
+        </a>
+        <a href="courses/cif.html" class="btn-primary" style="padding:10px 20px;font-size:0.76rem;" data-zh="探索培训 →" data-en="Programmes →">探索培训 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ② THE QUESTION -->
+<section class="question-section">
+  <div class="question-bg-q">"</div>
+  <div class="container">
+    <div class="question-eyebrow reveal" data-zh="一切的起点" data-en="Where it all began">一切的起点</div>
+    <div class="question-text reveal" data-zh="「我是谁？」<br>这一个问题，<span class='hl'>改变了一切。</span>" data-en="<span class='hl'>'Who am I?'</span><br>One question.<br>Everything changed.">「我是谁？」<br>这一个问题，<span class="hl">改变了一切。</span></div>
+    <div class="question-year reveal" data-zh="2015年 · 马来西亚" data-en="2015 · Malaysia">2015年 · 马来西亚</div>
+    <div class="journey-cards">
+      <div class="jc reveal">
+        <div class="jc-num">01</div>
+        <div class="jc-title" data-zh="学者" data-en="The Scholar">学者</div>
+        <div class="jc-sub">2000 – 2015</div>
+        <div class="jc-desc" data-zh="统计学博士。马来西亚著名大学助理教授，15年执教数学、统计与精算学。他培育了无数学生——却感到，知识的深处，还有更多等待被揭开。" data-en="PhD in Statistics. Assistant Professor for 15 years — teaching Mathematics, Statistics & Actuarial Science. He shaped countless students, yet sensed there was something deeper still to uncover.">统计学博士。马来西亚著名大学助理教授，15年执教数学、统计与精算学。他感到，知识的深处，还有更多等待被揭开。</div>
+      </div>
+      <div class="jc reveal" data-delay="130">
+        <div class="jc-num">02</div>
+        <div class="jc-title" data-zh="传播者" data-en="The Communicator">传播者</div>
+        <div class="jc-sub">2005 – 2015</div>
+        <div class="jc-desc" data-zh="毅然转换跑道，成为传销资深讲师，传播营养免疫学知识。10年教导数以千计的人以食疗维持健康。他学会了：真正的改变，来自内在的觉醒。" data-en="Made a bold shift into direct selling — teaching thousands to heal through nutrition. He learned: true transformation always starts from within.">毅然转换跑道，成为传销资深讲师，传播营养免疫学知识。10年间教导数以千计的人。他学会了：真正的改变，来自内在的觉醒。</div>
+      </div>
+      <div class="jc reveal" data-delay="260">
+        <div class="jc-num">03</div>
+        <div class="jc-title" data-zh="灵性导师" data-en="The Spiritual Teacher">灵性导师</div>
+        <div class="jc-sub">2015 → 今</div>
+        <div class="jc-desc" data-zh="2015年，一个孩子的诞生，带来了这个问题：「我是谁？」他踏上灵性旅程，成为马来西亚第一位 Insha 疗愈师，于2019年创立 Gaya Spiritual Academy，如今影响数以百计的领导者与疗愈师。" data-en="In 2015, the birth of a child sparked the question: 'Who am I?' He became Malaysia's first Insha healer, founded Gaya Spiritual Academy in 2019, and now impacts hundreds of leaders and healers.">2015年，孩子的诞生带来了这个问题。他成为马来西亚第一位 Insha 疗愈师，创立 Gaya Spiritual Academy，如今影响数以百计的领导者与疗愈师。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ③ STATS -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card reveal"><div class="stat-num">100<s>+</s></div><div class="stat-label" data-zh="位疗愈师<br>培训与认证" data-en="Healers<br>Trained & Certified">位疗愈师<br>培训与认证</div></div>
+      <div class="stat-card reveal" data-delay="80"><div class="stat-num">100<s>+</s></div><div class="stat-label" data-zh="户家庭与企业<br>能量风水服务" data-en="Homes & Businesses<br>Energy Feng Shui">户家庭与企业<br>能量风水服务</div></div>
+      <div class="stat-card reveal" data-delay="160"><div class="stat-num">300<s>+</s></div><div class="stat-label" data-zh="场线上冥想<br>疫情支持大众" data-en="Online Sessions<br>COVID Support">场线上冥想<br>疫情期间支持大众</div></div>
+      <div class="stat-card reveal" data-delay="240"><div class="stat-num" style="font-size:clamp(0.95rem,2vw,1.35rem);padding-top:8px;line-height:1.6;color:var(--teal-deep)">MIE · MIEBA<br><span style="color:var(--gold-dark);font-size:0.85em">SHIPBA 2025</span></div><div class="stat-label" data-zh="2023 · 2024 · 2025<br>国际教育与商业大奖" data-en="2023 · 2024 · 2025<br>Int'l Awards">2023 · 2024 · 2025<br>国际教育与商业大奖</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ④ THREE IDENTITIES -->
+<section class="identity-section">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:52px;">
+      <div class="section-label" style="justify-content:center;" data-zh="三个面向" data-en="Three Dimensions">三个面向</div>
+      <h2 class="section-title" data-zh="他是谁" data-en="Who He Is">他是谁</h2>
+      <div class="gold-line center"></div>
+    </div>
+    <div class="identity-grid">
+      <div class="id-card scholar reveal">
+        <div class="id-icon">🎓</div>
+        <div class="id-title" data-zh="学者" data-en="The Scholar">学者</div>
+        <span class="id-tag" data-zh="PHD · 统计学 · 精算科学" data-en="PHD · STATISTICS · ACTUARIAL">PHD · 统计学 · 精算科学</span>
+        <div class="id-line"></div>
+        <ul class="id-points">
+          <li data-zh="统计学博士（PhD）" data-en="PhD in Statistics">统计学博士（PhD）</li>
+          <li data-zh="马来西亚著名大学助理教授" data-en="Former Assistant Professor, Malaysia">马来西亚著名大学助理教授</li>
+          <li data-zh="15年大学教学经验" data-en="15 years university teaching">15年大学教学经验</li>
+          <li data-zh="Britishpedia 收录马来西亚杰出人士" data-en="Featured in Britishpedia Malaysia">Britishpedia 收录马来西亚杰出人士</li>
+          <li data-zh="TVET-i Diploma · 气场玄学" data-en="TVET-i Diploma · Aura Metaphysics">TVET-i Diploma · 气场玄学</li>
+        </ul>
+      </div>
+      <div class="id-card healer reveal" data-delay="150">
+        <div class="id-icon">✦</div>
+        <div class="id-title" data-zh="疗愈师" data-en="The Healer">疗愈师</div>
+        <span class="id-tag" data-zh="能量 · 风水 · INSHA · 阿卡莎" data-en="ENERGY · FENG SHUI · INSHA">能量 · 风水 · INSHA · 阿卡莎</span>
+        <div class="id-line"></div>
+        <ul class="id-points">
+          <li data-zh="马来西亚第一位 Insha 自然疗法实践者" data-en="Malaysia's first Insha healer">马来西亚第一位 Insha 自然疗法实践者</li>
+          <li data-zh="Insha 马来西亚祭司培训导师" data-en="Insha Healing Priest Trainer, Malaysia">Insha 马来西亚祭司培训导师</li>
+          <li data-zh="九大封印进阶风水顾问" data-en="Nine Master School of Feng Shui">九大封印进阶风水顾问</li>
+          <li data-zh="阿卡莎阅读与花精疗愈师" data-en="Akasha Reading & Flower Essence">阿卡莎阅读与花精疗愈师</li>
+          <li data-zh="无线爱疗愈——亚洲唯一培训老师" data-en="Wireless Love Healing — Asia's only">无线爱疗愈——亚洲唯一培训老师</li>
+        </ul>
+      </div>
+      <div class="id-card teacher reveal" data-delay="300">
+        <div class="id-icon">◆</div>
+        <div class="id-title" data-zh="导师" data-en="The Teacher">导师</div>
+        <span class="id-tag" data-zh="领导力 · 意识 · 灵性体系" data-en="LEADERSHIP · CONSCIOUSNESS">领导力 · 意识 · 灵性体系</span>
+        <div class="id-line"></div>
+        <ul class="id-points">
+          <li data-zh="宝瓶世纪教练——亚洲唯一培训老师" data-en="Aquarius Coach — Asia's only trainer">宝瓶世纪教练——亚洲唯一培训老师</li>
+          <li data-zh="Conscious Intelligence™ 体系联合创建者" data-en="Co-creator, Conscious Intelligence™">Conscious Intelligence™ 联合创建者</li>
+          <li data-zh="Leadership from Within 新时代领导力" data-en="Leadership from Within Programme">Leadership from Within 新时代领导力</li>
+          <li data-zh="MIE 2023 · MIEBA 2024 · SHIPBA 2025 大奖得主" data-en="MIE 2023 · MIEBA 2024 · SHIPBA 2025 Winner">MIE · MIEBA · SHIPBA 2025 大奖得主</li>
+          <li data-zh="Gaya Congress 创办人 · 25位国际讲师" data-en="Gaya Congress founder · 25 speakers">Gaya Congress 创办人 · 25位国际讲师</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ TIMELINE -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:52px;">
+      <div class="section-label" style="justify-content:center;" data-zh="成长之路" data-en="The Journey">成长之路</div>
+      <h2 class="section-title" data-zh="2015 → 2026" data-en="2015 → 2026">2015 → 2026</h2>
+      <div class="gold-line center"></div>
+    </div>
+    <div class="tl-wrap">
+      <div class="tl-spine"></div>
+      <div class="tl-item reveal"><div class="tl-year-col"><div class="tl-year">2015</div><div class="tl-dot"></div></div><div class="tl-content-col"><div class="tl-card"><div class="tl-keyword" data-zh="觉醒" data-en="Awakening">觉醒</div><div class="tl-text" data-zh="问了自己「我是谁？」——灵性旅程由此开启。参与浴光之路、阿卡莎花精疗愈培训。" data-en="Asked 'Who am I?' — his spiritual journey began. Completed Path Into Light and Akasha Healing training.">问了自己「我是谁？」——灵性旅程由此开启。参与浴光之路、阿卡莎花精疗愈培训。</div></div></div></div>
+      <div class="tl-item reveal"><div class="tl-year-col"><div class="tl-year">2016</div><div class="tl-dot"></div></div><div class="tl-content-col"><div class="tl-card"><div class="tl-keyword" data-zh="风水" data-en="Feng Shui">风水</div><div class="tl-text" data-zh="开始分享能量风水，帮助超过100户家庭与企业，沟通并创造支持人们成长的空间能量。" data-en="Began sharing Energy Feng Shui — helping 100+ homes and businesses create supportive environments.">开始分享能量风水，帮助超过100户家庭与企业，创造支持人们成长的空间能量。</div></div></div></div>
+      <div class="tl-item reveal"><div class="tl-year-col"><div class="tl-year">2017</div><div class="tl-dot"></div></div><div class="tl-content-col"><div class="tl-card"><div class="tl-keyword" data-zh="德国 · 第一" data-en="Germany · First">德国 · 第一</div><div class="tl-text" data-zh="远赴德国参与为期16天的 Insha 世界自然神圣疗愈法，成为马来西亚第一位实践者。整年为数百人进行深层自然疗愈。" data-en="Travelled to Germany for the 16-day Insha Natural Sacred Healing Academy. Became Malaysia's first practitioner and provided healing to hundreds.">远赴德国参与16天 Insha 培训，成为马来西亚第一位实践者。整年为数百人进行深层自然疗愈。</div></div></div></div>
+      <div class="tl-item tl-milestone reveal"><div class="tl-year-col"><div class="tl-year">2019</div><div class="tl-dot"></div></div><div class="tl-content-col"><div class="tl-card"><div class="tl-keyword" data-zh="创立 · 里程碑" data-en="Founded · Milestone">创立 · 里程碑</div><div class="tl-text" data-zh="德国灵性大师 Insha  应邀赴马，培训亚洲疗愈师。正式创立 Gaya Spiritual Center，迎回【黄金世纪之路】课程，至今带领超过100人转化人生。" data-en="Insha  came to Malaysia to train Asian healers. Founded Gaya Spiritual Center. Launched Path Into Golden Age — transforming 100+ lives.">德国灵性大师应邀赴马培训亚洲疗愈师。正式创立 Gaya Spiritual Center，迎回【黄金世纪之路】，至今带领超过100人转化人生。</div><span class="tl-badge" data-zh="创立学院" data-en="Academy Founded">创立学院</span></div></div></div>
+      <div class="tl-item reveal"><div class="tl-year-col"><div class="tl-year">2020</div><div class="tl-dot"></div></div><div class="tl-content-col"><div class="tl-card"><div class="tl-keyword" data-zh="疫情中的光" data-en="Light in Darkness">疫情中的光</div><div class="tl-text" data-zh="疫情管制期间，带领疗愈师团队提供 300+ 场线上冥想与咨询，支持大众度过严峻时刻。" data-en="During COVID lockdown, led healers to offer 300+ online meditation and consultation sessions — supporting the public through crisis.">疫情期间，带领团队提供 300+ 场线上冥想与咨询，支持大众度过严峻时刻。</div></div></div></div>
+      <div class="tl-item reveal"><div class="tl-year-col"><div class="tl-year">2021</div><div class="tl-dot"></div></div><div class="tl-content-col"><div class="tl-card"><div class="tl-keyword" data-zh="亚洲唯一" data-en="Asia's Only">亚洲唯一</div><div class="tl-text" data-zh="授证成为马来西亚 Insha 自然疗愈祭司培训老师。将【无线爱疗愈】培训引入亚洲，成为亚洲唯一培训带领老师。" data-en="Certified as Malaysia's Insha Healing Priest trainer. Introduced Wireless Love Healing to Asia — the only trainer in Asia.">授证成为马来西亚 Insha 培训老师。将【无线爱疗愈】引入亚洲，成为亚洲唯一培训老师。</div></div></div></div>
+      <div class="tl-item reveal"><div class="tl-year-col"><div class="tl-year">2022</div><div class="tl-dot"></div></div><div class="tl-content-col"><div class="tl-card"><div class="tl-keyword" data-zh="宝瓶世纪" data-en="Aquarius Era">宝瓶世纪</div><div class="tl-text" data-zh="将【宝瓶世纪教练】培训引入亚洲，成为亚洲唯一培训老师。德国灵性大师见证，在 Gaya Celebration Day 为百余人给出《黄金世纪星光雨》能量祝福。" data-en="Introduced Aquarius Coach to Asia — Asia's only trainer. Witnessed by Insha — the Golden Age Starlight Rain blessing was given to 100+ at Gaya Celebration Day.">将【宝瓶世纪教练】引入亚洲，成为亚洲唯一培训老师。由灵性大师 Insha 见证，为百余人给出《黄金世纪星光雨》能量祝福。</div></div></div></div>
+      <div class="tl-item tl-milestone reveal"><div class="tl-year-col"><div class="tl-year">2023</div><div class="tl-dot"></div></div><div class="tl-content-col"><div class="tl-card"><div class="tl-keyword" data-zh="荣誉 · 认证" data-en="Awards · Recognition">荣誉 · 认证</div><div class="tl-text" data-zh="荣获「马来西亚最具影响力教育家」MIE 2023。成为 Britishpedia 收录的马来西亚最成功人士之一。获取 TVET 气场玄学一、二、三级认证。" data-en="Awarded MIE 2023 Most Influential Educator. Featured in Britishpedia. Obtained TVET-i Diploma in Aura Metaphysics.">荣获 MIE 2023 最具影响力教育家。Britishpedia 收录。获取 TVET-i Diploma（气场玄学）。</div><span class="tl-badge">MIE 2023 · Britishpedia</span></div></div></div>
+      <div class="tl-item tl-milestone reveal"><div class="tl-year-col"><div class="tl-year">2024</div><div class="tl-dot"></div></div><div class="tl-content-col"><div class="tl-card"><div class="tl-keyword" data-zh="晋升为学院" data-en="Academy Upgrade">晋升为学院</div><div class="tl-text" data-zh="正式晋升为 Gaya Spiritual Academy，成为全面性灵性学习与成长学院。至今培训超过100位疗愈师。荣获 MIEBA 2024 马来西亚具影响力教育品牌。" data-en="Upgraded to Gaya Spiritual Academy — a comprehensive spiritual learning institution. 100+ healers trained. Awarded MIEBA 2024.">正式晋升为 Gaya Spiritual Academy，至今培训超过100位疗愈师服务大众。荣获 MIEBA 2024。</div><span class="tl-badge">MIEBA 2024</span></div></div></div>
+      <div class="tl-item tl-milestone reveal"><div class="tl-year-col"><div class="tl-year" style="color:var(--gold-dark)">2025</div><div class="tl-dot" style="border-color:var(--gold);background:var(--gold-pale);"></div></div><div class="tl-content-col"><div class="tl-card" style="background:var(--gold-pale);border-color:rgba(201,162,39,0.25);"><div class="tl-keyword" style="color:var(--gold-dark);" data-zh="国际大奖 · 商界认可" data-en="International Award · Business Recognition">国际大奖 · 商界认可</div><div class="tl-text" data-zh="荣获上海国际声望商业大奖 SHIPBA 2025「年度杰出企业家」。受邀成为【商海名人访】嘉宾，获得国际商界对其灵性领导力事业的正式认可。" data-en="Awarded Shanghai International Prestige Business Awards SHIPBA 2025 — Prominent Entrepreneur of the Year. Invited as guest on Business Celebrity Interview, receiving international recognition for his spiritual leadership work.">荣获上海国际声望商业大奖 SHIPBA 2025「年度杰出企业家」。受邀成为【商海名人访】嘉宾，获国际商界对其灵性领导力事业的正式认可。</div><span class="tl-badge" style="background:var(--gold-pale);color:var(--gold-dark);border-color:rgba(201,162,39,0.25);">SHIPBA 2025 · 年度杰出企业家</span></div></div></div>
+<div class="tl-item tl-now reveal"><div class="tl-year-col"><div class="tl-year">2026</div><div class="tl-dot"></div></div><div class="tl-content-col"><div class="tl-card"><div class="tl-keyword" data-zh="历史性时刻" data-en="Historic Moment">历史性时刻</div><div class="tl-text" data-zh="Conscious Intelligence Foundation 正式在马来西亚落地。马来西亚与德国国际合作，将灵性领导力带入亚洲。这是一个体系的诞生——不只是一个工作坊。" data-en="Conscious Intelligence Foundation officially launches in Malaysia. A Malaysian-German collaboration — bringing spiritual leadership intelligence to Asia. A system is born, not just a workshop.">Conscious Intelligence Foundation 正式在马来西亚落地。马来西亚与德国的国际合作。一个体系的诞生——不只是一个工作坊。</div><span class="tl-badge" style="background:var(--gold-pale);color:var(--gold-dark);border-color:rgba(201,162,39,0.25);" data-zh="2026 · 最新里程碑" data-en="2026 · Latest Milestone">2026 · 最新里程碑</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ VISION + COLLABORATORS -->
+<section class="vision-section">
+  <div class="container">
+    <div class="vision-grid">
+      <div class="reveal">
+        <div class="section-label" data-zh="使命与愿景" data-en="Mission & Vision">使命与愿景</div>
+        <blockquote class="vision-quote" data-zh="「灵性生活化，生活灵性化。」<span class='zh'>帮助人们在自我、家庭、关系与事业中，觉察力量与潜能，回归和谐与平衡。</span>" data-en="「Spirituality made practical. Life made spiritual.」<span class='zh'>Helping people reconnect to their power and potential — in self, family, relationships, and work.</span>">「灵性生活化，生活灵性化。」<span class="zh">帮助人们在自我、家庭、关系与事业中，觉察力量与潜能，回归和谐与平衡。</span></blockquote>
+        <div class="vision-attr">— Dr. Bonshuwa Chua · Gaya Spiritual Academy</div>
+        <div class="gold-line" style="margin-top:28px;"></div>
+        <p style="font-size:0.9rem;color:var(--text-mid);line-height:1.9;" data-zh="引领亚洲下一个篇章的领导者，不是那些拥有最佳策略的人——而是那些拥有最深内在发展的人。这是 Bonshuwa 所相信的，也是他用生命实践的。" data-en="The leaders who will shape Asia's next chapter are not those with the best strategies — they are those with the deepest inner development. This is what Bonshuwa believes, and lives.">引领亚洲下一个篇章的领导者，不是那些拥有最佳策略的人——而是那些拥有最深内在发展的人。这是 Bonshuwa 所相信的，也是他用生命实践的。</p>
+      </div>
+      <div class="reveal" data-delay="200">
+        <div class="section-label" data-zh="国际合作与认可" data-en="International Collaboration & Recognition">国际合作与认可</div>
+        <h3 style="font-family:var(--font-display);font-size:1.4rem;font-weight:300;color:var(--text-dark);margin-bottom:20px;" data-zh="站在巨人的肩膀上" data-en="Standing on Shoulders of Giants">站在巨人的肩膀上</h3>
+        <div class="collab-cards">
+          <div class="collab-card"><div class="collab-avatar" style="background:white;border:1px solid rgba(168,133,90,0.3);overflow:hidden;padding:4px;"><img id="photo-insha" alt="Insha" style="width:100%;height:100%;object-fit:contain;"></div><div><div class="collab-name">Insha Gabriele Holz</div><div class="collab-role" data-zh="灵性导师 · 德国 · insha.net" data-en="Spiritual Teacher · Germany · insha.net">灵性导师 · 德国 · insha.net</div><span class="collab-tag" data-zh="Conscious Intelligence™ 联合创建者" data-en="Co-creator, Conscious Intelligence™">Conscious Intelligence™ 联合创建者</span></div></div>
+          
+          <div class="collab-card" style="background:var(--teal-pale);border-color:rgba(42,172,184,0.2);"><div class="collab-avatar" style="background:var(--teal-deep);color:white;">亚</div><div><div class="collab-name" data-zh="亚洲唯一代表" data-en="Asia's Sole Representative">亚洲唯一代表</div><div class="collab-role" data-zh="无线爱疗愈 · 宝瓶世纪教练 · 两项均为亚洲唯一培训老师" data-en="Wireless Love Healing & Aquarius Coach — Asia's only trainer for both">无线爱疗愈 · 宝瓶世纪教练 · 亚洲唯一</div><span class="collab-tag" style="background:var(--teal-deep);color:white;border-color:transparent;" data-zh="马来西亚 · 亚洲" data-en="Malaysia · Asia">马来西亚 · 亚洲</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑦ CTA -->
+<section class="about-cta">
+  <div class="container">
+    <div class="about-cta-inner reveal">
+      <div>
+        <div class="section-label" style="color:var(--teal-light);" data-zh="你的下一步" data-en="Your Next Step">你的下一步</div>
+        <div class="cta-q" data-zh="「如果你心里有一个是——请不要让它等太久。」" data-en="'If something in you is saying yes — don't let it wait too long.'">「如果你心里有一个是——请不要让它等太久。」</div>
+        <div class="cta-sub" data-zh="探索 Bonshuwa 的培训体系，或直接联络我们了解更多。" data-en="Explore Bonshuwa's programmes, or reach out directly to learn more.">探索 Bonshuwa 的培训体系，或直接联络我们了解更多。</div>
+      </div>
+      <div class="cta-btns">
+        <a href="courses/cif.html" class="btn-primary" data-zh="意识智能培训 →" data-en="Conscious Intelligence →">意识智能培训 →</a>
+        <a href="https://wa.me/60126011607" target="_blank" class="btn-outline" data-zh="WhatsApp 联络" data-en="WhatsApp Us">WhatsApp 联络</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="footer"></footer>
+<script src="assets/js/images.js"></script>
+<script src="assets/js/components.js"></script>
+<script src="assets/js/main.js"></script>
+<script>renderNav(''); renderFooter('');</script>
+
+<script>
+  // Inject base64 images
+  document.addEventListener('DOMContentLoaded', function() {
+    var b = document.getElementById('photo-bonshuwa');
+    var i = document.getElementById('photo-insha');
+    if (b && typeof IMG_BONSHUWA !== 'undefined') { b.src = IMG_BONSHUWA; }
+    if (i && typeof IMG_INSHA !== 'undefined') { i.src = IMG_INSHA; }
+  });
+</script>
+
+
+<!-- WhatsApp Floating Button -->
+<style>
+.wa-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+  transition: all 0.25s; cursor: pointer;
+  text-decoration: none;
+}
+.wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.6); }
+.wa-float svg { width: 28px; height: 28px; fill: white; }
+.wa-tooltip {
+  position: absolute; right: 68px; top: 50%; transform: translateY(-50%);
+  background: var(--text-dark); color: white;
+  font-size: 0.75rem; white-space: nowrap;
+  padding: 6px 12px; border-radius: 4px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s;
+  font-family: var(--font-body);
+}
+.wa-float:hover .wa-tooltip { opacity: 1; }
+</style>
+<a href="https://wa.me/60126011607" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+  <span class="wa-tooltip" data-zh="WhatsApp 联络" data-en="Chat with us">WhatsApp 联络</span>
+</a>
+</body>
+</html>

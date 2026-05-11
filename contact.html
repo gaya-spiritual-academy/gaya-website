@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-zh="联络我们 — Gaya Spiritual Academy" data-en="Contact Us — Gaya Spiritual Academy">联络我们 — Gaya Spiritual Academy</title>
+  <meta name="description" content="联络 Gaya Spiritual Academy — 预约咨询、培训报名或一般查询。">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Global styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    /* ── Page Hero ── */
+    .page-hero {
+      padding-top: calc(var(--nav-h) + 80px);
+      padding-bottom: 80px;
+      position: relative; overflow: hidden;
+      background: var(--teal-deep);
+    }
+    .page-hero-img {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80&auto=format&fit=crop');
+      background-size: cover; background-position: center 40%;
+      opacity: 0.22;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(27,95,117,0.85) 0%, rgba(27,95,117,0.6) 60%, rgba(14,42,51,0.9) 100%);
+      z-index: 1;
+    }
+    .page-hero-content { position: relative; z-index: 2; }
+    .page-eyebrow {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--teal-bright);
+      margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+      opacity: 0; animation: fadeUp 0.8s 0.1s var(--ease) forwards;
+    }
+    .page-eyebrow::before {
+      content: ''; width: 28px; height: 2px;
+      background: var(--teal-bright); border-radius: 2px;
+    }
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      font-weight: 300; line-height: 1.1; color: white;
+      margin-bottom: 8px;
+      opacity: 0; animation: fadeUp 0.9s 0.25s var(--ease) forwards;
+    }
+    .page-title em { font-style: italic; color: var(--teal-bright); }
+    .page-title-zh {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      font-weight: 300; color: rgba(255,255,255,0.45);
+      margin-bottom: 28px;
+      opacity: 0; animation: fadeUp 0.9s 0.35s var(--ease) forwards;
+    }
+    .page-sub {
+      font-size: 1rem; color: rgba(255,255,255,0.7); max-width: 540px;
+      font-weight: 300; line-height: 1.85;
+      opacity: 0; animation: fadeUp 1s 0.45s var(--ease) forwards;
+    }
+
+    /* ── Contact Layout ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 64px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* ── Contact Info Panel ── */
+    .contact-info-panel { position: sticky; top: calc(var(--nav-h) + 32px); }
+
+    .info-block {
+      display: flex; gap: 20px; align-items: flex-start;
+      margin-bottom: 32px; padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-block:last-of-type { border-bottom: none; margin-bottom: 0; }
+    .info-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--teal-pale);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--teal-deep);
+    }
+    .info-icon svg { width: 18px; height: 18px; }
+    .info-label {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--teal-bright); margin-bottom: 8px;
+    }
+    .info-value {
+      font-size: 0.95rem; color: var(--text-dark); line-height: 1.7;
+      font-weight: 400;
+    }
+    .info-value a {
+      color: var(--teal-deep);
+      transition: color 0.2s;
+    }
+    .info-value a:hover { color: var(--teal-bright); }
+
+    /* WhatsApp CTA card */
+    .wa-card {
+      background: linear-gradient(135deg, var(--teal-deep) 0%, var(--teal-mid) 100%);
+      border-radius: 8px; padding: 32px;
+      color: white; margin-top: 40px;
+      position: relative; overflow: hidden;
+    }
+    .wa-card::after {
+      content: '';
+      position: absolute; right: -20px; bottom: -20px;
+      width: 120px; height: 120px;
+      border: 2px solid rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+    .wa-card::before {
+      content: '';
+      position: absolute; right: 20px; bottom: 20px;
+      width: 80px; height: 80px;
+      border: 2px solid rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+    .wa-card-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 300;
+      margin-bottom: 8px; line-height: 1.3;
+    }
+    .wa-card-sub {
+      font-size: 0.85rem; color: rgba(255,255,255,0.65);
+      margin-bottom: 24px; font-weight: 300; line-height: 1.7;
+    }
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 13px 28px;
+      background: #25D366; color: white;
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.25s var(--ease);
+      box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+      position: relative; z-index: 1;
+    }
+    .wa-btn:hover {
+      background: #1da851; transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37,211,102,0.45);
+    }
+    .wa-btn svg { width: 18px; height: 18px; fill: white; }
+
+    /* ── Contact Form ── */
+    .form-card {
+      background: white;
+      border: 1px solid rgba(42,172,184,0.12);
+      border-radius: 8px; padding: 48px;
+      box-shadow: 0 4px 32px rgba(27,95,117,0.06);
+    }
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem; font-weight: 300;
+      color: var(--text-dark); margin-bottom: 6px;
+    }
+    .form-title em { font-style: italic; color: var(--teal-bright); }
+    .form-sub {
+      font-size: 0.88rem; color: var(--text-soft);
+      margin-bottom: 36px; font-weight: 300;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { margin-bottom: 22px; }
+    .form-label {
+      display: block;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--text-mid); margin-bottom: 8px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 13px 16px;
+      background: var(--off-white);
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      font-family: var(--font-body);
+      font-size: 0.9rem; color: var(--text-dark);
+      transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-soft); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--teal-bright);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(42,172,184,0.1);
+    }
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237AADBE' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      cursor: pointer;
+    }
+    .form-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+    .form-note {
+      font-size: 0.78rem; color: var(--text-soft);
+      margin-top: 6px; font-weight: 300;
+    }
+
+    /* Interest checkboxes */
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px; margin-top: 4px;
+    }
+    .interest-option {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 3px; cursor: pointer;
+      transition: all 0.2s var(--ease);
+      font-size: 0.8rem; color: var(--text-mid);
+      user-select: none;
+    }
+    .interest-option:hover { border-color: var(--teal-bright); color: var(--teal-deep); background: var(--teal-pale); }
+    .interest-option input[type=checkbox] { display: none; }
+    .interest-check {
+      width: 16px; height: 16px; flex-shrink: 0;
+      border: 1.5px solid var(--teal-light);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .interest-option input:checked ~ .interest-check {
+      background: var(--teal-bright); border-color: var(--teal-bright);
+    }
+    .interest-check::after {
+      content: '';
+      width: 8px; height: 5px;
+      border-left: 2px solid white; border-bottom: 2px solid white;
+      transform: rotate(-45deg) translateY(-1px);
+      opacity: 0; transition: opacity 0.15s;
+    }
+    .interest-option input:checked ~ .interest-check::after { opacity: 1; }
+    .interest-option:has(input:checked) {
+      border-color: var(--teal-bright); background: var(--teal-pale);
+      color: var(--teal-deep);
+    }
+
+    .form-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 28px 0;
+    }
+    .form-submit-row {
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .form-privacy {
+      font-size: 0.75rem; color: var(--text-soft); font-weight: 300;
+      flex: 1; min-width: 200px;
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center; padding: 48px 24px;
+    }
+    .form-success.visible { display: block; }
+    .success-icon {
+      width: 64px; height: 64px;
+      background: var(--teal-pale);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      color: var(--teal-deep);
+    }
+    .success-title {
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 300;
+      color: var(--text-dark); margin-bottom: 12px;
+    }
+    .success-sub { font-size: 0.95rem; color: var(--text-mid); font-weight: 300; }
+
+    /* ── Map section ── */
+    .map-section { margin-top: 80px; }
+    .map-embed {
+      width: 100%; height: 380px; border: none;
+      border-radius: 6px;
+      box-shadow: 0 4px 24px rgba(27,95,117,0.08);
+      filter: hue-rotate(160deg) saturate(0.5) brightness(0.95);
+    }
+    .map-address {
+      display: flex; gap: 48px; flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .map-address-item { display: flex; gap: 16px; align-items: flex-start; }
+    .map-address-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: var(--teal-pale); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--teal-deep);
+    }
+    .map-address-icon svg { width: 16px; height: 16px; }
+    .map-address-label {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--teal-bright); margin-bottom: 4px;
+    }
+    .map-address-text { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; }
+
+    /* ── Photo Strip ── */
+    .photo-strip-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr 1fr 1fr;
+      gap: 12px; align-items: end;
+    }
+    @media (max-width: 768px) {
+      .photo-strip-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .photo-strip-inner { grid-template-columns: 1fr; }
+    }
+    .photo-item {
+      position: relative; overflow: hidden; border-radius: 4px;
+    }
+    .photo-item img {
+      width: 100%; height: 220px; object-fit: cover;
+      display: block;
+      transition: transform 0.6s var(--ease);
+      filter: saturate(0.85);
+    }
+    .photo-item-tall img { height: 300px; }
+    .photo-item:hover img { transform: scale(1.05); filter: saturate(1); }
+    .photo-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(27,95,117,0.55) 0%, transparent 55%);
+    }
+    .photo-caption {
+      position: absolute; bottom: 14px; left: 16px; right: 16px;
+      z-index: 2;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.85);
+    }
+
+    /* ── WhatsApp floating ── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 56px; height: 56px;
+      background: #25D366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,0.6); }
+    .wa-float svg { width: 28px; height: 28px; fill: white; }
+    @media (max-width: 480px) { .form-card { padding: 28px 20px; } }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<header id="nav" class="nav"></header>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="page-hero-img"></div>
+  <div class="container page-hero-content">
+    <p class="page-eyebrow" data-zh="联络我们" data-en="Get In Touch">联络我们</p>
+    <h1 class="page-title" data-zh="<em>连接</em>，从这里开始" data-en="Let's <em>Connect</em>"><em>连接</em>，从这里开始</h1>
+    <p class="page-title-zh" data-zh="我们在这里，等待与您相遇" data-en="We are here, ready to meet you">我们在这里，等待与您相遇</p>
+    <p class="page-sub"
+      data-zh="无论是课程咨询、疗愈预约，或是一个灵魂想被看见的渴望——请告诉我们，让我们一起开始。"
+      data-en="Whether it's a course enquiry, healing appointment, or a quiet longing to be truly seen — reach out, and let us begin together.">
+      无论是课程咨询、疗愈预约，或是一个灵魂想被看见的渴望——请告诉我们，让我们一起开始。
+    </p>
+  </div>
+</section>
+
+<!-- Main Contact Section -->
+<section class="section section-white">
+  <div class="container">
+
+    <!-- Photo Strip -->
+    <div class="photo-strip reveal" style="margin-bottom:72px;">
+      <div class="photo-strip-inner">
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80&auto=format&fit=crop" alt="Peaceful meditation space" loading="lazy">
+          <div class="photo-caption" data-zh="宁静的疗愈空间" data-en="A peaceful healing space">宁静的疗愈空间</div>
+        </div>
+        <div class="photo-item photo-item-tall">
+          <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?w=600&q=80&auto=format&fit=crop" alt="Spiritual journey" loading="lazy">
+          <div class="photo-caption" data-zh="内在的旅程" data-en="The inner journey">内在的旅程</div>
+        </div>
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=600&q=80&auto=format&fit=crop" alt="Connection and light" loading="lazy">
+          <div class="photo-caption" data-zh="光与连接" data-en="Light and connection">光与连接</div>
+        </div>
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80&auto=format&fit=crop" alt="Nature and harmony" loading="lazy">
+          <div class="photo-caption" data-zh="自然与和谐" data-en="Nature and harmony">自然与和谐</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-layout">
+
+      <!-- Left: Info Panel -->
+      <div class="contact-info-panel reveal">
+
+        <div class="gold-line"></div>
+
+        <div class="info-block">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.99 1.18 2 2 0 012.97 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="info-label" data-zh="电话 · WhatsApp" data-en="Phone · WhatsApp">电话 · WhatsApp</div>
+            <div class="info-value">
+              <a href="tel:+60126011607">+60 12-601 1607</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <div class="info-label" data-zh="电邮" data-en="Email">电邮</div>
+            <div class="info-value">
+              <a href="mailto:info@gayaspiritualacademy.com">info@gayaspiritualacademy.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="info-label" data-zh="地址" data-en="Address">地址</div>
+            <div class="info-value">
+              D-2-3 Block D, Pusat Komersil Parklane<br>
+              Jalan SS7/26, Kelana Jaya<br>
+              47301 Petaling Jaya, Selangor<br>
+              Malaysia
+            </div>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div>
+            <div class="info-label" data-zh="办公时间" data-en="Office Hours">办公时间</div>
+            <div class="info-value"
+              data-zh="周一至周五 · 10:00 – 18:00<br>周六 · 10:00 – 14:00<br>（公共假期除外）"
+              data-en="Mon – Fri · 10:00 – 18:00<br>Sat · 10:00 – 14:00<br>(Closed on public holidays)">
+              周一至周五 · 10:00 – 18:00<br>周六 · 10:00 – 14:00<br>（公共假期除外）
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp Quick Contact -->
+        <div class="wa-card">
+          <div class="wa-card-title" data-zh="即时咨询" data-en="Chat with Us Now">即时咨询</div>
+          <p class="wa-card-sub"
+            data-zh="有任何疑问？点击直接与我们 WhatsApp，我们将尽快回复。"
+            data-en="Have questions? Tap below to WhatsApp us directly — we'll respond as soon as we can.">
+            有任何疑问？点击直接与我们 WhatsApp，我们将尽快回复。
+          </p>
+          <a href="https://wa.me/60126011607?text=您好，我想了解更多关于 Gaya Spiritual Academy 的培训与服务。" class="wa-btn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <span data-zh="WhatsApp 我们" data-en="WhatsApp Us">WhatsApp 我们</span>
+          </a>
+        </div>
+
+      </div><!-- /info panel -->
+
+      <!-- Right: Form -->
+      <div class="reveal" style="animation-delay:0.15s">
+        <div class="form-card">
+
+          <!-- Form body -->
+          <div id="formBody">
+            <h2 class="form-title" data-zh="发送<em>留言</em>" data-en="Send a <em>Message</em>">发送<em>留言</em></h2>
+            <p class="form-sub"
+              data-zh="填写以下表格，我们将于 1-2 个工作日内与您联系。"
+              data-en="Fill in the form below and we'll get back to you within 1–2 working days.">
+              填写以下表格，我们将于 1-2 个工作日内与您联系。
+            </p>
+
+            <form id="contactForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="fname" data-zh="姓名 *" data-en="Name *">姓名 *</label>
+                  <input class="form-input" type="text" id="fname" name="name" placeholder="您的姓名" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="femail" data-zh="电邮 *" data-en="Email *">电邮 *</label>
+                  <input class="form-input" type="email" id="femail" name="email" placeholder="your@email.com" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="fphone" data-zh="电话 / WhatsApp" data-en="Phone / WhatsApp">电话 / WhatsApp</label>
+                  <input class="form-input" type="tel" id="fphone" name="phone" placeholder="+60 12-XXX XXXX">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="flang" data-zh="偏好语言" data-en="Preferred Language">偏好语言</label>
+                  <select class="form-select" id="flang" name="language">
+                    <option value="" data-zh="请选择" data-en="Please select">请选择</option>
+                    <option value="zh" data-zh="中文" data-en="Chinese">中文</option>
+                    <option value="en" data-zh="英文" data-en="English">英文</option>
+                    <option value="bm" data-zh="马来文" data-en="Bahasa Malaysia">马来文</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" data-zh="我感兴趣的范畴（可多选）" data-en="I'm interested in (select all that apply)">我感兴趣的范畴（可多选）</label>
+                <div class="interest-grid">
+                  <label class="interest-option">
+                    <input type="checkbox" name="interest" value="cif">
+                    <span class="interest-check"></span>
+                    <span data-zh="CIF 意识智能" data-en="CIF Training">CIF 意识智能</span>
+                  </label>
+                  <label class="interest-option">
+                    <input type="checkbox" name="interest" value="aquarius">
+                    <span class="interest-check"></span>
+                    <span data-zh="宝瓶世纪教练" data-en="Aquarius Coach">宝瓶世纪教练</span>
+                  </label>
+                  <label class="interest-option">
+                    <input type="checkbox" name="interest" value="insha">
+                    <span class="interest-check"></span>
+                    <span data-zh="INSHA 疗愈" data-en="INSHA Healing">INSHA 疗愈</span>
+                  </label>
+                  <label class="interest-option">
+                    <input type="checkbox" name="interest" value="fengshui">
+                    <span class="interest-check"></span>
+                    <span data-zh="能量风水" data-en="Energy Feng Shui">能量风水</span>
+                  </label>
+                  <label class="interest-option">
+                    <input type="checkbox" name="interest" value="akasha">
+                    <span class="interest-check"></span>
+                    <span data-zh="阿卡莎阅读" data-en="Akasha Reading">阿卡莎阅读</span>
+                  </label>
+                  <label class="interest-option">
+                    <input type="checkbox" name="interest" value="corporate">
+                    <span class="interest-check"></span>
+                    <span data-zh="企业咨询" data-en="Corporate Consulting">企业咨询</span>
+                  </label>
+                  <label class="interest-option">
+                    <input type="checkbox" name="interest" value="events">
+                    <span class="interest-check"></span>
+                    <span data-zh="旗舰活动" data-en="Signature Events">旗舰活动</span>
+                  </label>
+                  <label class="interest-option">
+                    <input type="checkbox" name="interest" value="other">
+                    <span class="interest-check"></span>
+                    <span data-zh="其他" data-en="Other">其他</span>
+                  </label>
+                </div>
+              </div>
+
+              <hr class="form-divider">
+
+              <div class="form-group">
+                <label class="form-label" for="fmsg" data-zh="留言 *" data-en="Message *">留言 *</label>
+                <textarea class="form-textarea" id="fmsg" name="message"
+                  placeholder="请描述您的需求或疑问……" required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="fhear" data-zh="您如何认识我们？" data-en="How did you hear about us?">您如何认识我们？</label>
+                <select class="form-select" id="fhear" name="source">
+                  <option value="" data-zh="请选择" data-en="Please select">请选择</option>
+                  <option value="friend" data-zh="朋友介绍" data-en="Friend / Referral">朋友介绍</option>
+                  <option value="social" data-zh="社交媒体" data-en="Social Media">社交媒体</option>
+                  <option value="search" data-zh="搜索引擎" data-en="Search Engine">搜索引擎</option>
+                  <option value="event" data-zh="活动/课程" data-en="Event / Course">活动/课程</option>
+                  <option value="other" data-zh="其他" data-en="Other">其他</option>
+                </select>
+              </div>
+
+              <div class="form-submit-row">
+                <button type="submit" class="btn-primary" id="submitBtn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="22" y1="2" x2="11" y2="13"/>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                  </svg>
+                  <span data-zh="发送留言" data-en="Send Message">发送留言</span>
+                </button>
+                <p class="form-privacy"
+                  data-zh="提交即代表您同意我们以联络目的使用您的资料。我们不会将您的资料分享给第三方。"
+                  data-en="By submitting, you agree to us using your information for contact purposes. We do not share your data with third parties.">
+                  提交即代表您同意我们以联络目的使用您的资料。
+                </p>
+              </div>
+            </form>
+          </div><!-- /formBody -->
+
+          <!-- Success state -->
+          <div class="form-success" id="formSuccess">
+            <div class="success-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <h3 class="success-title" data-zh="留言已发送 ✦" data-en="Message Sent ✦">留言已发送 ✦</h3>
+            <p class="success-sub"
+              data-zh="感谢您联系我们。我们将于 1-2 个工作日内回复您。如需即时回应，欢迎 WhatsApp 我们。"
+              data-en="Thank you for reaching out. We'll be in touch within 1–2 working days. For an immediate response, feel free to WhatsApp us.">
+              感谢您联系我们。我们将于 1-2 个工作日内回复您。
+            </p>
+            <a href="https://wa.me/60126011607" class="btn-primary" style="margin-top:28px;display:inline-flex;" target="_blank">
+              <span data-zh="WhatsApp 即时联系" data-en="WhatsApp Us Now">WhatsApp 即时联系</span>
+            </a>
+          </div>
+
+        </div><!-- /form-card -->
+      </div>
+    </div><!-- /contact-layout -->
+
+    <!-- Map Section -->
+    <div class="map-section reveal">
+      <div class="section-label" data-zh="我们的位置" data-en="Our Location">我们的位置</div>
+      <h2 class="section-title" style="margin-bottom:32px;"
+        data-zh="到<em>访</em>我们" data-en="Visit <em>Us</em>">到<em>访</em>我们</h2>
+
+      <iframe
+        class="map-embed"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.0!2d101.6!3d3.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4bf2ab4e7a7f%3A0x0!2sPusat+Komersil+Parklane%2C+Jalan+SS7%2F26%2C+Kelana+Jaya%2C+47301+Petaling+Jaya%2C+Selangor!5e0!3m2!1sen!2smy!4v1620000000000!5m2!1sen!2smy"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Gaya Spiritual Academy Location"
+        aria-label="Google Maps — Gaya Spiritual Academy">
+      </iframe>
+
+      <div class="map-address">
+        <div class="map-address-item">
+          <div class="map-address-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="map-address-label" data-zh="地址" data-en="Address">地址</div>
+            <div class="map-address-text">D-2-3 Block D, Pusat Komersil Parklane<br>Jalan SS7/26, Kelana Jaya, 47301 PJ, Selangor</div>
+          </div>
+        </div>
+        <div class="map-address-item">
+          <div class="map-address-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="1" y="3" width="15" height="13" rx="1"/>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+              <circle cx="5.5" cy="18.5" r="2.5"/>
+              <circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="map-address-label" data-zh="停车" data-en="Parking">停车</div>
+            <div class="map-address-text"
+              data-zh="商业园区内有充足停车位可供使用"
+              data-en="Ample parking available within the commercial park">
+              商业园区内有充足停车位可供使用
+            </div>
+          </div>
+        </div>
+        <div class="map-address-item">
+          <div class="map-address-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div>
+            <div class="map-address-label" data-zh="办公时间" data-en="Hours">办公时间</div>
+            <div class="map-address-text"
+              data-zh="周一至周五 10:00–18:00<br>周六 10:00–14:00"
+              data-en="Mon–Fri 10:00–18:00<br>Sat 10:00–14:00">
+              周一至周五 10:00–18:00<br>周六 10:00–14:00
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer" class="footer"></footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/60126011607" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- Scripts -->
+<script src="assets/js/components.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  // Init nav & footer
+  renderNav('');
+  renderFooter('');
+
+  // Mark active nav link
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    if (a.getAttribute('href')?.includes('contact')) a.classList.add('active');
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Mailchimp Embedded Form URL (official, no API key needed) ──
+  const MC_URL = 'https://clicksummits.us11.list-manage.com/subscribe/post?u=c39b88a16808ce2df654cfa2b&id=8c6c6e2288&f_id=006ba6e1f0';
+
+  // ── Form Submit via hidden iframe (sends all fields to Mailchimp) ──
+  const form = document.getElementById('contactForm');
+  const formBody = document.getElementById('formBody');
+  const formSuccess = document.getElementById('formSuccess');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name      = form.querySelector('#fname').value.trim();
+    const email     = form.querySelector('#femail').value.trim();
+    const phone     = form.querySelector('#fphone').value.trim();
+    const message   = form.querySelector('#fmsg').value.trim();
+    const interests = [...form.querySelectorAll('input[name=interest]:checked')]
+      .map(cb => cb.value).join(', ');
+
+    // Validation
+    if (!name || !email || !message) {
+      [form.querySelector('#fname'), form.querySelector('#femail'), form.querySelector('#fmsg')]
+        .forEach(field => {
+          if (!field.value.trim()) {
+            field.style.borderColor = '#e05252';
+            field.addEventListener('input', () => field.style.borderColor = '', { once: true });
+          }
+        });
+      return;
+    }
+
+    // Loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 0.8s linear infinite">
+        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+      </svg>
+      <span>提交中…</span>`;
+
+    const nameParts = name.split(' ');
+    const firstName = nameParts[0];
+    const lastName  = nameParts.slice(1).join(' ') || '';
+
+    // Create hidden iframe as target (avoids page redirect)
+    const iframeName = 'mc-hidden-iframe';
+    let iframe = document.getElementById(iframeName);
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.id = iframeName;
+      iframe.name = iframeName;
+      iframe.style.cssText = 'display:none;width:0;height:0;border:0;position:absolute;left:-9999px;';
+      document.body.appendChild(iframe);
+    }
+
+    // Build a hidden form and submit it into the iframe
+    const mcForm = document.createElement('form');
+    mcForm.method = 'POST';
+    mcForm.action = MC_URL;
+    mcForm.target = iframeName;
+    mcForm.style.display = 'none';
+
+    const fields = {
+      'EMAIL':    email,
+      'FNAME':    firstName,
+      'LNAME':    lastName,
+      'PHONE':    phone,
+      'MESSAGE':  message,
+      'INTERESTS2': interests,
+      'b_c39b88a16808ce2df654cfa2b_8c6c6e2288': '' // honeypot
+    };
+
+    Object.entries(fields).forEach(([key, val]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = val;
+      mcForm.appendChild(input);
+    });
+
+    document.body.appendChild(mcForm);
+    mcForm.submit();
+    document.body.removeChild(mcForm);
+
+    // Show success after short delay
+    setTimeout(() => {
+      formBody.style.display = 'none';
+      formSuccess.classList.add('visible');
+
+      const waMsg = encodeURIComponent(
+        `您好，我是 ${name}。\n邮件：${email}\n兴趣：${interests || '（未选择）'}\n\n${message}`
+      );
+      formSuccess.querySelector('a').href = `https://wa.me/60126011607?text=${waMsg}`;
+    }, 1500);
+  });
+
+  // Placeholder i18n for select options
+  window.addEventListener('langChanged', () => {
+    document.querySelectorAll('select option[data-zh],[data-en]').forEach(opt => {
+      const lang = document.documentElement.lang || 'zh';
+      opt.textContent = opt.getAttribute(`data-${lang}`) || opt.textContent;
+    });
+    document.querySelectorAll('input[placeholder]').forEach(inp => {
+      // Re-apply placeholder based on lang if needed
+    });
+  });
+</script>
+</body>
+</html>

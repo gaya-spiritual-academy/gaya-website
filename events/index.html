@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-zh="旗舰活动 — Gaya Spiritual Academy" data-en="Signature Events — Gaya Spiritual Academy">旗舰活动 — Gaya Spiritual Academy</title>
+  <meta name="description" content="Gaya Spiritual Academy 旗舰活动 — Gaya Congress、无线爱疗愈 Wireless Love、领导力工作坊">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    /* ── Nav active ── */
+    .nav-links a[href*="events"] { color: var(--teal-deep); }
+    .nav-links a[href*="events"]::after { transform: scaleX(1); }
+
+    /* ── HERO ── */
+    .prog-hero {
+      min-height: 72vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: var(--nav-h);
+      background: #0D3D4F;
+    }
+    .prog-hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: 0.28;
+      filter: saturate(0.6) brightness(0.7);
+    }
+    .prog-hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(42,172,184,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42,172,184,0.07) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    .prog-hero-glow {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 70% 25%, rgba(201,162,39,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 80%, rgba(42,172,184,0.2) 0%, transparent 50%);
+    }
+    .prog-hero-inner {
+      position: relative; z-index: 2;
+      max-width: var(--container); margin: 0 auto;
+      padding: 80px clamp(20px,4vw,60px) 72px;
+    }
+    .prog-hero-eyebrow {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--gold);
+      display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+      opacity: 0; animation: fadeUp 0.7s 0.1s var(--ease) forwards;
+    }
+    .prog-hero-eyebrow::before {
+      content: ''; display: block; width: 32px; height: 1.5px; background: var(--gold);
+    }
+    .prog-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5.5vw, 5.2rem);
+      font-weight: 300; line-height: 1.1; color: white; margin-bottom: 12px;
+      opacity: 0; animation: fadeUp 0.8s 0.25s var(--ease) forwards;
+    }
+    .prog-hero-title em { font-style: italic; color: var(--teal-bright); }
+    .prog-hero-subtitle {
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+      color: rgba(255,255,255,0.45); font-weight: 300;
+      font-family: var(--font-display); font-style: italic;
+      margin-bottom: 28px;
+      opacity: 0; animation: fadeUp 0.8s 0.38s var(--ease) forwards;
+    }
+    .prog-hero-desc {
+      font-size: 0.97rem; color: rgba(255,255,255,0.65);
+      max-width: 560px; line-height: 1.95; font-weight: 300;
+      opacity: 0; animation: fadeUp 0.9s 0.5s var(--ease) forwards;
+    }
+
+    /* ── Events Intro ── */
+    .evt-intro {
+      padding: var(--section-pad) 0;
+      background: var(--off-white);
+    }
+    .evt-intro-inner {
+      max-width: 680px; margin: 0 auto; text-align: center;
+    }
+
+    /* ── Event Feature Cards ── */
+    .evt-features {
+      padding: var(--section-pad) 0;
+      background: white;
+    }
+    .evt-features-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    /* Full-width alternating event feature */
+    .evt-feature {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 560px;
+      overflow: hidden;
+    }
+    .evt-feature:nth-child(even) { direction: rtl; }
+    .evt-feature:nth-child(even) > * { direction: ltr; }
+    @media (max-width: 768px) {
+      .evt-feature, .evt-feature:nth-child(even) {
+        grid-template-columns: 1fr; direction: ltr; min-height: auto;
+      }
+    }
+
+    .evt-feature-img-wrap {
+      position: relative; overflow: hidden;
+    }
+    .evt-feature-img {
+      width: 100%; height: 100%; min-height: 400px; object-fit: cover;
+      filter: saturate(0.75) brightness(0.88);
+      transition: transform 0.8s var(--ease), filter 0.5s;
+    }
+    .evt-feature:hover .evt-feature-img {
+      transform: scale(1.04);
+      filter: saturate(0.9) brightness(0.95);
+    }
+    .evt-feature-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(13,61,79,0.35) 0%, transparent 60%);
+    }
+    .evt-feature-num {
+      position: absolute; top: 28px; left: 28px;
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 300; line-height: 1;
+      color: rgba(255,255,255,0.15);
+      letter-spacing: -0.02em;
+    }
+    .evt-feature-badge {
+      position: absolute; bottom: 28px; left: 28px;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: white;
+      background: rgba(201,162,39,0.85); padding: 6px 14px; border-radius: 2px;
+    }
+
+    .evt-feature-content {
+      padding: clamp(40px,6vw,72px);
+      display: flex; flex-direction: column; justify-content: center;
+      background: white;
+    }
+    .evt-feature:nth-child(2) .evt-feature-content { background: var(--off-white); }
+    .evt-feature:nth-child(3) .evt-feature-content { background: #0D3D4F; }
+
+    .evt-feature-tag {
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--teal-bright); margin-bottom: 16px;
+    }
+    .evt-feature:nth-child(3) .evt-feature-tag { color: var(--teal-light); }
+
+    .evt-feature-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300; line-height: 1.1;
+      color: var(--text-dark); margin-bottom: 8px;
+    }
+    .evt-feature-title em { font-style: italic; color: var(--teal-bright); }
+    .evt-feature:nth-child(3) .evt-feature-title { color: white; }
+    .evt-feature:nth-child(3) .evt-feature-title em { color: var(--teal-bright); }
+
+    .evt-feature-subtitle {
+      font-family: var(--font-display); font-size: 1rem;
+      color: var(--text-soft); font-weight: 300; font-style: italic;
+      margin-bottom: 20px;
+    }
+    .evt-feature:nth-child(3) .evt-feature-subtitle { color: rgba(255,255,255,0.4); }
+
+    .evt-divider {
+      width: 44px; height: 2px;
+      background: linear-gradient(90deg, var(--teal-bright), var(--gold));
+      margin-bottom: 24px; border-radius: 2px;
+    }
+
+    .evt-feature-desc {
+      font-size: 0.9rem; color: var(--text-mid); line-height: 1.95; margin-bottom: 28px;
+    }
+    .evt-feature:nth-child(3) .evt-feature-desc { color: rgba(255,255,255,0.55); }
+
+    .evt-meta-list {
+      list-style: none; margin-bottom: 32px;
+    }
+    .evt-meta-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.85rem; color: var(--text-mid); margin-bottom: 8px;
+    }
+    .evt-feature:nth-child(3) .evt-meta-list li { color: rgba(255,255,255,0.5); }
+    .evt-meta-list li::before {
+      content: '✦'; color: var(--gold); font-size: 0.55rem;
+      margin-top: 4px; flex-shrink: 0;
+    }
+
+    .evt-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* ── CTA Banner ── */
+    .evt-cta-banner {
+      background: linear-gradient(135deg, var(--teal-deep) 0%, #0D3D4F 100%);
+      padding: clamp(60px,8vw,100px) 0; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .evt-cta-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(42,172,184,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42,172,184,0.06) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    .evt-cta-banner .container { position: relative; z-index: 1; }
+    .evt-cta-banner .section-label { justify-content: center; }
+    .evt-cta-banner p {
+      color: rgba(255,255,255,0.55); font-size: 1rem;
+      max-width: 520px; margin: 0 auto 36px; line-height: 1.9;
+    }
+    .evt-cta-center { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── WhatsApp Float ── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 54px; height: 54px; border-radius: 50%;
+      background: #25D366; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      transition: transform 0.2s var(--ease), box-shadow 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.08); box-shadow: 0 8px 28px rgba(37,211,102,0.55); }
+    .wa-float svg { width: 28px; height: 28px; fill: white; }
+  </style>
+</head>
+<body>
+<header class="nav" id="nav"></header>
+
+<!-- ── HERO ── -->
+<section class="prog-hero">
+  <img class="prog-hero-img"
+    src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80&auto=format&fit=crop"
+    alt="旗舰活动">
+  <div class="prog-hero-grid"></div>
+  <div class="prog-hero-glow"></div>
+  <div class="prog-hero-inner">
+    <div class="prog-hero-eyebrow" data-zh="旗舰活动" data-en="Signature Events">旗舰活动</div>
+    <h1 class="prog-hero-title">
+      <span data-zh="汇聚光的" data-en="Gathering of">汇聚光的</span><br>
+      <em data-zh="力量与意识" data-en="Light & Consciousness">力量与意识</em>
+    </h1>
+    <div class="prog-hero-subtitle" data-zh="Signature Events · Transformation · Community" data-en="Signature Events · Transformation · Community">Signature Events · Transformation · Community</div>
+    <p class="prog-hero-desc" data-zh="三个精心策划的旗舰活动，汇聚志同道合的灵魂，在集体意识的共振中共同提升、蜕变与绽放。" data-en="Three carefully curated signature events bringing together like-minded souls — rising, transforming, and flourishing together in the resonance of collective consciousness.">三个精心策划的旗舰活动，汇聚志同道合的灵魂，在集体意识的共振中共同提升、蜕变与绽放。</p>
+  </div>
+</section>
+
+<!-- ── Intro ── -->
+<section class="evt-intro">
+  <div class="container">
+    <div class="evt-intro-inner reveal">
+      <div class="section-label" data-zh="三大旗舰活动" data-en="Three Signature Events">三大旗舰活动</div>
+      <h2 class="section-title" data-zh="与意识同频<br><em>共同跨越时代</em>" data-en="Aligned with Consciousness<br><em>Crossing the Age Together</em>">与意识同频<br><em>共同跨越时代</em></h2>
+      <div class="gold-line center"></div>
+      <p style="color:var(--text-mid);font-size:0.95rem;line-height:1.95;" data-zh="每一个旗舰活动，都是一次灵魂的聚会。在这里，您将与全球各地志同道合的觉醒者相遇，体验集体意识场的强大共振力量，在人类意识转化的历史时刻，共同成为光的先行者。" data-en="Each signature event is a gathering of souls. Here you will meet awakened beings from around the world, experience the powerful resonance of a collective consciousness field, and together become pioneers of light at a pivotal moment in human consciousness evolution.">每一个旗舰活动，都是一次灵魂的聚会。在这里，您将与全球各地志同道合的觉醒者相遇，体验集体意识场的强大共振力量，在人类意识转化的历史时刻，共同成为光的先行者。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Event Features ── -->
+<section class="evt-features">
+  <div class="evt-features-grid">
+
+    <!-- 01 Gaya Congress -->
+    <article class="evt-feature reveal">
+      <div class="evt-feature-img-wrap">
+        <img class="evt-feature-img"
+          src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80&auto=format&fit=crop"
+          alt="Gaya Congress">
+        <div class="evt-feature-img-overlay"></div>
+        <div class="evt-feature-num">01</div>
+        <div class="evt-feature-badge" data-zh="年度旗舰" data-en="Annual Flagship">年度旗舰</div>
+      </div>
+      <div class="evt-feature-content">
+        <div class="evt-feature-tag" data-zh="国际年会 · 意识峰会" data-en="International Congress · Consciousness Summit">国际年会 · 意识峰会</div>
+        <h2 class="evt-feature-title"><em>Gaya Congress</em></h2>
+        <div class="evt-feature-subtitle" data-zh="宝瓶世纪意识领袖峰会" data-en="Aquarian Age Consciousness Leadership Summit">宝瓶世纪意识领袖峰会</div>
+        <div class="evt-divider"></div>
+        <p class="evt-feature-desc" data-zh="Gaya Congress 是 Gaya 灵性学院最具代表性的年度旗舰活动，汇聚来自全球各地的意识领袖、灵性导师与转化先行者。在多天的深度沉浸式体验中，参与者将一同探索宝瓶世纪的灵性智慧，接受高频的集体意识场洗礼，并在彼此的见证与支持下，完成个人与集体的深度蜕变。" data-en="Gaya Congress is the most iconic annual flagship event of Gaya Spiritual Academy, gathering consciousness leaders, spiritual teachers, and transformation pioneers from around the world. Over multiple days of deep immersive experience, participants collectively explore Aquarian spiritual wisdom, receive high-frequency collective consciousness field transmissions, and complete profound personal and collective transformation.">Gaya Congress 是 Gaya 灵性学院最具代表性的年度旗舰活动，汇聚来自全球各地的意识领袖、灵性导师与转化先行者。在多天的深度沉浸式体验中，参与者将一同探索宝瓶世纪的灵性智慧，接受高频的集体意识场洗礼，并在彼此的见证与支持下，完成个人与集体的深度蜕变。</p>
+        <ul class="evt-meta-list">
+          <li data-zh="国际规模 · 全球意识领袖汇聚" data-en="International scale · Global consciousness leaders">国际规模 · 全球意识领袖汇聚</li>
+          <li data-zh="多天沉浸式体验 · 高频能量传导" data-en="Multi-day immersive · High-frequency transmissions">多天沉浸式体验 · 高频能量传导</li>
+          <li data-zh="集体意识场 · 深度蜕变" data-en="Collective consciousness field · Deep transformation">集体意识场 · 深度蜕变</li>
+        </ul>
+        <div class="evt-cta-row">
+          <a href="https://gayacongress.clicksummits.com/gaya-congress/" class="btn-primary" target="_blank" data-zh="前往 Gaya Congress 官网" data-en="Visit Gaya Congress Website">前往官网了解详情 →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 02 Wireless Love -->
+    <article class="evt-feature reveal">
+      <div class="evt-feature-img-wrap">
+        <img class="evt-feature-img"
+          src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80&auto=format&fit=crop"
+          alt="无线爱疗愈 Wireless Love">
+        <div class="evt-feature-img-overlay"></div>
+        <div class="evt-feature-num">02</div>
+        <div class="evt-feature-badge" data-zh="13个月陪伴" data-en="13-Month Journey">13个月陪伴</div>
+      </div>
+      <div class="evt-feature-content">
+        <div class="evt-feature-tag" data-zh="疗愈计划 · 长程陪伴" data-en="Healing Program · Long-term Accompaniment">疗愈计划 · 长程陪伴</div>
+        <h2 class="evt-feature-title"><em data-zh="无线爱疗愈" data-en="Wireless Love">无线爱疗愈</em></h2>
+        <div class="evt-feature-subtitle" data-zh="Wireless Love · 13个月深度疗愈陪伴计划" data-en="Wireless Love · 13-Month Deep Healing Accompaniment">Wireless Love · 13个月深度疗愈陪伴计划</div>
+        <div class="evt-divider"></div>
+        <p class="evt-feature-desc" data-zh="「无线爱疗愈」是一个为期 13 个月的深度疗愈陪伴计划，透过「爱的频率」作为疗愈媒介，引领参与者在长达一年的时间里，系统性地疗愈内在的创伤、突破潜意识的限制、并与更高层次的灵魂自我建立稳定的连接。这不只是一个活动，而是一段蜕变的旅程。" data-en="Wireless Love is a 13-month deep healing accompaniment program using the frequency of love as a healing medium. Over the course of a year, participants systematically heal inner trauma, break through subconscious limitations, and establish a stable connection with their higher soul self. This is not just an event — it's a transformation journey.">「无线爱疗愈」是一个为期 13 个月的深度疗愈陪伴计划，透过「爱的频率」作为疗愈媒介，引领参与者在长达一年的时间里，系统性地疗愈内在的创伤、突破潜意识的限制、并与更高层次的灵魂自我建立稳定的连接。这不只是一个活动，而是一段蜕变的旅程。</p>
+        <ul class="evt-meta-list">
+          <li data-zh="13 个月长程疗愈陪伴" data-en="13-month long-term healing accompaniment">13 个月长程疗愈陪伴</li>
+          <li data-zh="爱的频率 · 系统性内在疗愈" data-en="Love frequency · Systematic inner healing">爱的频率 · 系统性内在疗愈</li>
+          <li data-zh="突破潜意识 · 灵魂连接" data-en="Break subconscious barriers · Soul connection">突破潜意识 · 灵魂连接</li>
+        </ul>
+        <div class="evt-cta-row">
+          <a href="https://wirelesslovemalaysia.com" class="btn-primary" target="_blank" data-zh="前往无线爱官网" data-en="Visit Wireless Love Website">前往官网了解详情 →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 03 Leadership Workshop -->
+    <article class="evt-feature reveal">
+      <div class="evt-feature-img-wrap">
+        <img class="evt-feature-img"
+          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80&auto=format&fit=crop"
+          alt="领导力工作坊">
+        <div class="evt-feature-img-overlay"></div>
+        <div class="evt-feature-num">03</div>
+        <div class="evt-feature-badge" data-zh="工作坊" data-en="Workshop">工作坊</div>
+      </div>
+      <div class="evt-feature-content">
+        <div class="evt-feature-tag" data-zh="领导力 · 内在成长" data-en="Leadership · Inner Growth">领导力 · 内在成长</div>
+        <h2 class="evt-feature-title"><em data-zh="领导力工作坊" data-en="Leadership Workshop">领导力工作坊</em></h2>
+        <div class="evt-feature-subtitle" data-zh="当敏感成为领导力 · 真理提升频率 · 爱引领方向" data-en="When Sensitivity Becomes Leadership · Truth Elevates · Love Leads">当敏感成为领导力 · 真理提升频率 · 爱引领方向</div>
+        <div class="evt-divider"></div>
+        <p class="evt-feature-desc" data-zh="领导力工作坊是专为新时代领导者设计的深度体验式学习活动。在这里，我们重新定义「领导力」——不是从外部权威出发，而是从内在真理与爱出发。透过深度体验、真实分享与意识工作，帮助参与者发现并激活自身独特的领导力天赋，成为从内在绽放真实影响力的领导者。" data-en="The Leadership Workshop is a deep experiential learning event designed for new-era leaders. Here we redefine 'leadership' — not from external authority, but from inner truth and love. Through deep experience, authentic sharing, and consciousness work, participants discover and activate their unique leadership gifts.">领导力工作坊是专为新时代领导者设计的深度体验式学习活动。在这里，我们重新定义「领导力」——不是从外部权威出发，而是从内在真理与爱出发。透过深度体验、真实分享与意识工作，帮助参与者发现并激活自身独特的领导力天赋，成为从内在绽放真实影响力的领导者。</p>
+        <ul class="evt-meta-list">
+          <li style="color:rgba(255,255,255,0.5);" data-zh="内在领导力 · 从真理与爱出发" data-en="Inner leadership · From truth and love">内在领导力 · 从真理与爱出发</li>
+          <li style="color:rgba(255,255,255,0.5);" data-zh="体验式学习 · 真实分享" data-en="Experiential learning · Authentic sharing">体验式学习 · 真实分享</li>
+          <li style="color:rgba(255,255,255,0.5);" data-zh="激活领导力天赋 · 内在绽放" data-en="Activate leadership gifts · Inner flourishing">激活领导力天赋 · 内在绽放</li>
+        </ul>
+        <div class="evt-cta-row">
+          <a href="leadership-workshop.html" class="btn-gold" data-zh="了解工作坊详情" data-en="Learn More About Workshop">了解工作坊详情 →</a>
+          <a href="https://wa.me/60126011607?text=您好，我想询问领导力工作坊的资讯" class="btn-outline" style="color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.25);" target="_blank" data-zh="WhatsApp 咨询" data-en="WhatsApp Enquiry">WhatsApp 咨询</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ── Bottom CTA ── -->
+<section class="evt-cta-banner">
+  <div class="container">
+    <div class="section-label" data-zh="加入我们" data-en="Join Us">加入我们</div>
+    <h2 class="section-title" style="color:white;margin-bottom:16px;" data-zh="您的蜕变" data-en="Your Transformation">您的蜕变</h2>
+    <h2 class="section-title" style="color:white;margin-bottom:24px;"><em data-zh="从这一刻开始" data-en="Begins Right Now">从这一刻开始</em></h2>
+    <p data-zh="无论您选择哪个旗舰活动，都将是您生命中一次意义非凡的相遇。有任何疑问，欢迎随时联络我们。" data-en="Whichever signature event you choose, it will be a profoundly meaningful encounter in your life. For any questions, feel free to reach out to us anytime.">无论您选择哪个旗舰活动，都将是您生命中一次意义非凡的相遇。有任何疑问，欢迎随时联络我们。</p>
+    <div class="evt-cta-center">
+      <a href="https://wa.me/60126011607?text=您好，我想了解 Gaya 旗舰活动的详情" class="btn-gold" target="_blank" data-zh="WhatsApp 联络我们" data-en="Contact Us on WhatsApp">WhatsApp 联络我们</a>
+      <a href="mailto:info@gayaspiritualacademy.com" class="btn-outline" style="color:rgba(255,255,255,0.75);border-color:rgba(255,255,255,0.3);" data-zh="发送邮件" data-en="Send Email">发送邮件</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="footer"></footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/60126011607" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+  renderNav('../');
+  renderFooter('../');
+
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+
+  document.addEventListener('click', e => {
+    if (e.target.closest('.nav-hamburger')) {
+      document.querySelector('.nav-links')?.classList.toggle('open');
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-zh="Gaya Spiritual Academy — 迦雅灵性学院" data-en="Gaya Spiritual Academy — Dr. Bonshuwa Chua">Gaya Spiritual Academy — 迦雅灵性学院</title>
+  <meta name="description" content="Gaya Spiritual Academy 迦雅灵性学院，由 Dr. Bonshuwa Chua 创立。培训、疗愈、旗舰活动，帮助领导者与疗愈师从意识深处绽放真实力量。">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* ── HOME HERO ── */
+    .home-hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: var(--nav-h);
+      background: #0A3040;
+    }
+    .home-hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: 0.3;
+      filter: saturate(0.55) brightness(0.65);
+    }
+    .home-hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(42,172,184,0.065) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42,172,184,0.065) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .home-hero-glow {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 85% 20%, rgba(201,162,39,0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 10% 85%, rgba(42,172,184,0.25) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, rgba(42,172,184,0.06) 0%, transparent 70%);
+    }
+    .home-hero-inner {
+      position: relative; z-index: 2;
+      max-width: var(--container); margin: 0 auto;
+      padding: 0 clamp(20px,4vw,60px);
+      width: 100%;
+    }
+    .home-hero-left { max-width: 680px; }
+
+    .home-hero-eyebrow {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold);
+      display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+      opacity: 0; animation: fadeUp 0.7s 0.1s var(--ease) forwards;
+    }
+    .home-hero-eyebrow::before { content: ''; width: 32px; height: 1.5px; background: var(--gold); }
+
+    .home-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6.5vw, 6rem);
+      font-weight: 300; line-height: 1.05; color: white; margin-bottom: 16px;
+      opacity: 0; animation: fadeUp 0.9s 0.25s var(--ease) forwards;
+    }
+    .home-hero-title em { font-style: italic; color: var(--teal-bright); }
+    .home-hero-title .zh {
+      display: block; font-size: clamp(1.4rem, 3vw, 2.2rem);
+      color: rgba(255,255,255,0.35); margin-top: 8px; letter-spacing: 0.06em;
+    }
+
+    .home-hero-tagline {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--teal-bright);
+      margin-bottom: 20px;
+      opacity: 0; animation: fadeUp 0.9s 0.38s var(--ease) forwards;
+    }
+
+    .home-hero-desc {
+      font-size: 0.97rem; color: rgba(255,255,255,0.6);
+      max-width: 500px; line-height: 1.95; font-weight: 300; margin-bottom: 44px;
+      opacity: 0; animation: fadeUp 1s 0.5s var(--ease) forwards;
+    }
+
+    .home-hero-cta {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 1s 0.62s var(--ease) forwards;
+    }
+
+    /* Hero Quick Nav Bar */
+    .home-hero-quicknav {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(42,172,184,0.15);
+      opacity: 0; animation: fadeUp 1s 0.75s var(--ease) forwards;
+    }
+    .home-hero-qn-inner {
+      max-width: var(--container); margin: 0 auto;
+      padding: 0 clamp(20px,4vw,60px);
+      display: flex; align-items: stretch; flex-wrap: wrap;
+    }
+    .home-hero-qn-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 18px 28px; border-right: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.2s; flex: 1; min-width: 200px;
+    }
+    .home-hero-qn-item:last-child { border-right: none; }
+    .home-hero-qn-item:hover { background: rgba(255,255,255,0.06); }
+    .home-hero-qn-icon {
+      font-size: 1rem; opacity: 0.7; flex-shrink: 0;
+    }
+    .home-hero-qn-label {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5);
+      margin-bottom: 2px;
+    }
+    .home-hero-qn-title {
+      font-size: 0.88rem; color: white; font-weight: 400;
+    }
+    .home-hero-qn-title em { font-style: normal; color: var(--teal-bright); }
+    .home-hero-qn-fire {
+      display: flex; align-items: center; gap: 14px;
+      padding: 18px 28px;
+      background: rgba(201,162,39,0.12);
+      border-left: 1px solid rgba(201,162,39,0.2);
+      flex: 1; min-width: 260px;
+      transition: background 0.2s;
+    }
+    .home-hero-qn-fire:hover { background: rgba(201,162,39,0.2); }
+    .home-hero-qn-fire-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(201,162,39,0.8);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.3); }
+    }
+    .home-hero-qn-fire-text { font-size: 0.82rem; color: rgba(255,255,255,0.8); line-height: 1.5; }
+    .home-hero-qn-fire-text strong { color: var(--gold); font-weight: 600; display: block; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px; }
+    @media (max-width: 768px) {
+      .home-hero-qn-item { min-width: 150px; padding: 14px 18px; }
+      .home-hero-qn-fire { min-width: 100%; border-left: none; border-top: 1px solid rgba(201,162,39,0.2); }
+    }
+
+    /* ── About Section ── */
+    .home-about {
+      padding: var(--section-pad) 0;
+      background: var(--off-white);
+    }
+    .home-about-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(40px,6vw,80px); align-items: center;
+    }
+    @media (max-width: 768px) { .home-about-inner { grid-template-columns: 1fr; } }
+
+    .home-about-img-wrap { position: relative; }
+    .home-about-img {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      object-position: top center;
+      border-radius: 3px; box-shadow: 0 24px 64px rgba(14,42,51,0.18);
+      filter: saturate(0.85) brightness(0.98);
+    }
+    .home-about-img-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--teal-deep); color: white;
+      padding: 20px 24px; border-radius: 3px;
+      box-shadow: 0 12px 32px rgba(14,42,51,0.2);
+      text-align: center;
+    }
+    @media (max-width: 480px) { .home-about-img-badge { right: 0; } }
+    .home-about-img-badge-num {
+      font-family: var(--font-display); font-size: 2.2rem;
+      font-weight: 300; color: var(--teal-bright); line-height: 1;
+    }
+    .home-about-img-badge-text {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 4px;
+    }
+
+    .home-about-quote {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.1rem, 1.8vw, 1.35rem); color: var(--teal-mid);
+      line-height: 1.65; margin-bottom: 28px; padding-left: 20px;
+      border-left: 2px solid var(--teal-bright);
+    }
+
+    /* ── Programmes ── */
+    .home-programmes {
+      padding: var(--section-pad) 0;
+      background: white;
+    }
+    .home-prog-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: clamp(36px,5vw,60px); flex-wrap: wrap; gap: 20px;
+    }
+    .home-prog-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 960px) { .home-prog-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 560px) { .home-prog-grid { grid-template-columns: 1fr; } }
+
+    .home-prog-card {
+      background: white;
+      border: 1px solid rgba(42,172,184,0.1);
+      border-radius: 4px; overflow: hidden;
+      transition: all 0.35s var(--ease);
+      box-shadow: 0 2px 16px rgba(27,95,117,0.04);
+      display: flex; flex-direction: column;
+    }
+    .home-prog-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(42,172,184,0.3);
+      box-shadow: 0 20px 56px rgba(27,95,117,0.12);
+    }
+    .home-prog-card-img-wrap {
+      position: relative; overflow: hidden; height: 200px;
+    }
+    .home-prog-card-img {
+      width: 100%; height: 100%; object-fit: cover;
+      margin: 0;
+      filter: saturate(0.75) brightness(0.92);
+      transition: transform 0.6s var(--ease), filter 0.4s;
+    }
+    .home-prog-card:hover .home-prog-card-img {
+      transform: scale(1.05);
+      filter: saturate(0.9) brightness(1.0);
+    }
+    .home-prog-card-img-wrap::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
+      background: linear-gradient(to bottom, transparent, white);
+    }
+    .home-prog-card-body { padding: 24px 28px 28px; flex: 1; display: flex; flex-direction: column; }
+    .home-prog-card-tag {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--teal-bright); margin-bottom: 8px;
+    }
+    .home-prog-card-title {
+      font-family: var(--font-display); font-size: 1.45rem;
+      font-weight: 400; line-height: 1.2; color: var(--text-dark); margin-bottom: 4px;
+    }
+    .home-prog-card-zh {
+      font-family: var(--font-display); font-size: 0.85rem;
+      color: var(--text-soft); font-weight: 300; margin-bottom: 14px;
+    }
+    .home-prog-card-desc {
+      font-size: 0.84rem; color: var(--text-mid); line-height: 1.85; flex: 1; margin-bottom: 20px;
+    }
+    .home-prog-card-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--teal-deep);
+      transition: gap 0.2s;
+    }
+    .home-prog-card:hover .home-prog-card-cta { gap: 12px; color: var(--teal-bright); }
+    .home-prog-card-cta svg { width: 14px; height: 14px; }
+
+    /* ── Healing Section ── */
+    .home-healing {
+      padding: var(--section-pad) 0;
+      background: var(--off-white);
+    }
+    .home-healing-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(40px,6vw,80px); align-items: center;
+    }
+    @media (max-width: 768px) { .home-healing-inner { grid-template-columns: 1fr; } }
+    .home-healing-img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover;
+      border-radius: 3px;
+      filter: saturate(0.8) brightness(0.95);
+      box-shadow: 0 20px 60px rgba(14,42,51,0.14);
+    }
+    .home-healing-list {
+      list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 32px;
+    }
+    @media (max-width: 480px) { .home-healing-list { grid-template-columns: 1fr; } }
+    .home-healing-list li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 0.85rem; color: var(--text-mid); line-height: 1.5;
+    }
+    .home-healing-list li::before {
+      content: '✦'; color: var(--gold); font-size: 0.55rem; margin-top: 4px; flex-shrink: 0;
+    }
+
+    /* ── Events Section ── */
+    .home-events {
+      padding: var(--section-pad) 0;
+      background: linear-gradient(175deg, #0D3D4F 0%, var(--teal-deep) 100%);
+      position: relative; overflow: hidden;
+    }
+    .home-events::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(42,172,184,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42,172,184,0.06) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    .home-events .container { position: relative; z-index: 1; }
+    .home-events-header { margin-bottom: clamp(36px,5vw,60px); }
+    .home-events-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 24px;
+    }
+    @media (max-width: 900px) { .home-events-grid { grid-template-columns: 1fr; } }
+
+    .home-evt-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px; overflow: hidden;
+      transition: all 0.35s var(--ease);
+    }
+    .home-evt-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(42,172,184,0.4);
+      transform: translateY(-5px);
+    }
+    .home-evt-card-img-wrap { position: relative; overflow: hidden; height: 200px; }
+    .home-evt-card-img {
+      width: 100%; height: 100%; object-fit: cover; margin: 0;
+      filter: saturate(0.6) brightness(0.7);
+      transition: transform 0.6s var(--ease);
+    }
+    .home-evt-card:hover .home-evt-card-img { transform: scale(1.05); }
+    .home-evt-card-img-wrap::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 60px;
+      background: linear-gradient(to bottom, transparent, rgba(13,61,79,0.9));
+    }
+    .home-evt-card-body { padding: 24px 26px 28px; }
+    .home-evt-card-tag {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--teal-bright); margin-bottom: 8px;
+    }
+    .home-evt-card-title {
+      font-family: var(--font-display); font-size: 1.4rem;
+      font-weight: 300; color: white; margin-bottom: 10px;
+    }
+    .home-evt-card-title em { font-style: italic; color: var(--teal-bright); }
+    .home-evt-card-desc {
+      font-size: 0.83rem; color: rgba(255,255,255,0.5); line-height: 1.85; margin-bottom: 20px;
+    }
+    .home-evt-card-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--teal-bright);
+      transition: gap 0.2s;
+    }
+    .home-evt-card:hover .home-evt-card-cta { gap: 12px; }
+    .home-evt-card-cta svg { width: 14px; height: 14px; }
+
+    /* ── Testimonials ── */
+    .home-testimonials {
+      padding: var(--section-pad) 0;
+      background: var(--ivory);
+    }
+    .home-testi-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 24px;
+      margin-top: clamp(36px,5vw,60px);
+    }
+    @media (max-width: 900px) { .home-testi-grid { grid-template-columns: 1fr; } }
+    .home-testi-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: 4px; padding: 36px 32px;
+      transition: all 0.3s var(--ease);
+      box-shadow: 0 2px 16px rgba(27,95,117,0.04);
+    }
+    .home-testi-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(27,95,117,0.09);
+    }
+    .home-testi-quote {
+      font-family: var(--font-display); font-size: 2.5rem;
+      color: var(--teal-bright); line-height: 1; margin-bottom: 16px;
+    }
+    .home-testi-text {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 1.02rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 24px;
+    }
+    .home-testi-divider {
+      width: 32px; height: 1.5px;
+      background: linear-gradient(90deg, var(--teal-bright), var(--gold));
+      margin-bottom: 16px;
+    }
+    .home-testi-name {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-dark);
+    }
+    .home-testi-role { font-size: 0.78rem; color: var(--text-soft); }
+
+    /* ── Bottom CTA ── */
+    .home-cta {
+      padding: clamp(60px,8vw,100px) 0; text-align: center;
+      background: linear-gradient(150deg, #0D3D4F 0%, var(--teal-deep) 60%, var(--teal-mid) 100%);
+      position: relative; overflow: hidden;
+    }
+    .home-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(42,172,184,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42,172,184,0.06) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    .home-cta .container { position: relative; z-index: 1; }
+    .home-cta .section-label { justify-content: center; }
+    .home-cta p {
+      color: rgba(255,255,255,0.55); font-size: 1rem;
+      max-width: 520px; margin: 0 auto 36px; line-height: 1.9;
+    }
+    .home-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── WhatsApp Float ── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 54px; height: 54px; border-radius: 50%;
+      background: #25D366; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      transition: transform 0.2s var(--ease), box-shadow 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.08); box-shadow: 0 8px 28px rgba(37,211,102,0.55); }
+    .wa-float svg { width: 28px; height: 28px; fill: white; }
+  </style>
+</head>
+<body>
+<header class="nav" id="nav"></header>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section class="home-hero">
+  <img class="home-hero-img"
+    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80&auto=format&fit=crop"
+    alt="宇宙大地俯瞰">
+  <div class="home-hero-grid"></div>
+  <div class="home-hero-glow"></div>
+  <div class="home-hero-inner">
+    <div class="home-hero-left">
+      <div class="home-hero-eyebrow" data-zh="迦雅灵性学院" data-en="Gaya Spiritual Academy">迦雅灵性学院</div>
+      <h1 class="home-hero-title">
+        <span data-zh="从真理出发" data-en="Lead from">从真理出发</span><br>
+        <em data-zh="以爱引领" data-en="Truth &amp; Love">以爱引领</em>
+        <span class="zh" data-zh="Gaya Spiritual Academy" data-en="Gaya Spiritual Academy">Gaya Spiritual Academy</span>
+      </h1>
+      <p class="home-hero-tagline" data-zh="让灵性生活化，让生活灵性化" data-en="Making spirituality alive, making life spiritual">让灵性生活化，让生活灵性化</p>
+      <p class="home-hero-desc" data-zh="由 Dr. Bonshuwa Chua 创立，帮助领导者、疗愈师与觉醒探索者，从意识深处发掘自身美好的品质与潜能，创建充满爱、光与喜悦的灵性生命。" data-en="Founded by Dr. Bonshuwa Chua to help leaders, healers, and awakening seekers discover their beautiful qualities and potential from within, creating a life filled with love, light, and joy.">由 Dr. Bonshuwa Chua 创立，帮助领导者、疗愈师与觉醒探索者，从意识深处发掘自身美好的品质与潜能，创建充满爱、光与喜悦的灵性生命。</p>
+      <div class="home-hero-cta">
+        <a href="courses/index.html" class="btn-primary" data-zh="探索培训项目" data-en="Explore Programmes">探索培训项目</a>
+        <a href="services/index.html" class="btn-outline" style="color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.25);" data-zh="疗愈与咨询" data-en="Healing &amp; Consultation">疗愈与咨询</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Nav Bar -->
+  <div class="home-hero-quicknav">
+    <div class="home-hero-qn-inner">
+      <a href="courses/index.html" class="home-hero-qn-item">
+        <div class="home-hero-qn-icon">✦</div>
+        <div>
+          <div class="home-hero-qn-label" data-zh="灵性培训" data-en="Programmes">灵性培训</div>
+          <div class="home-hero-qn-title" data-zh="培训项目" data-en="Programmes">培训项目</div>
+        </div>
+      </a>
+      <a href="services/index.html" class="home-hero-qn-item">
+        <div class="home-hero-qn-icon">◈</div>
+        <div>
+          <div class="home-hero-qn-label" data-zh="个人服务" data-en="Services">个人服务</div>
+          <div class="home-hero-qn-title" data-zh="疗愈与咨询" data-en="Healing &amp; Consultation">疗愈与咨询</div>
+        </div>
+      </a>
+      <a href="events/index.html" class="home-hero-qn-item">
+        <div class="home-hero-qn-icon">◆</div>
+        <div>
+          <div class="home-hero-qn-label" data-zh="旗舰活动" data-en="Events">旗舰活动</div>
+          <div class="home-hero-qn-title" data-zh="Congress · Wireless Love · 工作坊" data-en="Congress · Wireless Love · Workshop">Congress · Wireless Love · 工作坊</div>
+        </div>
+      </a>
+      <a href="courses/cif.html" class="home-hero-qn-fire">
+        <div class="home-hero-qn-fire-dot"></div>
+        <div class="home-hero-qn-fire-text">
+          <strong data-zh="🔥 即将开课" data-en="🔥 Coming Soon">🔥 即将开课</strong>
+          <span data-zh="CIF · 2026年6月5-7日 · 吉隆坡 · 早鸟 RM9,000" data-en="CIF · June 5–7, 2026 · KL · Early Bird RM9,000">CIF · 2026年6月5-7日 · 吉隆坡 · 早鸟 RM9,000</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ ABOUT ══════════════════════ -->
+<section class="home-about section">
+  <div class="container">
+    <div class="home-about-inner">
+      <div class="reveal">
+        <div class="home-about-img-wrap">
+          <img class="home-about-img" src="assets/img/bonshuwa.jpg" alt="Dr. Bonshuwa Chua">
+          <div class="home-about-img-badge">
+            <div class="home-about-img-badge-num">Dr.</div>
+            <div class="home-about-img-badge-text">Bonshuwa<br>Chua</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-label" data-zh="关于创办人" data-en="About the Founder">关于创办人</div>
+        <h2 class="section-title">Dr. <em>Bonshuwa</em> Chua</h2>
+        <div class="section-title-zh" data-zh="灵性启蒙老师 · 意识教练 · 疗愈师" data-en="Spiritual Teacher · Consciousness Coach · Healer">灵性启蒙老师 · 意识教练 · 疗愈师</div>
+        <div class="gold-line"></div>
+        <blockquote class="home-about-quote" data-zh="真正的领导力，不是来自外部的权威，而是来自内在与真理、与爱的深度连接。" data-en="True leadership does not come from external authority, but from a deep inner connection with truth and love.">真正的领导力，不是来自外部的权威，而是来自内在与真理、与爱的深度连接。</blockquote>
+        <p style="font-size:0.92rem;color:var(--text-mid);line-height:1.95;margin-bottom:32px;" data-zh="Dr. Bonshuwa Chua 是一位灵性启蒙老师、意识智能体系联合创建者与深度疗愈师。2015年，一个问题「我是谁？」改变了一切——他走上灵性探索之路，创立 Gaya Spiritual Academy，11年来带领领导者与疗愈师，透过培训与疗愈，逐步潜入内在，发掘自身的美好品质与潜能，在生命中活出和谐与平衡。" data-en="Dr. Bonshuwa Chua is a spiritual enlightenment teacher, co-creator of the Conscious Intelligence system, and deep healer. In 2015, one question — "Who am I?" — changed everything. He founded Gaya Spiritual Academy and over 11 years has guided leaders and healers to discover their beautiful inner qualities and potential, creating lives of harmony and balance.">Dr. Bonshuwa Chua 是一位灵性启蒙老师、意识智能体系联合创建者与深度疗愈师。2015年，一个问题「我是谁？」改变了一切——他走上灵性探索之路，创立 Gaya Spiritual Academy，11年来带领领导者与疗愈师，透过培训与疗愈，逐步潜入内在，发掘自身的美好品质与潜能，在生命中活出和谐与平衡。</p>
+        <a href="about.html" class="btn-outline" data-zh="了解更多关于 Dr. Bonshuwa" data-en="Learn More About Dr. Bonshuwa">了解更多 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ PROGRAMMES ══════════════════════ -->
+<section class="home-programmes section">
+  <div class="container">
+    <div class="home-prog-header reveal">
+      <div>
+        <div class="section-label" data-zh="培训项目" data-en="Programmes">培训项目</div>
+        <h2 class="section-title" data-zh="系统性<em>意识培训</em>路径" data-en="Systematic <em>Consciousness Training</em>">系统性<em>意识培训</em>路径</h2>
+        <div class="section-title-zh" data-zh="从入门到进阶，为您的灵性旅程提供完整支撑" data-en="From foundations to mastery — complete support for your spiritual journey">从入门到进阶，为您的灵性旅程提供完整支撑</div>
+      </div>
+      <a href="courses/index.html" class="btn-outline" data-zh="查看全部培训" data-en="View All Programmes">查看全部培训</a>
+    </div>
+    <div class="home-prog-grid">
+      <!-- CIF -->
+      <a href="courses/cif.html" class="home-prog-card reveal">
+        <div class="home-prog-card-img-wrap">
+          <img class="home-prog-card-img"
+            src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=800&q=80&auto=format&fit=crop"
+            alt="意识智能先修培训">
+        </div>
+        <div class="home-prog-card-body">
+          <span class="home-prog-card-tag" data-zh="入门 · 先修培训" data-en="Foundation Course">入门 · 先修培训</span>
+          <div class="home-prog-card-title">CIF</div>
+          <div class="home-prog-card-zh" data-zh="意识智能先修培训" data-en="Conscious Intelligence Foundation">意识智能先修培训</div>
+          <p class="home-prog-card-desc" data-zh="踏上灵性意识旅程的第一步。深度探索意识的本质，建立稳固的灵性基础。2026年6月5-7日，吉隆坡。" data-en="Your first step on the spiritual consciousness journey. Deeply explore the nature of consciousness and build a solid spiritual foundation. June 5-7, 2026, KL.">踏上灵性意识旅程的第一步。深度探索意识的本质，建立稳固的灵性基础。2026年6月5-7日，吉隆坡。</p>
+          <span class="home-prog-card-cta" data-zh="了解详情" data-en="Learn More">了解详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- Aquarius -->
+      <a href="courses/aquarius.html" class="home-prog-card reveal">
+        <div class="home-prog-card-img-wrap">
+          <img class="home-prog-card-img"
+            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80&auto=format&fit=crop"
+            alt="宝瓶世纪教练">
+        </div>
+        <div class="home-prog-card-body">
+          <span class="home-prog-card-tag" data-zh="教练认证" data-en="Coach Certification">教练认证</span>
+          <div class="home-prog-card-title">Aquarius Coach</div>
+          <div class="home-prog-card-zh" data-zh="宝瓶世纪教练" data-en="Aquarius Coach Certification">宝瓶世纪教练</div>
+          <p class="home-prog-card-desc" data-zh="10个区块，5个级别的全面意识教练认证体系，成为宝瓶世纪的意识领袖与疗愈教练。" data-en="10 blocks, 5 levels of comprehensive consciousness coaching certification — become an Aquarian Age consciousness leader and healing coach.">10个区块，5个级别的全面意识教练认证体系，成为宝瓶世纪的意识领袖与疗愈教练。</p>
+          <span class="home-prog-card-cta" data-zh="了解详情" data-en="Learn More">了解详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- Leadership -->
+      <a href="courses/leadership.html" class="home-prog-card reveal">
+        <div class="home-prog-card-img-wrap">
+          <img class="home-prog-card-img"
+            src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800&q=80&auto=format&fit=crop"
+            alt="新时代领导力">
+        </div>
+        <div class="home-prog-card-body">
+          <span class="home-prog-card-tag" data-zh="领导力" data-en="Leadership">领导力</span>
+          <div class="home-prog-card-title">Leadership from Within</div>
+          <div class="home-prog-card-zh" data-zh="新时代领导力" data-en="New Era Leadership">新时代领导力</div>
+          <p class="home-prog-card-desc" data-zh="从内在真理与爱出发的新时代领导力培训，帮助领导者发现并激活真实的内在领导力天赋。" data-en="New-era leadership training from inner truth and love, helping leaders discover and activate their authentic inner leadership gifts.">从内在真理与爱出发的新时代领导力培训，帮助领导者发现并激活真实的内在领导力天赋。</p>
+          <span class="home-prog-card-cta" data-zh="了解详情" data-en="Learn More">了解详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- INSHA -->
+      <a href="courses/insha.html" class="home-prog-card reveal">
+        <div class="home-prog-card-img-wrap">
+          <img class="home-prog-card-img"
+            src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&q=80&auto=format&fit=crop"
+            alt="INSHA 自然疗法">
+        </div>
+        <div class="home-prog-card-body">
+          <span class="home-prog-card-tag" data-zh="疗愈认证" data-en="Healing Certification">疗愈认证</span>
+          <div class="home-prog-card-title">INSHA</div>
+          <div class="home-prog-card-zh" data-zh="自然神圣疗愈法" data-en="Natural Sacred Healing">自然神圣疗愈法</div>
+          <p class="home-prog-card-desc" data-zh="系统学习 INSHA 自然神圣疗愈法，从 INSHA I 到 INSHA II，逐步深化疗愈技术与意识深度。" data-en="Systematically learn INSHA Natural Sacred Healing from Level I to Level II, progressively deepening healing techniques and consciousness depth.">系统学习 INSHA 自然神圣疗愈法，从 INSHA I 到 INSHA II，逐步深化疗愈技术与意识深度。</p>
+          <span class="home-prog-card-cta" data-zh="了解详情" data-en="Learn More">了解详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- PIGA -->
+      <a href="courses/piga.html" class="home-prog-card reveal">
+        <div class="home-prog-card-img-wrap">
+          <img class="home-prog-card-img"
+            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&auto=format&fit=crop"
+            alt="PIGA 黄金世纪之路">
+        </div>
+        <div class="home-prog-card-body">
+          <span class="home-prog-card-tag" data-zh="黄金世纪" data-en="Golden Age">黄金世纪</span>
+          <div class="home-prog-card-title">PIGA</div>
+          <div class="home-prog-card-zh" data-zh="黄金世纪之路" data-en="Path into the Golden Age">黄金世纪之路</div>
+          <p class="home-prog-card-desc" data-zh="踏上通往黄金世纪的灵性之路，在 Dr. Bonshuwa 的引领下，完成深度的灵魂使命对齐与意识扩展。" data-en="Walk the spiritual path into the Golden Age, guided by Dr. Bonshuwa to complete deep soul mission alignment and consciousness expansion.">踏上通往黄金世纪的灵性之路，在 Dr. Bonshuwa 的引领下，完成深度的灵魂使命对齐与意识扩展。</p>
+          <span class="home-prog-card-cta" data-zh="了解详情" data-en="Learn More">了解详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- CTA card -->
+      <a href="courses/index.html" class="home-prog-card reveal" style="background:var(--teal-pale);border-color:rgba(42,172,184,0.2);justify-content:center;align-items:center;text-align:center;padding:40px 32px;">
+        <div style="padding:32px 0;">
+          <div style="font-size:2.5rem;margin-bottom:12px;">✦</div>
+          <div style="font-family:var(--font-display);font-size:1.4rem;color:var(--teal-deep);margin-bottom:8px;" data-zh="探索所有培训" data-en="Explore All Programmes">探索所有培训</div>
+          <div style="font-size:0.82rem;color:var(--text-soft);margin-bottom:20px;" data-zh="查看完整培训路径图" data-en="View Complete Training Pathway">查看完整培训路径图</div>
+          <span class="home-prog-card-cta" style="justify-content:center;" data-zh="培训总览" data-en="All Programmes">培训总览 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ HEALING ══════════════════════ -->
+<section class="home-healing section">
+  <div class="container">
+    <div class="home-healing-inner">
+      <div class="reveal">
+        <div class="section-label" data-zh="疗愈与咨询" data-en="Healing & Consultation">疗愈与咨询</div>
+        <h2 class="section-title" data-zh="九条通往<em>内在光明</em>的路径" data-en="Nine Paths to <em>Inner Light</em>">九条通往<em>内在光明</em>的路径</h2>
+        <div class="section-title-zh" data-zh="Healing · Consultation · Transformation" data-en="Healing · Consultation · Transformation">Healing · Consultation · Transformation</div>
+        <div class="gold-line"></div>
+        <p style="font-size:0.92rem;color:var(--text-mid);line-height:1.95;margin-bottom:28px;" data-zh="从能量风水到阿卡莎阅读，从萨满疗愈到企业意识咨询，我们提供九项专业的个人化疗愈与咨询服务，满足您在生命不同阶段的不同需求。" data-en="From energy feng shui to Akasha Reading, from shamanic healing to corporate consciousness consulting — we offer nine professional personalized healing and consultation services to meet your needs at every stage of life.">从能量风水到阿卡莎阅读，从萨满疗愈到企业意识咨询，我们提供九项专业的个人化疗愈与咨询服务，满足您在生命不同阶段的不同需求。</p>
+        <ul class="home-healing-list">
+          <li data-zh="Alpha Chi 能量风水" data-en="Alpha Chi Energy Feng Shui">Alpha Chi 能量风水</li>
+          <li data-zh="宝瓶教练 空间沟通" data-en="Aquarius Coach Space Comm">宝瓶教练 空间沟通</li>
+          <li data-zh="九大晋阶风水" data-en="Nine Masters Feng Shui">九大晋阶风水</li>
+          <li data-zh="INSHA 自然神圣疗愈" data-en="INSHA Healing">INSHA 自然神圣疗愈</li>
+          <li data-zh="萨满疗愈" data-en="Shamanic Healing">萨满疗愈</li>
+          <li data-zh="星座排列" data-en="Star Constellation">星座排列</li>
+          <li data-zh="阿卡莎阅读" data-en="Akasha Reading">阿卡莎阅读</li>
+          <li data-zh="企业意识智能咨询" data-en="Corporate CI Consulting">企业意识智能咨询</li>
+          <li data-zh="一对一深度咨询" data-en="Private Consultation">一对一深度咨询</li>
+        </ul>
+        <a href="services/index.html" class="btn-primary" data-zh="探索所有服务" data-en="Explore All Services">探索所有服务</a>
+      </div>
+      <div class="reveal">
+        <img class="home-healing-img"
+          src="https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&q=80&auto=format&fit=crop"
+          alt="疗愈空间">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ EVENTS ══════════════════════ -->
+<section class="home-events">
+  <div class="container">
+    <div class="home-events-header reveal">
+      <div class="section-label" data-zh="旗舰活动" data-en="Signature Events">旗舰活动</div>
+      <h2 class="section-title" style="color:white;" data-zh="汇聚光的<em>力量与意识</em>" data-en="Gathering of <em>Light & Consciousness</em>">汇聚光的<em>力量与意识</em></h2>
+      <div class="section-title-zh" style="color:rgba(255,255,255,0.35);" data-zh="三大旗舰活动，与志同道合的灵魂共同成长" data-en="Three signature events to grow with like-minded souls">三大旗舰活动，与志同道合的灵魂共同成长</div>
+    </div>
+    <div class="home-events-grid">
+      <a href="https://gayacongress.clicksummits.com/gaya-congress/" class="home-evt-card reveal" target="_blank">
+        <div class="home-evt-card-img-wrap">
+          <img class="home-evt-card-img"
+            src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80&auto=format&fit=crop"
+            alt="Gaya Congress">
+        </div>
+        <div class="home-evt-card-body">
+          <div class="home-evt-card-tag" data-zh="年度旗舰峰会" data-en="Annual Flagship Summit">年度旗舰峰会</div>
+          <h3 class="home-evt-card-title"><em>Gaya Congress</em></h3>
+          <p class="home-evt-card-desc" data-zh="汇聚全球意识领袖与灵性先行者的年度盛会，沉浸式体验宝瓶世纪的集体智慧。" data-en="The annual gathering of global consciousness leaders and spiritual pioneers, an immersive experience of collective Aquarian wisdom.">汇聚全球意识领袖与灵性先行者的年度盛会，沉浸式体验宝瓶世纪的集体智慧。</p>
+          <span class="home-evt-card-cta" data-zh="前往官网" data-en="Visit Website">前往官网 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <a href="https://wirelesslovemalaysia.com" class="home-evt-card reveal" target="_blank">
+        <div class="home-evt-card-img-wrap">
+          <img class="home-evt-card-img"
+            src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80&auto=format&fit=crop"
+            alt="Wireless Love">
+        </div>
+        <div class="home-evt-card-body">
+          <div class="home-evt-card-tag" data-zh="13个月疗愈计划" data-en="13-Month Healing Program">13个月疗愈计划</div>
+          <h3 class="home-evt-card-title"><em data-zh="无线爱疗愈" data-en="Wireless Love">无线爱疗愈</em></h3>
+          <p class="home-evt-card-desc" data-zh="为期13个月的长程深度疗愈陪伴计划，以爱的频率引领内在蜕变之旅。" data-en="A 13-month long-term deep healing accompaniment program guiding inner transformation through the frequency of love.">为期13个月的长程深度疗愈陪伴计划，以爱的频率引领内在蜕变之旅。</p>
+          <span class="home-evt-card-cta" data-zh="前往官网" data-en="Visit Website">前往官网 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <a href="events/leadership-workshop.html" class="home-evt-card reveal">
+        <div class="home-evt-card-img-wrap">
+          <img class="home-evt-card-img"
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80&auto=format&fit=crop"
+            alt="Leadership Workshop">
+        </div>
+        <div class="home-evt-card-body">
+          <div class="home-evt-card-tag" data-zh="领导力工作坊" data-en="Leadership Workshop">领导力工作坊</div>
+          <h3 class="home-evt-card-title"><em data-zh="领导力工作坊" data-en="Leadership Workshop">领导力工作坊</em></h3>
+          <p class="home-evt-card-desc" data-zh="专为新时代领导者设计，从内在真理与爱出发，发现真实领导力天赋。" data-en="Designed for new-era leaders — discover authentic leadership gifts from inner truth and love.">专为新时代领导者设计，从内在真理与爱出发，发现真实领导力天赋。</p>
+          <span class="home-evt-card-cta" data-zh="了解详情" data-en="Learn More">了解详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ TESTIMONIALS ══════════════════════ -->
+<section class="home-testimonials section">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label" style="justify-content:center;" data-zh="学员见证" data-en="Testimonials">学员见证</div>
+      <h2 class="section-title" data-zh="他们的<em>转化故事</em>" data-en="Their <em>Transformation Stories</em>">他们的<em>转化故事</em></h2>
+    </div>
+    <div class="home-testi-grid">
+      <div class="home-testi-card reveal">
+        <div class="home-testi-quote">"</div>
+        <p class="home-testi-text" data-zh="工作坊让我看见，真正的领导力不是管理别人，而是真实地活出自己。那一天，我放下了很多年来扮演的角色，找回了真实的自己。" data-en="The workshop revealed that true leadership is not about managing others, but authentically living as yourself. That day, I let go of the roles I had played for years and found my true self.">工作坊让我看见，真正的领导力不是管理别人，而是真实地活出自己。那一天，我放下了很多年来扮演的角色，找回了真实的自己。</p>
+        <div class="home-testi-divider"></div>
+        <div class="home-testi-name">S.L.</div>
+        <div class="home-testi-role" data-zh="领导力工作坊学员 · 吉隆坡" data-en="Leadership Workshop · Kuala Lumpur">企业创始人 · 吉隆坡</div>
+      </div>
+      <div class="home-testi-card reveal">
+        <div class="home-testi-quote">"</div>
+        <p class="home-testi-text" data-zh="INSHA 疗愈帮助我释放了多年累积的情绪负担。我感觉到自己真实地回到了自己的身体，回到了自己的生命。" data-en="INSHA healing helped me release emotional burdens accumulated over many years. I felt myself truly returning to my body, returning to my life.">INSHA 疗愈帮助我释放了多年累积的情绪负担。我感觉到自己真实地回到了自己的身体，回到了自己的生命。</p>
+        <div class="home-testi-divider"></div>
+        <div class="home-testi-name">M.C.</div>
+        <div class="home-testi-role" data-zh="疗愈师 · 槟城" data-en="Healer · Penang">疗愈师 · 槟城</div>
+      </div>
+      <div class="home-testi-card reveal">
+        <div class="home-testi-quote">"</div>
+        <p class="home-testi-text" data-zh="星座排列让我看见了家族系统中我从未意识到的纠缠。一次排列，胜过多年的自我探索。" data-en="The constellation work revealed entanglements in my family system I had never been aware of. One session surpassed years of self-exploration.">星座排列让我看见了家族系统中我从未意识到的纠缠。一次排列，胜过多年的自我探索。</p>
+        <div class="home-testi-divider"></div>
+        <div class="home-testi-name">R.T.</div>
+        <div class="home-testi-role" data-zh="管理顾问 · 新加坡" data-en="Management Consultant · Singapore">管理顾问 · 新加坡</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ BOTTOM CTA ══════════════════════ -->
+<section class="home-cta">
+  <div class="container">
+    <div class="section-label" data-zh="准备好了吗？" data-en="Are You Ready?">准备好了吗？</div>
+    <h2 class="section-title" style="color:white;margin-bottom:16px;" data-zh="您的蜕变之旅" data-en="Your Transformation Journey">您的蜕变之旅</h2>
+    <h2 class="section-title" style="color:white;margin-bottom:28px;"><em data-zh="从这一刻开始" data-en="Begins Right Now">从这一刻开始</em></h2>
+    <p data-zh="无论您是第一次探索灵性意识，还是已经在路上，Gaya 灵性学院随时欢迎您。有任何问题，欢迎直接联络我们。" data-en="Whether you're exploring spiritual consciousness for the first time or already on the path, Gaya Spiritual Academy welcomes you. For any questions, feel free to reach out directly.">无论您是第一次探索灵性意识，还是已经在路上，Gaya 灵性学院随时欢迎您。有任何问题，欢迎直接联络我们。</p>
+    <div class="home-cta-btns">
+      <a href="https://wa.me/60126011607?text=您好，我想了解 Gaya 灵性学院的课程与服务" class="btn-gold" target="_blank" data-zh="WhatsApp 联络我们" data-en="Contact Us on WhatsApp">WhatsApp 联络我们</a>
+      <a href="courses/index.html" class="btn-outline" style="color:rgba(255,255,255,0.75);border-color:rgba(255,255,255,0.3);" data-zh="探索培训项目" data-en="Explore Programmes">探索培训项目</a>
+      <a href="contact.html" class="btn-outline" style="color:rgba(255,255,255,0.75);border-color:rgba(255,255,255,0.3);" data-zh="联络我们" data-en="Contact Us">联络我们</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="footer"></footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/60126011607" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script src="assets/js/components.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  renderNav('');
+  renderFooter('');
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.09 });
+  reveals.forEach(el => io.observe(el));
+
+  // Hamburger
+  document.addEventListener('click', e => {
+    if (e.target.closest('.nav-hamburger')) {
+      document.querySelector('.nav-links')?.classList.toggle('open');
+    }
+  });
+</script>
+</body>
+</html>

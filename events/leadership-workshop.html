@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-zh="领导力工作坊 · Gaya Spiritual Academy" data-en="Leadership Workshop · Gaya Spiritual Academy">领导力工作坊 · Gaya Spiritual Academy</title>
+  <meta name="description" content="《从真理与爱出发的领导力》马来西亚工作坊 — Leadership from Truth & Love · One-day immersive workshop by Bonshuwa Chua & Insha Gabriele Holz">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/course.css">
+  <style>
+    /* ── Workshop Hero ── */
+    .ws-hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: var(--nav-h);
+      padding-bottom: 80px;
+      background: linear-gradient(160deg, #0a1e26 0%, #122d3a 40%, #1a3d4f 100%);
+    }
+    .ws-hero-particles {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 70% 30%, rgba(42,172,184,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 15% 70%, rgba(201,162,39,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 80%, rgba(42,172,184,0.08) 0%, transparent 40%);
+    }
+    .ws-hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(42,172,184,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42,172,184,0.05) 1px, transparent 1px);
+      background-size: 56px 56px;
+    }
+    .ws-hero-inner {
+      position: relative; z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 64px;
+      align-items: center;
+    }
+    .ws-event-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,162,39,0.15);
+      border: 1px solid rgba(201,162,39,0.35);
+      border-radius: 40px;
+      padding: 7px 18px;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold-bright);
+      margin-bottom: 28px;
+    }
+    .ws-hero-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+      font-style: italic;
+      color: var(--teal-bright);
+      margin-bottom: 14px;
+      letter-spacing: 0.02em;
+    }
+    .ws-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5.5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.08;
+      color: white;
+      margin-bottom: 10px;
+    }
+    .ws-hero-title em { font-style: italic; color: var(--teal-bright); }
+    .ws-hero-title-zh {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      color: rgba(255,255,255,0.4);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      margin-bottom: 28px;
+    }
+    .ws-hero-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-style: italic;
+      color: rgba(255,255,255,0.75);
+      border-left: 2px solid var(--gold);
+      padding-left: 20px;
+      margin-bottom: 36px;
+      line-height: 1.65;
+    }
+    .ws-hero-meta {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .ws-meta-pill {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 0.82rem; color: rgba(255,255,255,0.8);
+    }
+    .ws-meta-pill .label { font-size: 0.67rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; display: block; }
+    .ws-meta-pill .val { font-weight: 500; color: white; }
+    .ws-hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* Right card */
+    .ws-hero-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(42,172,184,0.2);
+      border-radius: 20px;
+      padding: 36px 28px;
+      backdrop-filter: blur(12px);
+    }
+    .ws-card-poster {
+      width: 100%; border-radius: 12px; overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .ws-card-poster img { width: 100%; display: block; }
+    .ws-card-facilitators { display: flex; flex-direction: column; gap: 10px; }
+    .ws-facilitator {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 10px;
+      border: 1px solid rgba(42,172,184,0.12);
+    }
+    .ws-facilitator-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      object-fit: cover; object-position: top;
+      border: 2px solid rgba(42,172,184,0.4);
+      flex-shrink: 0;
+    }
+    .ws-facilitator-name { font-weight: 500; color: white; font-size: 0.88rem; }
+    .ws-facilitator-role { font-size: 0.72rem; color: var(--teal-bright); letter-spacing: 0.04em; }
+
+    /* ── Programme Section ── */
+    .ws-programme { padding: var(--section-pad) 0; background: var(--off-white); }
+    .ws-section-eyebrow {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--teal-bright); margin-bottom: 12px;
+    }
+    .ws-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300; color: var(--teal-deep);
+      margin-bottom: 16px; line-height: 1.2;
+    }
+    .ws-section-sub {
+      font-size: 0.95rem; color: var(--text-mid);
+      max-width: 540px; line-height: 1.8;
+      margin-bottom: 48px;
+    }
+    .ws-timeline { display: flex; flex-direction: column; gap: 0; }
+    .ws-block {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0;
+      position: relative;
+    }
+    .ws-block:not(:last-child) .ws-block-line { display: block; }
+    .ws-block-time-col {
+      display: flex; flex-direction: column; align-items: flex-end;
+      padding-right: 28px; padding-top: 6px;
+    }
+    .ws-block-time {
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--teal-mid); letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .ws-block-duration {
+      font-size: 0.67rem; color: var(--text-soft);
+      margin-top: 4px;
+    }
+    .ws-block-connector {
+      width: 1px;
+      background: linear-gradient(to bottom, var(--teal-bright), rgba(42,172,184,0.1));
+      flex: 1;
+      margin-top: 8px;
+      margin-right: 15px;
+      min-height: 40px;
+    }
+    .ws-block-right {
+      padding-bottom: 36px;
+      padding-left: 4px;
+      position: relative;
+    }
+    .ws-block-right::before {
+      content: '';
+      position: absolute;
+      left: -16px; top: 8px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--teal-bright);
+      border: 2px solid white;
+      box-shadow: 0 0 0 3px rgba(42,172,184,0.2);
+    }
+    .ws-block.break .ws-block-right::before {
+      background: rgba(201,162,39,0.4);
+      box-shadow: 0 0 0 3px rgba(201,162,39,0.1);
+    }
+    .ws-block.lunch .ws-block-right::before {
+      background: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,162,39,0.2);
+    }
+    .ws-block-num {
+      display: inline-block;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--teal-bright);
+      margin-bottom: 6px;
+    }
+    .ws-block-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 400; color: var(--teal-deep);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .ws-block-title-zh {
+      font-size: 0.82rem; color: var(--text-soft);
+      margin-bottom: 10px; letter-spacing: 0.04em;
+    }
+    .ws-block-desc {
+      font-size: 0.88rem; color: var(--text-mid);
+      line-height: 1.8; max-width: 560px;
+    }
+    .ws-block.break .ws-block-right, .ws-block.lunch .ws-block-right {
+      opacity: 0.6;
+    }
+    .ws-block.break .ws-block-title,
+    .ws-block.lunch .ws-block-title {
+      font-size: 0.88rem;
+      font-family: var(--font-body);
+      color: var(--text-mid);
+    }
+
+    /* ── For Whom ── */
+    .ws-for-whom {
+      padding: var(--section-pad) 0;
+      background: white;
+    }
+    .ws-audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .ws-audience-card {
+      padding: 28px 24px;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .ws-audience-card:hover {
+      border-color: var(--teal-bright);
+      box-shadow: 0 4px 20px rgba(42,172,184,0.1);
+    }
+    .ws-audience-icon {
+      width: 44px; height: 44px;
+      background: var(--teal-pale);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+    .ws-audience-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--teal-deep);
+      margin-bottom: 8px;
+    }
+    .ws-audience-desc {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+    }
+
+    /* ── What You'll Experience ── */
+    .ws-experience {
+      padding: var(--section-pad) 0;
+      background: linear-gradient(160deg, #0f2530 0%, #1a3d50 100%);
+    }
+    .ws-experience .ws-section-eyebrow { color: var(--teal-bright); }
+    .ws-experience .ws-section-title { color: white; }
+    .ws-experience .ws-section-sub { color: rgba(255,255,255,0.55); }
+    .ws-pillars {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .ws-pillar {
+      padding: 28px 26px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(42,172,184,0.18);
+      border-radius: 16px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .ws-pillar:hover {
+      background: rgba(42,172,184,0.07);
+      border-color: rgba(42,172,184,0.35);
+    }
+    .ws-pillar-num {
+      font-size: 2rem; font-weight: 700;
+      font-family: var(--font-display);
+      color: rgba(42,172,184,0.25);
+      line-height: 1; margin-bottom: 12px;
+    }
+    .ws-pillar-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: white;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .ws-pillar-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.8;
+    }
+
+    /* ── Facilitators ── */
+    .ws-facilitators-section {
+      padding: var(--section-pad) 0;
+      background: var(--off-white);
+    }
+    .ws-facilitators-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      margin-top: 48px;
+    }
+    .ws-facilitator-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 32px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      transition: box-shadow 0.3s;
+    }
+    .ws-facilitator-card:hover {
+      box-shadow: 0 8px 40px rgba(27,95,117,0.1);
+    }
+    .ws-facilitator-photo {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover; object-position: top;
+      border-radius: 12px;
+    }
+    .ws-facilitator-tag {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--teal-bright); margin-bottom: 8px;
+    }
+    .ws-facilitator-name-big {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 300; color: var(--teal-deep);
+      line-height: 1.2; margin-bottom: 12px;
+    }
+    .ws-facilitator-bio {
+      font-size: 0.85rem; color: var(--text-mid);
+      line-height: 1.85;
+    }
+    .ws-facilitator-credentials {
+      margin-top: 14px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .ws-facilitator-cred {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 0.78rem; color: var(--text-mid);
+    }
+    .ws-facilitator-cred::before {
+      content: '✦';
+      color: var(--gold);
+      font-size: 0.6rem;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* ── Next Step / CTA ── */
+    .ws-nextstep {
+      padding: var(--section-pad) 0;
+      background: white;
+    }
+    .ws-nextstep-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .ws-next-card {
+      padding: 32px 28px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .ws-next-card.teal {
+      background: linear-gradient(135deg, #1B5F75 0%, #2A8099 100%);
+      border-color: transparent;
+    }
+    .ws-next-card.gold {
+      background: linear-gradient(135deg, #7A5A10 0%, #9A7A18 100%);
+      border-color: transparent;
+    }
+    .ws-next-card-icon { font-size: 2rem; margin-bottom: 14px; }
+    .ws-next-card-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .ws-next-card-sub {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+    .ws-next-card-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    .btn-white-outline {
+      display: inline-block;
+      padding: 10px 22px;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: white;
+      transition: all 0.2s;
+    }
+    .btn-white-outline:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.7);
+    }
+
+    /* ── Register CTA ── */
+    .ws-register {
+      padding: var(--section-pad) 0;
+      background: linear-gradient(160deg, #0f2530 0%, #122a38 100%);
+      text-align: center;
+    }
+    .ws-register-eyebrow {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--teal-bright); margin-bottom: 20px;
+    }
+    .ws-register-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 300; color: white;
+      margin-bottom: 16px; line-height: 1.2;
+    }
+    .ws-register-title em { font-style: italic; color: var(--gold-bright); }
+    .ws-register-sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 40px;
+      max-width: 500px;
+      margin-left: auto; margin-right: auto;
+      line-height: 1.8;
+    }
+    .ws-register-detail {
+      display: inline-flex; gap: 32px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px 36px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .ws-reg-item { text-align: center; }
+    .ws-reg-item .reg-label {
+      font-size: 0.67rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.35);
+      display: block; margin-bottom: 4px;
+    }
+    .ws-reg-item .reg-val {
+      font-family: var(--font-display);
+      font-size: 1rem; color: white;
+    }
+    .ws-register-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .ws-hero-inner { grid-template-columns: 1fr; }
+      .ws-hero-card { display: none; }
+      .ws-audience-grid { grid-template-columns: repeat(2, 1fr); }
+      .ws-pillars { grid-template-columns: 1fr; }
+      .ws-facilitators-grid { grid-template-columns: 1fr; }
+      .ws-facilitator-card { grid-template-columns: 140px 1fr; gap: 20px; }
+      .ws-nextstep-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .ws-block { grid-template-columns: 90px 1fr; }
+      .ws-block-time-col { padding-right: 16px; }
+      .ws-audience-grid { grid-template-columns: 1fr; }
+      .ws-facilitator-card { grid-template-columns: 1fr; }
+      .ws-facilitator-photo { width: 100%; height: 260px; object-fit: cover; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="nav" id="nav"></div>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="ws-hero">
+  <div class="ws-hero-particles"></div>
+  <div class="ws-hero-grid"></div>
+  <div class="container">
+    <div class="ws-hero-inner">
+      <div class="ws-hero-left">
+        <div class="ws-event-label">
+          ✦ <span data-zh="旗舰活动 · 领导力工作坊" data-en="Signature Event · Leadership Workshop">旗舰活动 · 领导力工作坊</span>
+        </div>
+        <p class="ws-hero-tagline" data-zh="当敏感成为领导力 — 真理提升频率，爱引领方向" data-en="When Sensitivity Becomes Leadership — Truth Elevates Frequency, Love Leads the Way">当敏感成为领导力 — 真理提升频率，爱引领方向</p>
+        <h1 class="ws-hero-title">
+          <span data-zh="领导力，" data-en="Leadership">领导力，</span><br>
+          <em data-zh="从真理与爱出发" data-en="from Truth & Love">从真理与爱出发</em>
+        </h1>
+        <p class="ws-hero-title-zh" data-zh="马来西亚工作坊" data-en="Malaysia Workshop">马来西亚工作坊</p>
+        <blockquote class="ws-hero-quote" data-zh="「你不需要更多策略。你需要的是回到真理——那个让你轻盈的内在清明。」" data-en="&ldquo;You don't need more strategy. What you need is to return to truth — the inner clarity that makes you light.&rdquo;">「你不需要更多策略。你需要的是回到真理——那个让你轻盈的内在清明。」</blockquote>
+        <div class="ws-hero-meta">
+          <div class="ws-meta-pill">
+            <span>📅</span>
+            <div><span class="label" data-zh="日期" data-en="Date">日期</span><span class="val" data-zh="敬请期待" data-en="Coming Soon">敬请期待</span></div>
+          </div>
+          <div class="ws-meta-pill">
+            <span>🕘</span>
+            <div><span class="label" data-zh="时间" data-en="Time">时间</span><span class="val">09:00 – 17:00</span></div>
+          </div>
+          <div class="ws-meta-pill">
+            <span>⏱️</span>
+            <div><span class="label" data-zh="时长" data-en="Duration">时长</span><span class="val" data-zh="4小时课程 + 90分钟午餐" data-en="4h Workshop + 90min Lunch">4小时 + 午餐</span></div>
+          </div>
+        </div>
+        <div class="ws-hero-cta">
+          <a href="https://wa.me/60126011607" class="btn-teal" data-zh="WhatsApp 查询报名" data-en="WhatsApp to Register">WhatsApp 查询报名</a>
+          <a href="#programme" class="btn-gold-outline" data-zh="查看工作坊内容" data-en="View Programme">查看工作坊内容</a>
+        </div>
+      </div>
+
+      <div class="ws-hero-card">
+        <div class="ws-card-poster">
+          <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&q=80" alt="Leadership Workshop">
+        </div>
+        <div class="ws-card-facilitators">
+          <div class="ws-facilitator">
+            <img src="../assets/img/bonshuwa.jpg" class="ws-facilitator-avatar" alt="Bonshuwa Chua"
+                 onerror="this.style.background='rgba(42,172,184,0.2)'">
+            <div>
+              <div class="ws-facilitator-name">Bonshuwa Chua</div>
+              <div class="ws-facilitator-role" data-zh="马来西亚 · 灵性启蒙导师" data-en="Malaysia · Spiritual Awakening Coach">马来西亚 · 灵性启蒙导师</div>
+            </div>
+          </div>
+          <div class="ws-facilitator">
+            <img src="../assets/img/insha.jpg" class="ws-facilitator-avatar" alt="Insha Gabriele Holz"
+                 onerror="this.style.background='rgba(201,162,39,0.2)'">
+            <div>
+              <div class="ws-facilitator-name">Insha Gabriele Holz</div>
+              <div class="ws-facilitator-role" data-zh="德国 · 26年意识领导力导师" data-en="Germany · 26 Yrs Conscious Leadership">德国 · 26年意识领导力导师</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROGRAMME ══════════ -->
+<section class="ws-programme" id="programme">
+  <div class="container">
+    <div class="ws-section-eyebrow" data-zh="工作坊流程" data-en="Workshop Programme">工作坊流程</div>
+    <h2 class="ws-section-title" data-zh="一天的旅程" data-en="A Day's Journey">一天的旅程</h2>
+    <p class="ws-section-sub" data-zh="这不是讲座，而是一次具体的体验。透过冥想、沉思、身体与真理的连接，你将触碰领导力的本质——从内在出发。" data-en="This is not a lecture. It is a lived experience. Through meditation, reflection, and body-truth connection, you will touch the essence of leadership — from within.">这不是讲座，而是一次具体的体验。透过冥想、沉思、身体与真理的连接，你将触碰领导力的本质——从内在出发。</p>
+
+    <div class="ws-timeline">
+      <!-- Part 1 -->
+      <div class="ws-block">
+        <div class="ws-block-time-col">
+          <span class="ws-block-time">09:00</span>
+          <span class="ws-block-duration" data-zh="90分钟" data-en="90 min">90分钟</span>
+          <div class="ws-block-connector"></div>
+        </div>
+        <div class="ws-block-right">
+          <div class="ws-block-num" data-zh="第一部分" data-en="Part One">第一部分</div>
+          <h3 class="ws-block-title" data-zh="真理与频率 — 基础" data-en="Truth & Frequency — The Foundation">真理与频率 — 基础</h3>
+          <p class="ws-block-title-zh" data-zh="Truth & Frequency" data-en="真理与频率">Truth & Frequency</p>
+          <p class="ws-block-desc" data-zh="开启空间，引导你进入α频率状态。通过身体扫描激活内在真理，松开所有角色与面具，回到最真实的自己。你将首次体验：当身体不说谎时，领导力自然流淌。" data-en="Opening the space and guiding you into alpha frequency. Through body scanning to activate inner truth, releasing all roles and masks to return to your most authentic self. You will experience for the first time: when the body does not lie, leadership flows naturally.">开启空间，引导你进入α频率状态。通过身体扫描激活内在真理，松开所有角色与面具，回到最真实的自己。你将首次体验：当身体不说谎时，领导力自然流淌。</p>
+        </div>
+      </div>
+
+      <!-- Break -->
+      <div class="ws-block break">
+        <div class="ws-block-time-col">
+          <span class="ws-block-time">10:30</span>
+          <span class="ws-block-duration" data-zh="15分钟" data-en="15 min">15分钟</span>
+          <div class="ws-block-connector"></div>
+        </div>
+        <div class="ws-block-right">
+          <div class="ws-block-title" data-zh="☕ 短暂休息" data-en="☕ Short Break">☕ 短暂休息</div>
+        </div>
+      </div>
+
+      <!-- Part 2 -->
+      <div class="ws-block">
+        <div class="ws-block-time-col">
+          <span class="ws-block-time">10:45</span>
+          <span class="ws-block-duration" data-zh="105分钟" data-en="105 min">105分钟</span>
+          <div class="ws-block-connector"></div>
+        </div>
+        <div class="ws-block-right">
+          <div class="ws-block-num" data-zh="第二部分" data-en="Part Two">第二部分</div>
+          <h3 class="ws-block-title" data-zh="心轮与领导之光 — 从爱领导" data-en="Heart & Leadership Light — Leading from Love">心轮与领导之光 — 从爱领导</h3>
+          <p class="ws-block-title-zh" data-zh="Heart & Leadership Light" data-en="心轮与领导之光">Heart & Leadership Light</p>
+          <p class="ws-block-desc" data-zh="深入心轮，激活你独特的领导之光。学习区分「控制型领导」与「爱的领导」的本质差异。透过引导冥想，唤醒内在那个不需要证明、只需要存在的领导者。" data-en="Dive deep into the heart chakra, activating your unique leadership light. Learn to distinguish between 'control-based leadership' and 'love-based leadership'. Through guided meditation, awaken the leader within who needs no proof — only presence.">深入心轮，激活你独特的领导之光。学习区分「控制型领导」与「爱的领导」的本质差异。透过引导冥想，唤醒内在那个不需要证明、只需要存在的领导者。</p>
+        </div>
+      </div>
+
+      <!-- Lunch -->
+      <div class="ws-block lunch">
+        <div class="ws-block-time-col">
+          <span class="ws-block-time">12:30</span>
+          <span class="ws-block-duration" data-zh="90分钟" data-en="90 min">90分钟</span>
+          <div class="ws-block-connector"></div>
+        </div>
+        <div class="ws-block-right">
+          <div class="ws-block-title" data-zh="🍽 午餐 · 联结与整合" data-en="🍽 Lunch · Connection & Integration">🍽 午餐 · 联结与整合</div>
+        </div>
+      </div>
+
+      <!-- Part 3 -->
+      <div class="ws-block">
+        <div class="ws-block-time-col">
+          <span class="ws-block-time">14:00</span>
+          <span class="ws-block-duration" data-zh="75分钟" data-en="75 min">75分钟</span>
+          <div class="ws-block-connector"></div>
+        </div>
+        <div class="ws-block-right">
+          <div class="ws-block-num" data-zh="第三部分" data-en="Part Three">第三部分</div>
+          <h3 class="ws-block-title" data-zh="内在和平与人生位置" data-en="Inner Peace & Life Positioning">内在和平与人生位置</h3>
+          <p class="ws-block-title-zh" data-zh="Inner Peace & Life Positioning" data-en="内在和平与人生位置">Inner Peace & Life Positioning</p>
+          <p class="ws-block-desc" data-zh="重新定位自己在生命中的坐标——不是别人给你的位置，而是你灵魂真正的位置。在这里，领导力不是你扮演的角色，而是你自然呼出的气息。" data-en="Reposition yourself in life — not the position others assign you, but where your soul truly belongs. Here, leadership is not a role you play, but the air you naturally breathe.">重新定位自己在生命中的坐标——不是别人给你的位置，而是你灵魂真正的位置。在这里，领导力不是你扮演的角色，而是你自然呼出的气息。</p>
+        </div>
+      </div>
+
+      <!-- Break 2 -->
+      <div class="ws-block break">
+        <div class="ws-block-time-col">
+          <span class="ws-block-time">15:15</span>
+          <span class="ws-block-duration" data-zh="15分钟" data-en="15 min">15分钟</span>
+          <div class="ws-block-connector"></div>
+        </div>
+        <div class="ws-block-right">
+          <div class="ws-block-title" data-zh="☕ 短暂休息" data-en="☕ Short Break">☕ 短暂休息</div>
+        </div>
+      </div>
+
+      <!-- Part 4 -->
+      <div class="ws-block">
+        <div class="ws-block-time-col">
+          <span class="ws-block-time">15:30</span>
+          <span class="ws-block-duration" data-zh="90分钟" data-en="90 min">90分钟</span>
+        </div>
+        <div class="ws-block-right">
+          <div class="ws-block-num" data-zh="第四部分" data-en="Part Four">第四部分</div>
+          <h3 class="ws-block-title" data-zh="整合与大师之路邀请" data-en="Integration & The Master's Path">整合与大师之路邀请</h3>
+          <p class="ws-block-title-zh" data-zh="Integration & The Master's Path" data-en="整合与大师之路邀请">Integration & The Master's Path</p>
+          <p class="ws-block-desc" data-zh="整合当天所有体验，清晰看见：这一天只是序章。你将了解「Leadership from Within」18天大师培训的完整路径，以及进入深度转化的邀请。" data-en="Integrate everything from the day, and see clearly: this day is only the prologue. You will learn about the complete 18-day 'Leadership from Within' master programme, and receive an invitation into deep transformation.">整合当天所有体验，清晰看见：这一天只是序章。你将了解「Leadership from Within」18天大师培训的完整路径，以及进入深度转化的邀请。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOR WHOM ══════════ -->
+<section class="ws-for-whom">
+  <div class="container">
+    <div class="ws-section-eyebrow" data-zh="适合对象" data-en="Who Is This For">适合对象</div>
+    <h2 class="ws-section-title" data-zh="你在哪里，这里就是你的地方" data-en="Wherever You Are, This Is Your Place">你在哪里，这里就是你的地方</h2>
+    <p class="ws-section-sub" data-zh="适合所有对内在工作、意识与领导力感兴趣的人——包括那些内心感到「我不想再像以前那样生活」的人。" data-en="For everyone interested in inner work, consciousness, and leadership — including those whose heart says &ldquo;I don&rsquo;t want to live the way I have been anymore.&rdquo;">适合所有对内在工作、意识与领导力感兴趣的人——包括那些内心感到「我不想再像以前那样生活」的人。</p>
+    <div class="ws-audience-grid">
+      <div class="ws-audience-card">
+        <div class="ws-audience-icon">💼</div>
+        <h3 class="ws-audience-title" data-zh="企业领导者 & 创办人" data-en="Business Leaders & Founders">企业领导者 & 创办人</h3>
+        <p class="ws-audience-desc" data-zh="你已掌握外部成功的工具，却感到内在存在一道「天花板」——所有策略都无法突破的那道。" data-en="You have mastered the tools of outer success, yet sense an inner ceiling no strategy can break through.">你已掌握外部成功的工具，却感到内在存在一道「天花板」——所有策略都无法突破的那道。</p>
+      </div>
+      <div class="ws-audience-card">
+        <div class="ws-audience-icon">🌿</div>
+        <h3 class="ws-audience-title" data-zh="疗愈师 & 教练" data-en="Healers & Coaches">疗愈师 & 教练</h3>
+        <p class="ws-audience-desc" data-zh="你陪伴他人转化，却渴望更深的内在基础——一个真正让你站稳、从中散发领导之光的根基。" data-en="You guide others through transformation, yet long for a deeper inner foundation — a root from which your leadership light truly shines.">你陪伴他人转化，却渴望更深的内在基础——一个真正让你站稳、从中散发领导之光的根基。</p>
+      </div>
+      <div class="ws-audience-card">
+        <div class="ws-audience-icon">🔍</div>
+        <h3 class="ws-audience-title" data-zh="内在探索者" data-en="Inner Explorers">内在探索者</h3>
+        <p class="ws-audience-desc" data-zh="你感觉「我内在还有更多」，你准备好了不再妥协，不再等待，终于想踏出这一步。" data-en="You sense 'there is more in me' and you are ready — no more compromise, no more waiting, finally ready to take this step.">你感觉「我内在还有更多」，你准备好了不再妥协，不再等待，终于想踏出这一步。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WHAT YOU'LL EXPERIENCE ══════════ -->
+<section class="ws-experience">
+  <div class="container">
+    <div class="ws-section-eyebrow" data-zh="你将体验" data-en="What You Will Experience">你将体验</div>
+    <h2 class="ws-section-title" data-zh="这一天，你将离开时不再是同一个人" data-en="You Will Not Leave as the Same Person">这一天，你将离开时不再是同一个人</h2>
+    <p class="ws-section-sub" data-zh="这不是理论课。这是直接的、具身的体验。" data-en="This is not theory. It is direct, embodied experience.">这不是理论课。这是直接的、具身的体验。</p>
+    <div class="ws-pillars">
+      <div class="ws-pillar">
+        <div class="ws-pillar-num">01</div>
+        <h3 class="ws-pillar-title" data-zh="激活真理频率" data-en="Activate Your Truth Frequency">激活真理频率</h3>
+        <p class="ws-pillar-desc" data-zh="通过身体作为罗盘，识别内在真实——你的腹部、胸腔、喉咙，都是真理的语言。当你学会聆听，一切决策变得清晰。" data-en="Using your body as compass, identify inner truth — your belly, chest, and throat all speak the language of truth. When you learn to listen, every decision becomes clear.">通过身体作为罗盘，识别内在真实——你的腹部、胸腔、喉咙，都是真理的语言。当你学会聆听，一切决策变得清晰。</p>
+      </div>
+      <div class="ws-pillar">
+        <div class="ws-pillar-num">02</div>
+        <h3 class="ws-pillar-title" data-zh="触碰领导之光" data-en="Touch Your Leadership Light">触碰领导之光</h3>
+        <p class="ws-pillar-desc" data-zh="每一位领导者心中都有一束独特的光。不是权力，不是地位，而是那个当你真实存在时自然发出的光。这一天，我们让它重新燃亮。" data-en="Every leader carries a unique inner light. Not power, not status, but the light that shines naturally when you are truly present. Today, we reignite it.">每一位领导者心中都有一束独特的光。不是权力，不是地位，而是那个当你真实存在时自然发出的光。这一天，我们让它重新燃亮。</p>
+      </div>
+      <div class="ws-pillar">
+        <div class="ws-pillar-num">03</div>
+        <h3 class="ws-pillar-title" data-zh="体验α频率状态" data-en="Experience Alpha Frequency">体验α频率状态</h3>
+        <p class="ws-pillar-desc" data-zh="α状态是头脑安静、心可以说话的状态。这是创造力、直觉与清晰洞见的门槛。你将亲身体验如何进入并保持这一状态。" data-en="Alpha state is where the mind quiets and the heart can speak. It is the threshold of creativity, intuition, and clear insight. You will experience directly how to enter and sustain it.">α状态是头脑安静、心可以说话的状态。这是创造力、直觉与清晰洞见的门槛。你将亲身体验如何进入并保持这一状态。</p>
+      </div>
+      <div class="ws-pillar">
+        <div class="ws-pillar-num">04</div>
+        <h3 class="ws-pillar-title" data-zh="找到你真实的生命位置" data-en="Find Your True Life Position">找到你真实的生命位置</h3>
+        <p class="ws-pillar-desc" data-zh="不是别人期待你在的位置，而是你灵魂真正归属的位置。当你站在那个位置，你不需要努力影响——你就是影响。" data-en="Not the position others expect of you, but where your soul truly belongs. When you stand in that place, you need no effort to influence — you simply are the influence.">不是别人期待你在的位置，而是你灵魂真正归属的位置。当你站在那个位置，你不需要努力影响——你就是影响。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FACILITATORS ══════════ -->
+<section class="ws-facilitators-section">
+  <div class="container">
+    <div class="ws-section-eyebrow" data-zh="主持导师" data-en="Your Facilitators">主持导师</div>
+    <h2 class="ws-section-title" data-zh="两位来自东西方的意识领导力先驱" data-en="Two Pioneers of Conscious Leadership from East & West">两位来自东西方的意识领导力先驱</h2>
+    <div class="ws-facilitators-grid">
+
+      <div class="ws-facilitator-card">
+        <img src="../assets/img/bonshuwa.jpg" class="ws-facilitator-photo" alt="Bonshuwa Chua"
+             onerror="this.style.background='#E3F6F8';this.style.minHeight='260px'">
+        <div>
+          <div class="ws-facilitator-tag" data-zh="马来西亚" data-en="Malaysia">Malaysia</div>
+          <h3 class="ws-facilitator-name-big">Bonshuwa Chua<br><span style="font-size:0.75em;color:var(--teal-bright);">蔡广进博士</span></h3>
+          <p class="ws-facilitator-bio" data-zh="Gaya Spiritual Academy 创办人，马来西亚领先的灵性启蒙导师与意识智能先驱。多年来致力于将西方深度意识工作与亚洲智慧融合，陪伴无数企业家、高管与疗愈师突破内在天花板，活出真实使命。" data-en="Founder of Gaya Spiritual Academy and Malaysia's leading spiritual awakening coach and conscious intelligence pioneer. For years he has bridged deep Western consciousness work with Asian wisdom, supporting countless entrepreneurs, executives, and healers to break through their inner ceiling and live their authentic mission.">Gaya Spiritual Academy 创办人，马来西亚领先的灵性启蒙导师与意识智能先驱。多年来致力于将西方深度意识工作与亚洲智慧融合，陪伴无数企业家、高管与疗愈师突破内在天花板，活出真实使命。</p>
+          <div class="ws-facilitator-credentials">
+            <div class="ws-facilitator-cred" data-zh="Aquarius Coach 认证导师" data-en="Certified Aquarius Coach Trainer">Aquarius Coach 认证导师</div>
+            <div class="ws-facilitator-cred" data-zh="Alpha Chi 能量风水传承师" data-en="Alpha Chi Energy Feng Shui Lineage Holder">Alpha Chi 能量风水传承师</div>
+            <div class="ws-facilitator-cred" data-zh="INSHA 自然疗愈认证导师" data-en="INSHA Natural Healing Certified Trainer">INSHA 自然疗愈认证导师</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ws-facilitator-card">
+        <img src="../assets/img/insha.jpg" class="ws-facilitator-photo" alt="Insha Gabriele Holz"
+             onerror="this.style.background='#FBF3DC';this.style.minHeight='260px'">
+        <div>
+          <div class="ws-facilitator-tag" data-zh="德国" data-en="Germany">Germany</div>
+          <h3 class="ws-facilitator-name-big">Insha Gabriele Holz</h3>
+          <p class="ws-facilitator-bio" data-zh="来自德国、拥有逾26年经验的意识领导力导师，欧洲最受尊崇的内在转化导师之一。她的工作整合了身体智慧、情绪场域、能量中心与灵性原则，创立了被亚洲学员称为「此生最深刻领导力发展」的培训体系。" data-en="A conscious leadership teacher from Germany with over 26 years of experience and one of Europe's most respected inner transformation educators. Her work integrates body wisdom, emotional fields, energy centres and spiritual principles — creating the training system her Asian students call 'the most profound leadership development of my life.'">来自德国、拥有逾26年经验的意识领导力导师，欧洲最受尊崇的内在转化导师之一。她的工作整合了身体智慧、情绪场域、能量中心与灵性原则，创立了被亚洲学员称为「此生最深刻领导力发展」的培训体系。</p>
+          <div class="ws-facilitator-credentials">
+            <div class="ws-facilitator-cred" data-zh="Leadership from Within 体系创立者" data-en="Founder of the Leadership from Within System">Leadership from Within 体系创立者</div>
+            <div class="ws-facilitator-cred" data-zh="INSHA 自然疗愈法国际导师" data-en="International INSHA Natural Healing Trainer">INSHA 自然疗愈法国际导师</div>
+            <div class="ws-facilitator-cred" data-zh="26年欧洲意识领导力教学经验" data-en="26 years of European conscious leadership teaching">26年欧洲意识领导力教学经验</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ NEXT STEP ══════════ -->
+<section class="ws-nextstep">
+  <div class="container">
+    <div class="ws-section-eyebrow" data-zh="深入之路" data-en="Go Deeper">深入之路</div>
+    <h2 class="ws-section-title" data-zh="这一天，是你最重要旅程的序章" data-en="This Day Is the Prologue to Your Most Important Journey">这一天，是你最重要旅程的序章</h2>
+    <p class="ws-section-sub" data-zh="完成工作坊后，你可以选择踏入更深层的转化路径：" data-en="After the workshop, you may choose to enter a deeper path of transformation:">完成工作坊后，你可以选择踏入更深层的转化路径：</p>
+    <div class="ws-nextstep-grid">
+      <div class="ws-next-card teal">
+        <div class="ws-next-card-icon">💎</div>
+        <h3 class="ws-next-card-title" data-zh="意识智能先修培训 CIF" data-en="Conscious Intelligence Foundation">意识智能先修培训 CIF</h3>
+        <p class="ws-next-card-sub" data-zh="3天 · 2026年6月5–7日 · 限25位" data-en="3 Days · 5–7 June 2026 · Limited to 25">3天 · 2026年6月5–7日 · 限25位</p>
+        <p class="ws-next-card-desc" data-zh="唤醒领导力钻石，掌握四个细微体（情绪、思维、能量、灵性），连接你的阿卡莎生命蓝图。这是进入所有深度培训的核心基础。" data-en="Awaken the Leadership Diamond, master four subtle bodies (emotional, mental, energetic, spiritual), and connect to your Akasha life blueprint. The foundational core for all deep training.">唤醒领导力钻石，掌握四个细微体（情绪、思维、能量、灵性），连接你的阿卡莎生命蓝图。这是进入所有深度培训的核心基础。</p>
+        <a href="../courses/cif.html" class="btn-white-outline" data-zh="了解更多" data-en="Learn More">了解更多</a>
+      </div>
+      <div class="ws-next-card gold">
+        <div class="ws-next-card-icon">👑</div>
+        <h3 class="ws-next-card-title" data-zh="Leadership from Within · 新时代领导力" data-en="Leadership from Within">Leadership from Within · 新时代领导力</h3>
+        <p class="ws-next-card-sub" data-zh="18天 · 三循环 · 亚洲最高阶内在领导力培训" data-en="18 Days · 3 Cycles · Asia's Most Advanced Inner Leadership">18天 · 三循环 · 亚洲最高阶</p>
+        <p class="ws-next-card-desc" data-zh="深度转化你的领导力核心——不只是你如何领导，而是你作为一个领导者是谁。结合普世领导原则与能量中心开发，彻底打开内在潜能。" data-en="Transform the core of your leadership — not just how you lead, but who you are as a leader. Combining universal leadership principles with energy centre development to fully unlock inner potential.">深度转化你的领导力核心——不只是你如何领导，而是你作为一个领导者是谁。</p>
+        <a href="../courses/leadership.html" class="btn-white-outline" data-zh="了解更多" data-en="Learn More">了解更多</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ REGISTER CTA ══════════ -->
+<section class="ws-register">
+  <div class="container">
+    <p class="ws-register-eyebrow" data-zh="报名参加" data-en="Register Now">报名参加</p>
+    <h2 class="ws-register-title" data-zh="你的钻石，<em>一直都在</em>" data-en="Your Diamond <em>Has Always Been There</em>">你的钻石，<em>一直都在</em></h2>
+    <p class="ws-register-sub" data-zh="如果你心里有一个「是」——请不要让它等太久。" data-en="If something in you is saying yes — don't let it wait too long.">如果你心里有一个「是」——请不要让它等太久。</p>
+    <div class="ws-register-detail">
+      <div class="ws-reg-item">
+        <span class="reg-label" data-zh="日期" data-en="Date">日期</span>
+        <span class="reg-val" data-zh="下一场即将公布" data-en="Next Date Coming Soon">下一场即将公布</span>
+      </div>
+      <div class="ws-reg-item">
+        <span class="reg-label" data-zh="时间" data-en="Time">时间</span>
+        <span class="reg-val">09:00 – 17:00</span>
+      </div>
+      <div class="ws-reg-item">
+        <span class="reg-label" data-zh="语言" data-en="Language">语言</span>
+        <span class="reg-val" data-zh="中文 & 英文" data-en="Chinese & English">中文 & 英文</span>
+      </div>
+      <div class="ws-reg-item">
+        <span class="reg-label" data-zh="地点" data-en="Venue">地点</span>
+        <span class="reg-val" data-zh="马来西亚" data-en="Malaysia">马来西亚</span>
+      </div>
+    </div>
+    <div class="ws-register-ctas">
+      <a href="https://wa.me/60126011607" class="btn-gold" data-zh="WhatsApp 查询 · 预留席位" data-en="WhatsApp · Reserve Your Seat">WhatsApp 查询 · 预留席位</a>
+      <a href="mailto:info@gayaspiritualacademy.com" class="btn-teal" data-zh="Email 查询" data-en="Email Enquiry">Email 查询</a>
+    </div>
+    <p style="margin-top:24px;font-size:0.75rem;color:rgba(255,255,255,0.25);letter-spacing:0.04em;" data-zh="「商业模式可以被复制。领导力意识，无法被复制。」— Bonshuwa Chua & Insha Gabriele Holz" data-en="&ldquo;Business models can be copied. Leadership consciousness cannot.&rdquo; — Bonshuwa Chua & Insha Gabriele Holz">「商业模式可以被复制。领导力意识，无法被复制。」— Bonshuwa Chua & Insha Gabriele Holz</p>
+  </div>
+</section>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/60126011607" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<footer class="footer" id="footer"></footer>
+
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+  renderNav('../');
+  renderFooter('../');
+</script>
+</body>
+</html>

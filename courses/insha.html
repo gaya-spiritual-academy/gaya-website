@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INSHA 自然神圣疗愈法 · Gaya Spiritual Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="course.css">
+  <style>
+    
+    .prog-hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: var(--nav-h); padding-bottom: 80px;
+      background: #071e27;
+    }
+    /* 底层：全身疗愈场景 */
+    .prog-hero-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 30%;
+      opacity: 0.20; filter: saturate(0.45) brightness(0.6) hue-rotate(10deg);
+    }
+    /* 第二层：右侧手部特写图（叠加合成感） */
+    .prog-hero-img2 {
+      position: absolute; right: -2%; top: 0; width: 52%; height: 100%;
+      object-fit: cover; object-position: 30% center;
+      opacity: 0.42; filter: saturate(0.5) brightness(0.75);
+      mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.95) 50%, rgba(0,0,0,0.7) 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.95) 50%, rgba(0,0,0,0.7) 100%);
+    }
+    /* 渐变底色遮罩 */
+    .prog-hero-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, rgba(7,30,39,0.96) 0%, rgba(7,30,39,0.78) 40%, rgba(7,30,39,0.25) 75%, rgba(7,30,39,0.1) 100%),
+        linear-gradient(to top, rgba(7,30,39,0.7) 0%, transparent 35%);
+    }
+    .prog-hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(42,172,184,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42,172,184,0.07) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .prog-hero-glow {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 68% 50%, rgba(201,162,39,0.16) 0%, rgba(42,172,184,0.10) 22%, transparent 48%),
+        radial-gradient(ellipse at 82% 30%, rgba(42,172,184,0.14) 0%, transparent 32%),
+        radial-gradient(ellipse at 15% 75%, rgba(42,172,184,0.07) 0%, transparent 38%);
+    }
+    /* 浮动光粒子 */
+    .hero-particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-particle {
+      position: absolute; border-radius: 50%;
+      background: rgba(201,162,39,0.6); filter: blur(1px);
+      animation: particle-float linear infinite;
+    }
+    @keyframes particle-float {
+      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(-20vh) translateX(30px); opacity: 0; }
+    }
+  .prog-hero-inner {
+      position: relative; z-index: 2;
+      width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 48px;
+      display: grid; grid-template-columns: 1fr 320px; gap: 60px; align-items: center;}
+
+    .prog-hero-content { max-width: 620px; }
+    .prog-hero-symbol {
+      flex-shrink: 0; width: 280px; height: 280px;
+      position: relative; display: flex; align-items: center; justify-content: center;
+    }
+    .phs-ring {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(42,172,184,0.2);
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      animation: phs-pulse 6s ease-in-out infinite;
+    }
+    .phs-ring-1 { width: 100%; height: 100%; }
+    .phs-ring-2 { width: 72%; height: 72%; border-color: rgba(42,172,184,0.35); animation-delay: 1s; }
+    .phs-ring-3 { width: 44%; height: 44%; border-color: rgba(42,172,184,0.55); animation-delay: 2s; }
+    @keyframes phs-pulse {
+      0%,100% { opacity: 0.4; transform: translate(-50%,-50%) scale(1); }
+      50% { opacity: 0.9; transform: translate(-50%,-50%) scale(1.04); }
+    }
+    .phs-center {
+      position: relative; z-index: 2; text-align: center;
+      font-family: var(--font-display); color: rgba(42,172,184,0.7); line-height: 1.4;
+    }
+    .phs-symbol { font-size: 3.5rem; display: block; opacity: 0.5; }
+    .phs-text { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.3em;
+      text-transform: uppercase; color: rgba(42,172,184,0.5); margin-top: 8px; display: block; }
+    .phs-dot {
+      position: absolute; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold, #C9A227); box-shadow: 0 0 12px var(--gold, #C9A227);
+      top: 50%; left: 50%; transform-origin: 0 0;
+      animation: phs-orbit 9s linear infinite;
+    }
+    .phs-dot-2 {
+      width: 5px; height: 5px; background: var(--teal-bright, #2AACB8);
+      box-shadow: 0 0 8px var(--teal-bright, #2AACB8);
+      animation: phs-orbit 6s linear infinite reverse;
+    }
+    @keyframes phs-orbit {
+      from { transform: rotate(0deg) translateX(130px) rotate(0deg); }
+      to   { transform: rotate(360deg) translateX(130px) rotate(-360deg); }
+    }
+    @media (max-width: 900px) {
+      .prog-hero-symbol { display: none; }
+      .prog-hero-inner { grid-template-columns: 1fr; }
+    }
+
+    /* badge */
+    .insha-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(42,172,184,0.12); border: 1px solid rgba(42,172,184,0.32);
+      padding: 6px 18px; border-radius: 20px; font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal-bright);
+      margin-bottom: 28px;
+    }
+    .insha-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal-bright);
+      animation: badge-pulse 2s ease-in-out infinite; }
+    @keyframes badge-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.6)} }
+
+    .insha-hero-en {
+      font-family: var(--font-display); font-size: clamp(3rem,7vw,6rem);
+      font-weight: 300; color: white; line-height: 0.95; letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .insha-hero-en em { font-style: italic; color: var(--teal-bright); }
+    .insha-hero-zh {
+      font-family: var(--font-display); font-size: clamp(1rem,2vw,1.4rem);
+      color: rgba(255,255,255,0.35); letter-spacing: 0.25em; margin-bottom: 32px;
+    }
+    .insha-hero-tagline {
+      font-size: 1.1rem; color: var(--teal-bright); font-weight: 300;
+      letter-spacing: 0.04em; margin-bottom: 20px; line-height: 1.6;
+    }
+    .insha-hero-desc {
+      font-size: 0.92rem; color: rgba(255,255,255,0.55); line-height: 1.9;
+      max-width: 560px; font-weight: 300; margin-bottom: 40px;
+    }
+
+    /* meta pills row */
+    .insha-meta-row {
+      display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px;
+    }
+    .insha-meta-pill {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 30px; padding: 8px 18px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.7);
+    }
+    .insha-meta-pill.gold {
+      background: rgba(201,162,39,0.1); border-color: rgba(201,162,39,0.3);
+      color: var(--gold-bright, #C9A227);
+    }
+    .insha-meta-pill.teal {
+      background: rgba(42,172,184,0.12); border-color: rgba(42,172,184,0.3);
+      color: var(--teal-bright);
+    }
+
+    /* ═══════════════════════════════════════
+       ABOUT SECTION
+    ═══════════════════════════════════════ */
+    .insha-about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .insha-about-img-wrap { position: relative; }
+    .insha-about-img {
+      width: 100%; aspect-ratio: 4/5; object-fit: cover;
+      filter: saturate(0.85); border-radius: 2px;
+    }
+    .insha-about-img-badge {
+      position: absolute; bottom: -24px; left: -24px;
+      background: var(--teal-deep, #1B5F75); border: 1px solid rgba(42,172,184,0.4);
+      padding: 20px 28px; max-width: 220px;
+    }
+    .insha-about-img-badge .badge-num {
+      font-family: var(--font-display); font-size: 2.8rem; color: var(--teal-bright);
+      line-height: 1; font-weight: 300;
+    }
+    .insha-about-img-badge .badge-label {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 4px;
+    }
+    .insha-about-content .quote-block {
+      border-left: 2px solid var(--teal-bright);
+      padding: 20px 0 20px 28px; margin: 32px 0;
+      font-family: var(--font-display); font-size: 1.25rem;
+      color: var(--text-dark); font-style: italic; line-height: 1.6;
+    }
+
+    /* founders grid */
+    .founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
+    .founder-card {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 24px; border: 1px solid rgba(42,172,184,0.12);
+      background: rgba(42,172,184,0.02); transition: all 0.3s;
+    }
+    .founder-card:hover { border-color: rgba(42,172,184,0.3); background: rgba(42,172,184,0.05); }
+    .founder-card img {
+      width: 72px; height: 72px; object-fit: cover; border-radius: 50%;
+      flex-shrink: 0; filter: saturate(0.85);
+    }
+    .founder-card .fc-name { font-weight: 600; font-size: 0.92rem; color: var(--text-dark); margin-bottom: 2px; }
+    .founder-card .fc-role { font-size: 0.7rem; color: var(--teal-bright); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 8px; }
+    .founder-card .fc-bio { font-size: 0.8rem; color: var(--text-mid, #4a6670); line-height: 1.7; }
+
+    /* ═══════════════════════════════════════
+       INSHA I — 3 PHASE TABLE
+    ═══════════════════════════════════════ */
+    .phase-timeline { position: relative; margin-top: 48px; }
+    .phase-track {
+      position: absolute; left: 28px; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--teal-bright), rgba(42,172,184,0.1));
+    }
+    .phase-item { display: flex; gap: 40px; margin-bottom: 48px; position: relative; }
+    .phase-num-col { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 0; }
+    .phase-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--teal-deep, #1B5F75); border: 2px solid var(--teal-bright);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1.4rem; color: var(--teal-bright);
+      font-weight: 300; flex-shrink: 0; position: relative; z-index: 1;
+    }
+    .phase-body { flex: 1; padding-top: 8px; }
+    .phase-tag {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--teal-bright); margin-bottom: 8px;
+    }
+    .phase-title {
+      font-family: var(--font-display); font-size: 1.5rem; color: var(--text-dark);
+      margin-bottom: 6px; font-weight: 400;
+    }
+    .phase-sub { font-size: 0.78rem; color: var(--teal-bright); letter-spacing: 0.08em;
+      margin-bottom: 16px; }
+    .phase-desc { font-size: 0.88rem; color: var(--text-mid, #4a6670); line-height: 1.8; margin-bottom: 20px; }
+    .phase-sources {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .phase-source-pill {
+      background: rgba(42,172,184,0.08); border: 1px solid rgba(42,172,184,0.2);
+      border-radius: 20px; padding: 5px 14px;
+      font-size: 0.7rem; font-weight: 500; color: var(--teal-bright);
+      letter-spacing: 0.05em;
+    }
+    .phase-skills { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .phase-skill-tag {
+      background: rgba(27,95,117,0.06); border: 1px solid rgba(27,95,117,0.15);
+      border-radius: 4px; padding: 4px 12px;
+      font-size: 0.72rem; color: var(--text-dark); font-weight: 500;
+    }
+
+    /* block 6 exam highlight */
+    .phase-exam-box {
+      background: rgba(201,162,39,0.06); border: 1px solid rgba(201,162,39,0.3);
+      padding: 16px 20px; margin-top: 16px; border-radius: 2px;
+    }
+    .phase-exam-box .exam-title {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold-bright, #C9A227); margin-bottom: 6px;
+    }
+    .phase-exam-box p { font-size: 0.82rem; color: var(--text-mid, #4a6670); line-height: 1.7; }
+
+    /* ═══════════════════════════════════════
+       GRADUATION REQUIREMENTS
+    ═══════════════════════════════════════ */
+    .grad-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+    .grad-card {
+      padding: 32px; border: 1px solid rgba(42,172,184,0.15);
+      background: rgba(42,172,184,0.02); text-align: center;
+      transition: all 0.3s;
+    }
+    .grad-card:hover { border-color: rgba(42,172,184,0.4); transform: translateY(-4px); }
+    .grad-card .gc-icon { font-size: 2rem; margin-bottom: 12px; }
+    .grad-card .gc-num {
+      font-family: var(--font-display); font-size: 2.2rem; color: var(--teal-bright);
+      font-weight: 300; line-height: 1;
+    }
+    .grad-card .gc-unit { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(27,95,117,0.6); margin-top: 4px; margin-bottom: 8px; }
+    .grad-card .gc-label { font-size: 0.82rem; color: var(--text-mid, #4a6670); line-height: 1.6; }
+
+    /* ═══════════════════════════════════════
+       SKM CERT STRIP
+    ═══════════════════════════════════════ */
+    .skm-strip {
+      background: linear-gradient(135deg, #0D3D4F 0%, #1B5F75 100%);
+      padding: 60px 0;
+    }
+    .skm-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px;
+      display: grid; grid-template-columns: auto 1fr; gap: 60px; align-items: center; }
+    .skm-seal {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 2px solid rgba(201,162,39,0.4);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; flex-shrink: 0;
+      background: rgba(201,162,39,0.06);
+    }
+    .skm-seal .seal-flag { font-size: 1.6rem; }
+    .skm-seal .seal-text { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold-bright, #C9A227); margin-top: 4px; }
+    .skm-levels { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+    .skm-level-card {
+      flex: 1; min-width: 160px; padding: 16px 20px;
+      border: 1px solid rgba(201,162,39,0.25); background: rgba(201,162,39,0.04);
+    }
+    .skm-level-card .slc-level { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold-bright, #C9A227); margin-bottom: 4px; }
+    .skm-level-card .slc-name { font-size: 0.82rem; color: white; font-weight: 500; margin-bottom: 4px; }
+    .skm-level-card .slc-mode { font-size: 0.7rem; color: rgba(255,255,255,0.4); }
+
+    /* ═══════════════════════════════════════
+       INSHA II
+    ═══════════════════════════════════════ */
+    .insha2-header {
+      background: linear-gradient(135deg, rgba(13,61,79,0.04) 0%, rgba(27,95,117,0.08) 100%);
+      border: 1px solid rgba(42,172,184,0.12); padding: 48px;
+      margin-bottom: 48px; position: relative; overflow: hidden;
+    }
+    .insha2-header::before {
+      content: 'II'; position: absolute; right: -20px; top: -20px;
+      font-family: var(--font-display); font-size: 12rem; font-weight: 300;
+      color: rgba(42,172,184,0.05); line-height: 1; pointer-events: none;
+    }
+    .insha2-organ-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 40px;
+    }
+    .organ-card {
+      padding: 20px 16px; border: 1px solid rgba(42,172,184,0.1);
+      background: rgba(42,172,184,0.02); text-align: center;
+      transition: all 0.25s;
+    }
+    .organ-card:hover { border-color: rgba(42,172,184,0.35); background: rgba(42,172,184,0.06); transform: translateY(-3px); }
+    .organ-card .oc-planet { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold-bright, #C9A227); margin-bottom: 6px; }
+    .organ-card .oc-organ { font-family: var(--font-display); font-size: 1.15rem;
+      color: var(--text-dark); font-weight: 400; }
+    .organ-card .oc-organ-zh { font-size: 0.72rem; color: var(--teal-bright); margin-top: 2px; }
+
+    /* ═══════════════════════════════════════
+       TRAINING PATH
+    ═══════════════════════════════════════ */
+    .path-flow {
+      display: flex; flex-direction: column; align-items: center; gap: 0; margin-top: 48px;
+    }
+    .path-node {
+      width: 100%; max-width: 620px; padding: 28px 36px;
+      border: 1px solid rgba(42,172,184,0.15);
+      background: white; position: relative;
+      transition: all 0.3s;
+    }
+    .path-node:hover { border-color: rgba(42,172,184,0.4); transform: translateX(4px); }
+    .path-node.gold-node { border-color: rgba(201,162,39,0.3); background: rgba(201,162,39,0.02); }
+    .path-node.gold-node:hover { border-color: rgba(201,162,39,0.6); }
+    .path-node.teal-node { background: rgba(27,95,117,0.03); }
+    .path-arrow {
+      width: 2px; height: 40px; background: linear-gradient(to bottom, var(--teal-bright), rgba(42,172,184,0.2));
+      position: relative;
+    }
+    .path-arrow::after {
+      content: '↓'; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+      color: var(--teal-bright); font-size: 1rem;
+    }
+    .path-node .pn-tag { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.25em;
+      text-transform: uppercase; margin-bottom: 8px; color: var(--teal-bright); }
+    .path-node.gold-node .pn-tag { color: var(--gold-bright, #C9A227); }
+    .path-node .pn-title { font-family: var(--font-display); font-size: 1.4rem;
+      color: var(--text-dark); font-weight: 400; margin-bottom: 6px; }
+    .path-node .pn-sub { font-size: 0.78rem; color: var(--text-mid, #4a6670); line-height: 1.7; }
+    .path-node .pn-badge {
+      position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
+      background: rgba(42,172,184,0.1); border: 1px solid rgba(42,172,184,0.25);
+      padding: 4px 12px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--teal-bright); border-radius: 3px;
+    }
+    .path-node.gold-node .pn-badge {
+      background: rgba(201,162,39,0.1); border-color: rgba(201,162,39,0.3);
+      color: var(--gold-bright, #C9A227);
+    }
+    .path-node .pn-note {
+      font-size: 0.72rem; color: rgba(100,130,140,0.6); font-style: italic;
+      margin-top: 8px; border-top: 1px solid rgba(42,172,184,0.08); padding-top: 8px;
+    }
+
+    /* ═══════════════════════════════════════
+       CTA / REGISTER
+    ═══════════════════════════════════════ */
+    .insha-register { background: linear-gradient(160deg, #0D3D4F 0%, #1B5F75 60%, #0E2A33 100%);
+      padding: 100px 0; }
+    .insha-register-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .price-table { margin: 32px 0; }
+    .price-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .price-label { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+    .price-val { font-family: var(--font-display); font-size: 1.3rem;
+      color: var(--teal-bright); font-weight: 300; }
+
+    .cif-cta-box {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(42,172,184,0.2);
+      padding: 40px; text-align: center;
+    }
+    .cta-diamond { font-size: 1.2rem; color: var(--gold-bright, #C9A227); display: block; margin-bottom: 20px; }
+    .cta-quote { font-family: var(--font-display); font-size: 1.25rem; font-style: italic;
+      color: white; line-height: 1.6; margin-bottom: 12px; }
+    .cta-sub { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-bottom: 32px; line-height: 1.7; }
+    .cta-divider { text-align: center; margin: 12px 0; font-size: 0.72rem;
+      color: rgba(255,255,255,0.2); letter-spacing: 0.2em; text-transform: uppercase; }
+    .seats-warning { font-size: 0.72rem; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; }
+
+    /* generic helpers (matching other pages) */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .section { padding: 100px 0; }
+    .section-light { background: var(--bg, #F4FAFB); }
+    .section-teal { background: linear-gradient(135deg, #0D3D4F 0%, #1B5F75 100%); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    .section-label { display: flex; align-items: center; gap: 12px; font-size: 0.68rem;
+      font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--teal-bright); margin-bottom: 16px; }
+    .section-label::before { content: ''; display: block; width: 32px; height: 1px; background: var(--teal-bright); }
+    .section-title { font-family: var(--font-display); font-size: clamp(2rem,3.5vw,3rem);
+      color: var(--text-dark); line-height: 1.15; margin-bottom: 20px; font-weight: 300; }
+    .section-title em { font-style: italic; color: var(--teal-bright); }
+    .section-teal .section-label { color: var(--teal-bright); }
+    .section-teal .section-label::before { background: var(--teal-bright); }
+    .section-teal .section-title { color: white; }
+    .gold-line { width: 48px; height: 2px; background: var(--gold, #C9A227); margin: 0 0 32px; }
+    .gold-line.center { margin: 0 auto 32px; }
+    .lead { font-size: 1.05rem; color: var(--text-mid, #4a6670); line-height: 1.9;
+      font-weight: 300; max-width: 620px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--teal-bright); color: white; padding: 16px 36px;
+      font-weight: 600; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; transition: all 0.3s; border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--teal-deep, #1B5F75); transform: translateY(-2px); }
+    .btn-gold {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--gold, #C9A227); color: white; padding: 16px 36px;
+      font-weight: 600; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; width: 100%;
+    }
+    .btn-gold:hover { background: #a8831e; transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      background: transparent; color: rgba(255,255,255,0.6); padding: 14px 36px;
+      font-weight: 600; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; transition: all 0.3s;
+      border: 1px solid rgba(255,255,255,0.2); width: 100%;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.5); color: white; }
+    .register-note { font-size: 0.75rem; color: rgba(255,255,255,0.3); line-height: 1.7;
+      font-style: italic; margin-top: 16px; }
+
+    /* WhatsApp float */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; width: 56px; height: 56px;
+      background: #25D366; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      z-index: 9999; transition: all 0.3s; text-decoration: none;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+    .wa-float svg { width: 28px; height: 28px; fill: white; }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .insha-about-grid, .founders-grid, .grad-grid, .insha-register-grid { grid-template-columns: 1fr; }
+      .insha2-organ-grid { grid-template-columns: repeat(2,1fr); }
+      .skm-inner { grid-template-columns: 1fr; }
+      .prog-hero-inner, .container { padding: 0 24px; }
+      .insha-about-img-badge { display: none; }
+    }
+    @media (max-width: 600px) {
+      .insha2-organ-grid { grid-template-columns: repeat(2,1fr); }
+      .insha-meta-row { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="nav" class="nav"></header>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="prog-hero">
+  <!-- 底层：全身疗愈场景 -->
+  <img class="prog-hero-img"
+    src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1600&q=80"
+    alt="INSHA Healing">
+  <!-- 第二层：手部疗愈特写叠加 -->
+  <img class="prog-hero-img2"
+    src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&q=80"
+    alt="Healing Hands">
+  <div class="prog-hero-overlay"></div>
+  <div class="prog-hero-grid"></div>
+  <div class="prog-hero-glow"></div>
+  <!-- 浮动粒子 -->
+  <div class="hero-particles">
+    <div class="hero-particle" style="width:3px;height:3px;left:65%;animation-duration:8s;animation-delay:0s;"></div>
+    <div class="hero-particle" style="width:2px;height:2px;left:72%;animation-duration:11s;animation-delay:2s;background:rgba(42,172,184,0.7);"></div>
+    <div class="hero-particle" style="width:4px;height:4px;left:78%;animation-duration:9s;animation-delay:4s;"></div>
+    <div class="hero-particle" style="width:2px;height:2px;left:68%;animation-duration:13s;animation-delay:1s;background:rgba(42,172,184,0.5);"></div>
+    <div class="hero-particle" style="width:3px;height:3px;left:82%;animation-duration:7s;animation-delay:3s;"></div>
+    <div class="hero-particle" style="width:2px;height:2px;left:60%;animation-duration:10s;animation-delay:5s;background:rgba(255,255,255,0.4);"></div>
+  </div>
+  <div class="prog-hero-inner">
+    <div class="prog-hero-content">
+    <div class="insha-badge">
+      <span class="insha-badge-dot"></span>
+      <span data-zh="世界自然神圣疗愈学院 · 德国认证" data-en="International Nature Sacred Healing Academy · Germany">世界自然神圣疗愈学院 · 德国认证</span>
+    </div>
+    <div class="insha-hero-en">INSHA <em>Healing</em></div>
+    <div class="insha-hero-zh" data-zh="自然神圣疗愈法" data-en="Natural Sacred Healing">自然神圣疗愈法</div>
+    <div class="insha-hero-tagline" data-zh="透过点化，成为真正的疗愈祭司" data-en="Through initiation, become a genuine Healing Priest">
+      透过点化，成为真正的疗愈祭司
+    </div>
+    <p class="insha-hero-desc"
+      data-zh="由德国灵性导师 Insha Gabriele Holz 创立，源自 2003 年。透过 12 个疗愈泉源的点化传承，活化脑波流、脊柱力量与精微体，学习温柔而深层地陪伴生命穿越二元对立，回归健康与完整。"
+      data-en="Founded by German spiritual teacher Insha Gabriele Holz in 2003. Through initiation into 12 healing sources, activate brain wave flows, spinal currents and subtle bodies — learning to gently accompany life through polarity back to wholeness and health.">
+      由德国灵性导师 Insha Gabriele Holz 创立，源自 2003 年。透过 12 个疗愈泉源的点化传承，活化脑波流、脊柱力量与精微体，学习温柔而深层地陪伴生命穿越二元对立，回归健康与完整。
+    </p>
+    <div class="insha-meta-row">
+      <div class="insha-meta-pill teal" data-zh="🇩🇪 德国国际认证" data-en="🇩🇪 International Certification">🇩🇪 德国国际认证</div>
+      <div class="insha-meta-pill" data-zh="INSHA I · 12天 · 6个Block · 约一年" data-en="INSHA I · 12 days · 6 Blocks · ~1 year">INSHA I · 12天 · 6个Block · 约一年</div>
+      <div class="insha-meta-pill" data-zh="INSHA II · 21天 · 深化进阶" data-en="INSHA II · 21 days · Advanced">INSHA II · 21天 · 深化进阶</div>
+      <div class="insha-meta-pill gold" data-zh="SKM 形而上学认证 1–3级" data-en="SKM Metaphysics Level 1–3">SKM 形而上学认证 1–3级</div>
+    </div>
+    <a href="#register" class="btn-primary" style="display:inline-flex;width:auto;">
+      <span data-zh="咨询报名" data-en="Enquire Now">咨询报名</span>
+      <span>↓</span>
+    </a>
+    </div><!-- /prog-hero-content -->
+    <!-- 右侧装饰 -->
+  
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ABOUT INSHA
+══════════════════════════════════════════ -->
+<section class="section section-light" id="about">
+  <div class="container">
+    <div class="insha-about-grid">
+      <div class="reveal insha-about-img-wrap">
+        <img class="insha-about-img"
+          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+          alt="INSHA Healing">
+        <div class="insha-about-img-badge">
+          <div class="badge-num">2003</div>
+          <div class="badge-label" data-zh="疗愈祭司传承始于" data-en="Healing Priest lineage founded">疗愈祭司传承始于</div>
+        </div>
+      </div>
+      <div class="reveal insha-about-content">
+        <div class="section-label" data-zh="关于 INSHA" data-en="About INSHA">关于 INSHA</div>
+        <h2 class="section-title" data-zh="疗愈祭司——<em>宝瓶世纪的服务者</em>" data-en="Healing Priest — <em>Servants of the Aquarian Age</em>">
+          疗愈祭司——<em>宝瓶世纪的服务者</em>
+        </h2>
+        <div class="gold-line"></div>
+        <p class="lead"
+          data-zh="健康是原始状况，而疾病是看到真理的方式。作为一位疗愈祭司，通过连接至神性更高法则，温柔地辨认出一个生命需要走哪些步骤，才能在自身内部克服二元对立。"
+          data-en="Health is the original condition, and illness is a way of finding the truth. As a healing priest, through connection to the higher divine principle, gently recognise the steps a being needs to take to overcome polarity within themselves.">
+          健康是原始状况，而疾病是看到真理的方式。作为一位疗愈祭司，通过连接至神性更高法则，温柔地辨认出一个生命需要走哪些步骤，才能在自身内部克服二元对立。
+        </p>
+        <blockquote class="quote-block"
+          data-zh="这是非常温柔和缓的疗愈方式，陪伴着人以自己的节奏成长，去除旧有的习性和陈旧的机制。"
+          data-en="It is a very soft, a gentle way — accompanying the being in such a way that they can grow according to their pace and overcome their old patterns and old mechanisms of division.">
+          这是非常温柔和缓的疗愈方式，陪伴着人以自己的节奏成长，去除旧有的习性和陈旧的机制。
+        </blockquote>
+        <p style="font-size:0.88rem;color:var(--text-mid, #4a6670);line-height:1.8;"
+          data-zh="INSHA 所有智慧必须透过点化才能传承——只有通过认可的 INSHA 教师才能教导，无法单纯透过头脑认知学习获得。Dr. Bonshuwa Chua 于 2017 年远赴德国接受 16 天训练，成为马来西亚首位 INSHA 实践者，并于 2021 年获授证为马来西亚 INSHA 自然疗愈祭司培训老师，亦是亚洲其中一名 INSHA 培训带领老师。"
+          data-en="All INSHA wisdom must be passed through initiation — only certified INSHA teachers can impart it; it cannot be acquired purely through intellectual learning. Dr. Bonshuwa Chua travelled to Germany in 2017 for 16 days of training, becoming Malaysia's first INSHA practitioner, and was certified in 2021 as Malaysia's INSHA Training Teacher — one of the INSHA training teachers in Asia.">
+          INSHA 所有智慧必须透过点化才能传承——只有通过认可的 INSHA 教师才能教导，无法单纯透过头脑认知学习获得。Dr. Bonshuwa Chua 于 2017 年远赴德国接受 16 天训练，成为马来西亚首位 INSHA 实践者，并于 2021 年获授证为马来西亚 INSHA 自然疗愈祭司培训老师，亦是亚洲其中一名 INSHA 培训带领老师。
+        </p>
+        <div class="founders-grid" style="margin-top:40px;">
+          <div class="founder-card">
+            <img src="../assets/img/insha.jpg" alt="Insha Gabriele Holz">
+            <div>
+              <div class="fc-name">Insha Gabriele Holz</div>
+              <div class="fc-role" data-zh="INSHA 创始人 · 德国" data-en="INSHA Founder · Germany">INSHA 创始人 · 德国</div>
+              <p class="fc-bio"
+                data-zh="26年灵性导师与疗愈师。2003年于德国 Chiemsee 开启第一届疗愈祭司培训，陆续将知识带入亚洲并持续深化与更新疗愈系统。"
+                data-en="26 years as spiritual teacher and healer. Founded the first Healing Priest training in Germany in 2003, bringing the knowledge to Asia and continuously deepening the healing system.">
+                26年灵性导师与疗愈师。2003年于德国 Chiemsee 开启第一届疗愈祭司培训，陆续将知识带入亚洲并持续深化与更新疗愈系统。
+              </p>
+            </div>
+          </div>
+          <div class="founder-card">
+            <img src="../assets/img/bonshuwa.jpg" alt="Dr. Bonshuwa Chua">
+            <div>
+              <div class="fc-name">Dr. Bonshuwa Chua</div>
+              <div class="fc-role" data-zh="亚洲其中一名 INSHA 培训老师" data-en="One of Asia's INSHA Training Teachers">亚洲其中一名 INSHA 培训老师</div>
+              <p class="fc-bio"
+                data-zh="2017年赴德获得 INSHA 传承，2021年正式授证成为马来西亚 INSHA 培训老师，也是将「无线爱疗愈」引入亚洲的带领者。"
+                data-en="Received INSHA transmission in Germany in 2017 and was certified as Malaysia's INSHA Training Teacher in 2021 — also the leader who brought Wireless Love healing to Asia.">
+                2017年赴德获得 INSHA 传承，2021年正式授证成为马来西亚 INSHA 培训老师，也是将「无线爱疗愈」引入亚洲的带领者。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     INSHA I — THREE PHASES
+══════════════════════════════════════════ -->
+<section class="section" id="insha1" style="background: white;">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" data-zh="INSHA 疗愈一阶" data-en="INSHA Healing Level I">INSHA 疗愈一阶</div>
+      <h2 class="section-title" data-zh="疗愈祭司一阶 — <em>成为疗愈之光</em>" data-en="Healing Priest 1 — <em>Become a Light of Healing</em>">
+        疗愈祭司一阶 — <em>成为疗愈之光</em>
+      </h2>
+      <div class="gold-line"></div>
+      <p class="lead"
+        data-zh="共 12 天课程，分为 6 个训练块（Block 1–6），在约一年内完成。每两个连续训练块（4天）为一组，Block 之间进行独立实习。透过脑波流、脊柱之流和乙太体的点化，深入学习 7 个疗愈泉源的传承。"
+        data-en="A 12-day course across 6 training blocks (Block 1–6), completed over approximately one year. Each pair of consecutive blocks (4 days) is followed by an independent practice period. Receive initiation into brain waves, spinal currents and etheric bodies through 7 healing sources.">
+        共 12 天课程，分为 6 个训练块（Block 1–6），在约一年内完成。每两个连续训练块（4天）为一组，Block 之间进行独立实习。透过脑波流、脊柱之流和乙太体的点化，深入学习 7 个疗愈泉源的传承。
+      </p>
+    </div>
+
+    <!-- 6 Block Timeline -->
+    <div class="phase-timeline">
+      <div class="phase-track"></div>
+
+      <!-- BLOCK 1 -->
+      <div class="phase-item reveal">
+        <div class="phase-num-col">
+          <div class="phase-num" style="font-size:0.9rem;letter-spacing:0.05em;">B1</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-tag" data-zh="Block 1 · 第1–2天" data-en="Block 1 · Day 1–2">Block 1 · 第1–2天</div>
+          <div class="phase-title" data-zh="脑波流 · 水元素 · 精微体" data-en="Brain Waves · Water Element · Subtle Bodies">脑波流 · 水元素 · 精微体</div>
+          <div class="phase-sub" data-zh="第一、二疗愈泉源传承" data-en="1st & 2nd Healing Source">第一、二疗愈泉源传承</div>
+          <p class="phase-desc"
+            data-zh="通过脑波流的点化，激活出生点与生命点；学习肾气与水元素的疗愈；进入精微体工作，包括星光体、情绪体、因果体；父母业力释放，脊椎带入臣服，开启脑中线对齐。"
+            data-en="Initiation into brain wave flows, activating birth and life points; kidney chi and water element healing; working with subtle bodies including astral, emotional and causal bodies; parent karma release, spine into devotion, opening brain midline alignment.">
+            通过脑波流的点化，激活出生点与生命点；学习肾气与水元素的疗愈；进入精微体工作，包括星光体、情绪体、因果体；父母业力释放，脊椎带入臣服，开启脑中线对齐。
+          </p>
+          <div class="phase-skills">
+            <span class="phase-skill-tag" data-zh="脑波流激活" data-en="Brain Wave Activation">脑波流激活</span>
+            <span class="phase-skill-tag" data-zh="出生点 / 生命点" data-en="Birth / Life Point">出生点 / 生命点</span>
+            <span class="phase-skill-tag" data-zh="肾气 · 水元素" data-en="Kidney Chi · Water Element">肾气 · 水元素</span>
+            <span class="phase-skill-tag" data-zh="星光体 · 情绪体 · 因果体" data-en="Astral · Emotional · Causal Body">星光体 · 情绪体 · 因果体</span>
+            <span class="phase-skill-tag" data-zh="父母业力释放" data-en="Parent Karma Release">父母业力释放</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCK 2 -->
+      <div class="phase-item reveal">
+        <div class="phase-num-col">
+          <div class="phase-num" style="font-size:0.9rem;letter-spacing:0.05em;">B2</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-tag" data-zh="Block 2 · 第3–4天" data-en="Block 2 · Day 3–4">Block 2 · 第3–4天</div>
+          <div class="phase-title" data-zh="五行 · 脊柱深化 · 身体扫描" data-en="5 Elements · Spine · Body Scan">五行 · 脊柱深化 · 身体扫描</div>
+          <div class="phase-sub" data-zh="第三疗愈泉源传承" data-en="3rd Healing Source">第三疗愈泉源传承</div>
+          <p class="phase-desc"
+            data-zh="深化五行循环（肚脐与囟门）；脊柱-脑中线对齐深化练习；身体扫描技术精进；整合 Block 1 所学并进行互练巩固。"
+            data-en="Deepening the 5-element cycle (navel and fontanel); spine-brain midline alignment deeper practice; body scan technique refinement; integrating Block 1 learning through peer practice.">
+            深化五行循环（肚脐与囟门）；脊柱-脑中线对齐深化练习；身体扫描技术精进；整合 Block 1 所学并进行互练巩固。
+          </p>
+          <div class="phase-skills">
+            <span class="phase-skill-tag" data-zh="五行循环" data-en="5-Element Cycle">五行循环</span>
+            <span class="phase-skill-tag" data-zh="脊柱-脑中线对齐" data-en="Spine-Brain Midline Alignment">脊柱-脑中线对齐</span>
+            <span class="phase-skill-tag" data-zh="身体扫描深化" data-en="Body Scan Deepening">身体扫描深化</span>
+            <span class="phase-skill-tag" data-zh="互练与整合" data-en="Peer Practice & Integration">互练与整合</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCK 3 -->
+      <div class="phase-item reveal">
+        <div class="phase-num-col">
+          <div class="phase-num" style="font-size:0.9rem;letter-spacing:0.05em;">B3</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-tag" data-zh="Block 3 · 第5–6天" data-en="Block 3 · Day 5–6">Block 3 · 第5–6天</div>
+          <div class="phase-title" data-zh="经络平衡 · 雷射技术 · 疗愈神殿" data-en="Meridians · Laser Technique · Healing Temple">经络平衡 · 雷射技术 · 疗愈神殿</div>
+          <div class="phase-sub" data-zh="第四疗愈泉源传承" data-en="4th Healing Source">第四疗愈泉源传承</div>
+          <p class="phase-desc"
+            data-zh="活化脊柱疗愈力；经络平衡与五行运行；雷射技术疗愈；疗愈神殿冥想体验；开始真实个案实习。"
+            data-en="Activating spinal healing power; meridian balancing and 5-element flow; laser technique healing; Healing Temple meditation experience; beginning real client practice.">
+            活化脊柱疗愈力；经络平衡与五行运行；雷射技术疗愈；疗愈神殿冥想体验；开始真实个案实习。
+          </p>
+          <div class="phase-skills">
+            <span class="phase-skill-tag" data-zh="活化脊柱疗愈力" data-en="Activating Spinal Healing">活化脊柱疗愈力</span>
+            <span class="phase-skill-tag" data-zh="经络平衡" data-en="Meridian Balancing">经络平衡</span>
+            <span class="phase-skill-tag" data-zh="雷射技术" data-en="Laser Technique">雷射技术</span>
+            <span class="phase-skill-tag" data-zh="疗愈神殿冥想" data-en="Healing Temple Meditation">疗愈神殿冥想</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCK 4 -->
+      <div class="phase-item reveal">
+        <div class="phase-num-col">
+          <div class="phase-num" style="font-size:0.9rem;letter-spacing:0.05em;">B4</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-tag" data-zh="Block 4 · 第7–8天" data-en="Block 4 · Day 7–8">Block 4 · 第7–8天</div>
+          <div class="phase-title" data-zh="脉轮 · 气场环 · 颂钵疗愈" data-en="Chakras · Aura Rings · Singing Bowls">脉轮 · 气场环 · 颂钵疗愈</div>
+          <div class="phase-sub" data-zh="第五、六疗愈泉源传承" data-en="5th & 6th Healing Source">第五、六疗愈泉源传承</div>
+          <p class="phase-desc"
+            data-zh="全面的脉轮信息与脑波流工作；脉轮清理与激活；脑律中枢点（BRCPt）激活；气场环疗愈；颂钵疗愈能量引入。"
+            data-en="Comprehensive chakra information with brain wave flow; chakra cleaning and activation; Brain Rhythm Central Points (BRCPt) activation; aura ring healing; singing bowl healing energy introduction.">
+            全面的脉轮信息与脑波流工作；脉轮清理与激活；脑律中枢点（BRCPt）激活；气场环疗愈；颂钵疗愈能量引入。
+          </p>
+          <div class="phase-skills">
+            <span class="phase-skill-tag" data-zh="脉轮清理与激活" data-en="Chakra Cleaning & Activation">脉轮清理与激活</span>
+            <span class="phase-skill-tag" data-zh="脑律中枢点 BRCPt" data-en="Brain Rhythm Central Points">脑律中枢点 BRCPt</span>
+            <span class="phase-skill-tag" data-zh="气场环疗愈" data-en="Aura Ring Healing">气场环疗愈</span>
+            <span class="phase-skill-tag" data-zh="颂钵疗愈" data-en="Singing Bowl Healing">颂钵疗愈</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCK 5 -->
+      <div class="phase-item reveal">
+        <div class="phase-num-col">
+          <div class="phase-num" style="font-size:0.9rem;letter-spacing:0.05em;">B5</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-tag" data-zh="Block 5 · 第9–10天" data-en="Block 5 · Day 9–10">Block 5 · 第9–10天</div>
+          <div class="phase-title" data-zh="深化整合 · 死亡点初探" data-en="Deep Integration · Death Point Initiation">深化整合 · 死亡点初探</div>
+          <div class="phase-sub" data-zh="第六疗愈泉源深化 · 太阳更新" data-en="6th Source Deepening · Sun Update">第六疗愈泉源深化 · 太阳更新</div>
+          <p class="phase-desc"
+            data-zh="整合前四个 Block 的疗愈知识；深化颅骨与神经系统工作；疫苗排放方案；死亡点疗愈初探（仅在老师监督下学员之间互练）；准备考试个案。"
+            data-en="Integrating healing knowledge from Blocks 1–4; deepening cranial and nervous system work; vaccination discharge protocol; death point healing introduction (practiced among students under teacher supervision only); preparing exam client.">
+            整合前四个 Block 的疗愈知识；深化颅骨与神经系统工作；疫苗排放方案；死亡点疗愈初探（仅在老师监督下学员之间互练）；准备考试个案。
+          </p>
+          <div class="phase-skills">
+            <span class="phase-skill-tag" data-zh="颅骨疗愈深化" data-en="Cranial Healing">颅骨疗愈深化</span>
+            <span class="phase-skill-tag" data-zh="死亡点疗愈（互练）" data-en="Death Point (Peer Practice)">死亡点疗愈（互练）</span>
+            <span class="phase-skill-tag" data-zh="疫苗排放方案" data-en="Vaccination Discharge">疫苗排放方案</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCK 6 — EXAM -->
+      <div class="phase-item reveal">
+        <div class="phase-num-col">
+          <div class="phase-num" style="font-size:0.9rem;letter-spacing:0.05em;border-color:var(--gold-bright,#C9A227);color:var(--gold-bright,#C9A227);">B6</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-tag" style="color:var(--gold-bright,#C9A227);" data-zh="Block 6 · 第11–12天 · 考试节" data-en="Block 6 · Day 11–12 · Exam Block">Block 6 · 第11–12天 · 考试节</div>
+          <div class="phase-title" data-zh="认证考试 · 结业典礼" data-en="Certification Exam · Graduation Ceremony">认证考试 · 结业典礼</div>
+          <div class="phase-sub" data-zh="INSHA 疗愈祭司一阶证书颁发" data-en="INSHA Healing Priest 1 Certificate Awarded">INSHA 疗愈祭司一阶证书颁发</div>
+          <p class="phase-desc"
+            data-zh="死亡点疗愈练习（老师监督下）；笔试与实操考试；结业典礼与证书颁发。"
+            data-en="Death point healing practice (under teacher supervision); written and practical examinations; graduation ceremony and certificate presentation.">
+            死亡点疗愈练习（老师监督下）；笔试与实操考试；结业典礼与证书颁发。
+          </p>
+          <div class="phase-exam-box">
+            <div class="exam-title" data-zh="✦ 认证评估" data-en="✦ Certification Assessment">✦ 认证评估</div>
+            <p data-zh="笔试（30%）+ 实操考试（70%）= 最终成绩，及格线 60%。实操考试须带一名真实个案，由考官全程观察完整疗愈过程（约60–90分钟）。通过后颁发 INSHA 疗愈祭司一阶证书。"
+              data-en="Written exam (30%) + Practical exam (70%) = Final score, passing at 60%. Practical exam requires one real client; full healing session observed by examiner (~60–90 min). Upon passing, the INSHA Healing Priest 1 Certificate is awarded.">
+              笔试（30%）+ 实操考试（70%）= 最终成绩，及格线 60%。实操考试须带一名真实个案，由考官全程观察完整疗愈过程（约60–90分钟）。通过后颁发 INSHA 疗愈祭司一阶证书。
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- / 6 block timeline -->
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     GRADUATION REQUIREMENTS
+══════════════════════════════════════════ -->
+<section class="section section-light">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto 60px;">
+      <div class="section-label" style="justify-content:center;" data-zh="毕业要求" data-en="Graduation Requirements">毕业要求</div>
+      <h2 class="section-title" data-zh="完成这些，<em>获颁疗愈祭司证书</em>" data-en="Complete These to <em>Receive the Healing Priest Certificate</em>">
+        完成这些，<em>获颁疗愈祭司证书</em>
+      </h2>
+      <div class="gold-line center"></div>
+    </div>
+    <div class="grad-grid reveal">
+      <div class="grad-card">
+        <div class="gc-icon">📅</div>
+        <div class="gc-num">6</div>
+        <div class="gc-unit" data-zh="个训练块（出席率 ≥ 80%）" data-en="Training Blocks (≥80% attendance)">个训练块（出席率 ≥ 80%）</div>
+        <p class="gc-label" data-zh="完成全部 6 个训练块，共 12 天，在约一年内完成。" data-en="Complete all 6 training blocks — 12 days total, over approximately one year.">完成全部 6 个训练块，共 12 天，在约一年内完成。</p>
+      </div>
+      <div class="grad-card">
+        <div class="gc-icon">🤝</div>
+        <div class="gc-num">16</div>
+        <div class="gc-unit" data-zh="次互练记录（至少3位不同伙伴）" data-en="Peer Practice Logs (min. 3 partners)">次互练记录（至少3位不同伙伴）</div>
+        <p class="gc-label" data-zh="提交至少 16 次互练记录（表格A），可在现场或线上完成。" data-en="Submit minimum 16 peer practice logs (Form A), in-person or online.">提交至少 16 次互练记录（表格A），可在现场或线上完成。</p>
+      </div>
+      <div class="grad-card">
+        <div class="gc-icon">👤</div>
+        <div class="gc-num">10</div>
+        <div class="gc-unit" data-zh="份个案疗愈报告（5份须为收费）" data-en="Client Reports (5 must be paid)">份个案疗愈报告（5份须为收费）</div>
+        <p class="gc-label" data-zh="为至少 10 位真实个案提供疗愈，其中至少 5 位为付费个案，并提交报告（表格B）。" data-en="Serve at least 10 real clients, with at least 5 paid sessions, and submit reports (Form B).">为至少 10 位真实个案提供疗愈，其中至少 5 位为付费个案，并提交报告（表格B）。</p>
+      </div>
+      <div class="grad-card">
+        <div class="gc-icon">✍️</div>
+        <div class="gc-num">60%</div>
+        <div class="gc-unit" data-zh="笔试及格线" data-en="Written Exam Pass Mark">笔试及格线</div>
+        <p class="gc-label" data-zh="Block 6 笔试，从 25 道汇编考题中选取 5–6 题。" data-en="Block 6 written exam — 5–6 questions selected from 25 compiled questions.">Block 6 笔试，从 25 道汇编考题中选取 5–6 题。</p>
+      </div>
+      <div class="grad-card">
+        <div class="gc-icon">🙌</div>
+        <div class="gc-num">60%</div>
+        <div class="gc-unit" data-zh="实操考试及格线（占比70%）" data-en="Practical Exam Pass Mark (70% weight)">实操考试及格线（占比70%）</div>
+        <p class="gc-label" data-zh="带一名真实个案进行完整疗愈，由考官全程观察（60–90分钟）。" data-en="Bring one real client for a full healing session, observed by examiner (60–90 min).">带一名真实个案进行完整疗愈，由考官全程观察（60–90分钟）。</p>
+      </div>
+      <div class="grad-card">
+        <div class="gc-icon">🏅</div>
+        <div class="gc-num">60%</div>
+        <div class="gc-unit" data-zh="整体最终成绩" data-en="Overall Final Score">整体最终成绩</div>
+        <p class="gc-label" data-zh="整体成绩 = 笔试×30% + 实操×70%，最终成绩不低于 60% 可毕业获证。" data-en="Final score = Written×30% + Practical×70%, minimum 60% overall to graduate.">整体成绩 = 笔试×30% + 实操×70%，最终成绩不低于 60% 可毕业获证。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SKM CERTIFICATION STRIP
+══════════════════════════════════════════ -->
+<div class="skm-strip">
+  <div class="skm-inner reveal">
+    <div class="skm-seal">
+      <div class="seal-flag">🇲🇾</div>
+      <div class="seal-text">SKM<br>政府认证</div>
+    </div>
+    <div>
+      <div class="section-label" style="color:var(--gold-bright, #C9A227);" data-zh="马来西亚政府认证" data-en="Malaysian Government Certification">
+        马来西亚政府认证
+      </div>
+      <h3 style="font-family:var(--font-display);font-size:1.6rem;color:white;font-weight:300;margin-bottom:12px;"
+        data-zh="SKM 形而上学技术职能证书 1–3 级" data-en="SKM Metaphysics Certificate Levels 1–3">
+        SKM 形而上学技术职能证书 1–3 级
+      </h3>
+      <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.8;max-width:560px;margin-bottom:24px;"
+        data-zh="Gaya Spiritual Academy 为注册考场，授权安排 JPK/PTLKM 政府考官进行 SKM 考试。成功完成 INSHA 一阶培训及实习要求的学员，将被引导考取形而上学领域 SKM 1–3 级认证。考试费用与学费分开计算。"
+        data-en="Gaya Spiritual Academy is a registered examination centre, authorised to arrange SKM examinations with JPK/PTLKM government examiners. Students who complete INSHA Training I and practical requirements will be guided to pursue SKM Levels 1–3 in Metaphysics. Exam fees are separate from tuition.">
+        Gaya Spiritual Academy 为注册考场，授权安排 JPK/PTLKM 政府考官进行 SKM 考试。成功完成 INSHA 一阶培训及实习要求的学员，将被引导考取形而上学领域 SKM 1–3 级认证。考试费用与学费分开计算。
+      </p>
+      <div class="skm-levels">
+        <div class="skm-level-card">
+          <div class="slc-level" data-zh="SKM 一级" data-en="SKM Level 1">SKM 一级</div>
+          <div class="slc-name" data-zh="形而上学技术职能证书" data-en="Metaphysics Skills Certificate">形而上学技术职能证书</div>
+          <div class="slc-mode" data-zh="实操考试" data-en="Practical Examination">实操考试</div>
+        </div>
+        <div class="skm-level-card">
+          <div class="slc-level" data-zh="SKM 二级" data-en="SKM Level 2">SKM 二级</div>
+          <div class="slc-name" data-zh="形而上学技术职能证书" data-en="Metaphysics Skills Certificate">形而上学技术职能证书</div>
+          <div class="slc-mode" data-zh="实操考试" data-en="Practical Examination">实操考试</div>
+        </div>
+        <div class="skm-level-card">
+          <div class="slc-level" data-zh="SKM 三级" data-en="SKM Level 3">SKM 三级</div>
+          <div class="slc-name" data-zh="形而上学技术职能证书" data-en="Metaphysics Skills Certificate">形而上学技术职能证书</div>
+          <div class="slc-mode" data-zh="实操考试 + 作品集" data-en="Practical Exam + Portfolio">实操考试 + 作品集</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     INSHA II
+══════════════════════════════════════════ -->
+<section class="section" id="insha2" style="background: white;">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" data-zh="INSHA 疗愈二阶" data-en="INSHA Healing Level II">INSHA 疗愈二阶</div>
+      <h2 class="section-title" data-zh="器官晶化 — <em>从肉身结构蜕变为光的水晶</em>" data-en="Organ Crystallisation — <em>Transforming Physical Structures into Light Crystals</em>">
+        器官晶化 — <em>从肉身结构蜕变为光的水晶</em>
+      </h2>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="insha2-header reveal">
+      <p style="font-size:0.95rem;color:var(--text-mid, #4a6670);line-height:1.9;max-width:660px;"
+        data-zh="INSHA 疗愈二阶共 21 天，分为三个部份。透过亚特兰提斯水晶金字塔的古老知识，学习如何将器官从旧有的物质结构净化并引导转化为光的水晶结构。十二个疗愈泉源的传承来自神性之母、巴巴吉、阿格尼、Shiva Mala Arani、耶稣和行星。"
+        data-en="INSHA Healing Level II is a 21-day course in three parts. Through the ancient knowledge of the Atlantean Crystal Pyramids, learn how to cleanse organs from their old material structures and guide their transformation into crystalline structures of light. The 12 healing sources draw from the Divine Mother, Babaji, Agni, Shiva Mala Arani, Jesus and the Planets.">
+        INSHA 疗愈二阶共 21 天，分为三个部份。透过亚特兰提斯水晶金字塔的古老知识，学习如何将器官从旧有的物质结构净化并引导转化为光的水晶结构。十二个疗愈泉源的传承来自神性之母、巴巴吉、阿格尼、Shiva Mala Arani、耶稣和行星。
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:28px;">
+        <div class="insha-meta-pill teal" data-zh="21天 · 3个部份" data-en="21 days · 3 parts">21天 · 3个部份</div>
+        <div class="insha-meta-pill" style="background:rgba(27,95,117,0.08);border-color:rgba(27,95,117,0.2);color:var(--text-dark,#1b363f);" data-zh="亚特兰提斯水晶金字塔" data-en="Atlantean Crystal Pyramids">亚特兰提斯水晶金字塔</div>
+        <div class="insha-meta-pill gold" data-zh="器官晶化 · 脊椎水晶化 · DNA工作" data-en="Organ Crystallisation · Spine · DNA">器官晶化 · 脊椎水晶化 · DNA工作</div>
+        <div class="insha-meta-pill" style="background:rgba(27,95,117,0.08);border-color:rgba(27,95,117,0.2);color:var(--text-dark,#1b363f);" data-zh="须完成 INSHA I" data-en="INSHA I prerequisite">须完成 INSHA I</div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--text-dark);margin-bottom:8px;font-weight:400;"
+        data-zh="器官与行星对应 — Block 1 核心内容" data-en="Organ & Planet Correspondences — Block 1 Core Content">
+        器官与行星对应 — Block 1 核心内容
+      </h3>
+      <p style="font-size:0.85rem;color:var(--text-mid, #4a6670);margin-bottom:24px;"
+        data-zh="每个器官与其相对应的行星相连，受其影响与控制。透过行星能量的引入，净化器官的旧结构，并为水晶化做好准备。"
+        data-en="Each organ is connected to and governed by its corresponding planet. Through planetary energy, cleanse the organ's old structures and prepare for crystallisation.">
+        每个器官与其相对应的行星相连，受其影响与控制。透过行星能量的引入，净化器官的旧结构，并为水晶化做好准备。
+      </p>
+    </div>
+    <div class="insha2-organ-grid reveal">
+      <div class="organ-card">
+        <div class="oc-planet" data-zh="土星" data-en="Saturn">♄ 土星</div>
+        <div class="oc-organ" data-zh="肝" data-en="Liver">Liver</div>
+        <div class="oc-organ-zh" data-zh="肝脏" data-en="肝">肝脏</div>
+      </div>
+      <div class="organ-card">
+        <div class="oc-planet" data-zh="木星" data-en="Jupiter">♃ 木星</div>
+        <div class="oc-organ" data-zh="脾" data-en="Spleen">Spleen</div>
+        <div class="oc-organ-zh">脾脏</div>
+      </div>
+      <div class="organ-card">
+        <div class="oc-planet" data-zh="火星" data-en="Mars">♂ 火星</div>
+        <div class="oc-organ" data-zh="肠子" data-en="Intestines">Intestines</div>
+        <div class="oc-organ-zh">肠道</div>
+      </div>
+      <div class="organ-card">
+        <div class="oc-planet" data-zh="水星" data-en="Mercury">☿ 水星</div>
+        <div class="oc-organ" data-zh="肾脏" data-en="Kidneys">Kidneys</div>
+        <div class="oc-organ-zh">肾脏</div>
+      </div>
+      <div class="organ-card">
+        <div class="oc-planet" data-zh="海王星" data-en="Neptune">♆ 海王星</div>
+        <div class="oc-organ" data-zh="肺" data-en="Lungs">Lungs</div>
+        <div class="oc-organ-zh">肺脏</div>
+      </div>
+      <div class="organ-card">
+        <div class="oc-planet" data-zh="太阳" data-en="Sun">☀ 太阳</div>
+        <div class="oc-organ" data-zh="胃" data-en="Stomach">Stomach</div>
+        <div class="oc-organ-zh">胃</div>
+      </div>
+      <div class="organ-card">
+        <div class="oc-planet" data-zh="天王星" data-en="Uranus">♅ 天王星</div>
+        <div class="oc-organ" data-zh="心" data-en="Heart">Heart</div>
+        <div class="oc-organ-zh">心脏</div>
+      </div>
+      <div class="organ-card">
+        <div class="oc-planet" data-zh="月亮" data-en="Moon">☽ 月亮</div>
+        <div class="oc-organ" data-zh="生殖器官" data-en="Reproductive Organs">Reproductive</div>
+        <div class="oc-organ-zh">生殖器官</div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:48px;">
+      <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--text-dark);margin-bottom:20px;font-weight:400;"
+        data-zh="INSHA II 深化内容" data-en="INSHA II Advanced Content">INSHA II 深化内容</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="padding:20px 24px;border:1px solid rgba(42,172,184,0.12);background:rgba(42,172,184,0.02);">
+          <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal-bright);margin-bottom:10px;" data-zh="Block 1 — 器官水晶化" data-en="Block 1 — Organ Crystallisation">Block 1 — 器官水晶化</div>
+          <ul style="font-size:0.82rem;color:var(--text-mid, #4a6670);line-height:1.9;list-style:none;padding:0;">
+            <li data-zh="▸ 亚特兰提斯水晶金字塔激活" data-en="▸ Atlantean Crystal Pyramid activation">▸ 亚特兰提斯水晶金字塔激活</li>
+            <li data-zh="▸ 第七疗愈泉源的水晶化眼睛" data-en="▸ Crystallised eyes of the 7th healing source">▸ 第七疗愈泉源的水晶化眼睛</li>
+            <li data-zh="▸ 液态水晶眼扫描器官" data-en="▸ Liquid crystal eye organ scanning">▸ 液态水晶眼扫描器官</li>
+            <li data-zh="▸ 行星能量照亮并净化器官" data-en="▸ Planetary energy illuminating & cleansing organs">▸ 行星能量照亮并净化器官</li>
+            <li data-zh="▸ 脉轮-对应点 · 脉轮声音技术" data-en="▸ Chakra correspondence points · Chakra sound technique">▸ 脉轮-对应点 · 脉轮声音技术</li>
+          </ul>
+        </div>
+        <div style="padding:20px 24px;border:1px solid rgba(42,172,184,0.12);background:rgba(42,172,184,0.02);">
+          <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal-bright);margin-bottom:10px;" data-zh="Block 2 — 脊椎与深化工作" data-en="Block 2 — Spine & Advanced Work">Block 2 — 脊椎与深化工作</div>
+          <ul style="font-size:0.82rem;color:var(--text-mid, #4a6670);line-height:1.9;list-style:none;padding:0;">
+            <li data-zh="▸ 水晶化脊椎与业力消融" data-en="▸ Crystallising spine & dissolving karmic structures">▸ 水晶化脊椎与业力消融</li>
+            <li data-zh="▸ 神经系统疗愈" data-en="▸ Nervous system healing">▸ 神经系统疗愈</li>
+            <li data-zh="▸ DNA 基因密码感知与工作" data-en="▸ DNA genetic code perception & work">▸ DNA 基因密码感知与工作</li>
+            <li data-zh="▸ 牙齿 · 眼睛水晶化" data-en="▸ Teeth · Eye crystallisation">▸ 牙齿 · 眼睛水晶化</li>
+            <li data-zh="▸ 脉轮疗愈石置入 · 深化整合" data-en="▸ Chakra healing crystal placement · Deep integration">▸ 脉轮疗愈石置入 · 深化整合</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TRAINING PATH
+══════════════════════════════════════════ -->
+<section class="section section-light">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:680px;margin:0 auto 60px;">
+      <div class="section-label" style="justify-content:center;" data-zh="培训路径" data-en="Training Pathway">培训路径</div>
+      <h2 class="section-title" data-zh="INSHA 疗愈路径 — <em>从祭司到导师</em>" data-en="INSHA Healing Pathway — <em>From Priest to Teacher</em>">
+        INSHA 疗愈路径 — <em>从祭司到导师</em>
+      </h2>
+      <div class="gold-line center"></div>
+      <p style="font-size:0.88rem;color:var(--text-mid, #4a6670);line-height:1.8;"
+        data-zh="INSHA 疗愈路径以老师核准的亚特兰提斯疗愈祭司身份为起点，逐阶深化，直至成为认证 INSHA 教师（受邀制）。"
+        data-en="The INSHA healing pathway begins with teacher-approved Atlantean Healing Priest status, deepening step by step until becoming a certified INSHA Teacher (by invitation).">
+        INSHA 疗愈路径以老师核准的亚特兰提斯疗愈祭司身份为起点，逐阶深化，直至成为认证 INSHA 教师（受邀制）。
+      </p>
+    </div>
+    <div class="path-flow reveal">
+      <div class="path-node">
+        <div class="pn-tag" data-zh="入门条件 · 经老师核准" data-en="Entry Condition · Teacher Approved">入门条件 · 经老师核准</div>
+        <div class="pn-title" data-zh="亚特兰提斯疗愈祭司" data-en="Atlantean Healing Priest">亚特兰提斯疗愈祭司</div>
+        <p class="pn-sub" data-zh="由老师评估核准，确认准备好接受 INSHA 疗愈传承的点化" data-en="Evaluated and approved by the teacher, confirming readiness to receive INSHA healing initiation">由老师评估核准，确认准备好接受 INSHA 疗愈传承的点化</p>
+        <div class="pn-badge" data-zh="老师核准" data-en="Teacher Approved">老师核准</div>
+      </div>
+      <div class="path-arrow"></div>
+      <div class="path-node teal-node">
+        <div class="pn-tag" data-zh="INSHA 一阶 · 约一年" data-en="INSHA I · ~1 Year">INSHA 一阶 · 约一年</div>
+        <div class="pn-title" data-zh="INSHA 疗愈祭司一阶" data-en="INSHA Healing Priest 1">INSHA 疗愈祭司一阶</div>
+        <p class="pn-sub" data-zh="12天 · 6个Block · 脑波流 · 脊柱 · 精微体 · 7个疗愈泉源" data-en="12 days · 6 blocks · Brain waves · Spine · Subtle bodies · 7 healing sources">12天 · 6个Block · 脑波流 · 脊柱 · 精微体 · 7个疗愈泉源</p>
+        <p class="pn-note" data-zh="通过后获颁 INSHA 疗愈祭司一阶证书，并可申请 SKM 1–3 级政府认证" data-en="Upon passing, receive INSHA Healing Priest 1 Certificate; eligible for SKM 1–3 government certification">通过后获颁 INSHA 疗愈祭司一阶证书，并可申请 SKM 1–3 级政府认证</p>
+        <div class="pn-badge" data-zh="12天认证" data-en="12-Day Cert.">12天认证</div>
+      </div>
+      <div class="path-arrow"></div>
+      <div class="path-node gold-node">
+        <div class="pn-tag" data-zh="INSHA 二阶 · 深化进阶" data-en="INSHA II · Advanced">INSHA 二阶 · 深化进阶</div>
+        <div class="pn-title" data-zh="INSHA 疗愈祭司二阶" data-en="INSHA Healing Priest 2">INSHA 疗愈祭司二阶</div>
+        <p class="pn-sub" data-zh="21天 · 3个部份 · 器官晶化 · 脊椎水晶化 · DNA工作 · 12个疗愈泉源" data-en="21 days · 3 parts · Organ crystallisation · Spine crystallisation · DNA work · 12 healing sources">21天 · 3个部份 · 器官晶化 · 脊椎水晶化 · DNA工作 · 12个疗愈泉源</p>
+        <div class="pn-badge" data-zh="21天认证" data-en="21-Day Cert.">21天认证</div>
+      </div>
+      <div class="path-arrow"></div>
+      <div class="path-node" style="border-color:rgba(201,162,39,0.15);background:rgba(201,162,39,0.01);">
+        <div class="pn-tag" style="color:rgba(100,130,140,0.6);" data-zh="INSHA 导师 · 受邀制" data-en="INSHA Teacher · By Invitation">INSHA 导师 · 受邀制</div>
+        <div class="pn-title" style="color:rgba(var(--text-dark-rgb, 27,54,63),0.5);" data-zh="INSHA 一阶初级教师" data-en="INSHA I Initial Teacher">INSHA 一阶初级教师</div>
+        <p class="pn-sub" style="color:rgba(100,130,140,0.5);" data-zh="7天 · 点化仪式传授 · 培育 INSHA 一阶疗愈师的能力与能量" data-en="7 days · Initiation ceremony transmission · Capacity to initiate INSHA I healers">7天 · 点化仪式传授 · 培育 INSHA 一阶疗愈师的能力与能量</p>
+        <p class="pn-note" data-zh="导师资格由 Insha Academy 评估后受邀，不开放自行报名" data-en="Teacher certification is by invitation from Insha Academy after evaluation — not open for self-registration">导师资格由 Insha Academy 评估后受邀，不开放自行报名</p>
+        <div class="pn-badge" style="background:rgba(201,162,39,0.06);border-color:rgba(201,162,39,0.2);color:rgba(201,162,39,0.5);" data-zh="受邀制" data-en="By Invitation">受邀制</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     REGISTER / CTA
+══════════════════════════════════════════ -->
+<section class="insha-register" id="register">
+  <div class="container">
+    <div class="insha-register-grid">
+      <div class="reveal">
+        <div class="section-label" data-zh="开始你的疗愈路径" data-en="Begin Your Healing Path">开始你的疗愈路径</div>
+        <h2 class="section-title" data-zh="准备好了吗？" data-en="Are You Ready?">准备好了吗？</h2>
+        <div class="gold-line"></div>
+        <p style="color:rgba(255,255,255,0.55);font-size:0.9rem;line-height:1.9;font-weight:300;margin-bottom:36px;"
+          data-zh="INSHA 疗愈路径并非一般课程。它是透过点化的神圣传承——只有内心真正感召的人才能进入。如果你正在寻找一种温柔、深层、真实的疗愈之路，请与我们联系，了解下一期安排。"
+          data-en="The INSHA healing path is not an ordinary course. It is a sacred lineage transmitted through initiation — accessible only to those genuinely called. If you are seeking a gentle, profound, and authentic path of healing, contact us to learn about the next cohort.">
+          INSHA 疗愈路径并非一般课程。它是透过点化的神圣传承——只有内心真正感召的人才能进入。如果你正在寻找一种温柔、深层、真实的疗愈之路，请与我们联系，了解下一期安排。
+        </p>
+
+        <div class="price-table">
+          <div class="price-row">
+            <span class="price-label" data-zh="INSHA 疗愈一阶（12天 · 约一年）" data-en="INSHA Healing I (12 days · ~1 year)">INSHA 疗愈一阶（12天 · 约一年）</span>
+            <span class="price-val" data-zh="咨询了解" data-en="Enquire">咨询了解</span>
+          </div>
+          <div class="price-row">
+            <span class="price-label" data-zh="INSHA 疗愈二阶（21天）" data-en="INSHA Healing II (21 days)">INSHA 疗愈二阶（21天）</span>
+            <span class="price-val" data-zh="咨询了解" data-en="Enquire">咨询了解</span>
+          </div>
+          <div class="price-row" style="border:none;">
+            <span class="price-label" data-zh="SKM 政府认证考试费用（另计）" data-en="SKM Government Exam Fees (separate)">SKM 政府认证考试费用（另计）</span>
+            <span class="price-val" style="color:rgba(255,255,255,0.4);font-size:1rem;" data-zh="另行安排" data-en="Arranged separately">另行安排</span>
+          </div>
+        </div>
+        <p class="register-note"
+          data-zh="* 报名前将安排简短了解通话（15–20分钟），由老师评估核准后方可参加 INSHA 疗愈传承点化。"
+          data-en="* A brief introductory call (15–20 min) will be arranged before enrolment; teacher approval is required before participating in the INSHA healing initiation.">
+          * 报名前将安排简短了解通话（15–20分钟），由老师评估核准后方可参加 INSHA 疗愈传承点化。
+        </p>
+      </div>
+
+      <div class="reveal">
+        <div class="cif-cta-box">
+          <span class="cta-diamond">✦</span>
+          <p class="cta-quote"
+            data-zh="疗愈祭司是那些能够温柔地陪伴生命，以自己的节奏成长的人。"
+            data-en="The healing priest is one who gently accompanies life, allowing it to grow at its own pace.">
+            疗愈祭司是那些能够温柔地陪伴生命，以自己的节奏成长的人。
+          </p>
+          <p class="cta-sub"
+            data-zh="如果这句话触动了你，也许这条路正在呼唤你。"
+            data-en="If these words touch something in you, perhaps this path is calling.">
+            如果这句话触动了你，也许这条路正在呼唤你。
+          </p>
+          <a href="https://wa.me/60126011607?text=Hello%2C%20I%27m%20interested%20in%20INSHA%20Healing%20Training"
+            class="btn-gold" style="margin-bottom:12px;">
+            <span data-zh="WhatsApp 咨询 · 了解 INSHA 课程" data-en="WhatsApp · Enquire About INSHA">WhatsApp 咨询 · 了解 INSHA 课程</span>
+          </a>
+          <div class="cta-divider"><span data-zh="或" data-en="or">或</span></div>
+          <a href="mailto:info@gayaspiritualacademy.com?subject=INSHA%20Healing%20Enquiry"
+            class="btn-outline">
+            <span data-zh="发送电邮咨询" data-en="Send an Email Enquiry">发送电邮咨询</span>
+          </a>
+          <p class="seats-warning" style="margin-top:20px;"
+            data-zh="✦ 小班点化传承 · 名额有限 · 以内心感召为准"
+            data-en="✦ Small group initiation · Limited places · Follow your inner call">
+            ✦ 小班点化传承 · 名额有限 · 以内心感召为准
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING BANNER -->
+<section class="section section-teal" style="padding:80px 0;">
+  <div class="container">
+    <div class="reveal text-center" style="max-width:700px;margin:0 auto;text-align:center;">
+      <div class="section-label" style="justify-content:center;" data-zh="神圣疗愈的光" data-en="Light of Sacred Healing">神圣疗愈的光</div>
+      <h2 class="section-title" style="font-size:clamp(1.8rem,3.5vw,2.8rem);"
+        data-zh="健康是原始状况。<em>疗愈，是回家的路。</em>"
+        data-en="Health is the original condition. <em>Healing is the path home.</em>">
+        健康是原始状况。<em>疗愈，是回家的路。</em>
+      </h2>
+      <div class="gold-line center"></div>
+      <p style="color:rgba(255,255,255,0.45);font-size:0.88rem;line-height:1.8;margin-bottom:36px;"
+        data-zh="— INSHA 疗愈祭司之书" data-en="— Book of the Healing Priests, INSHA">
+        — INSHA 疗愈祭司之书
+      </p>
+      <a href="https://wa.me/60126011607" class="btn-primary">
+        <span data-zh="与 Dr. Bonshuwa 对话" data-en="Speak With Dr. Bonshuwa">与 Dr. Bonshuwa 对话</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer id="footer" class="footer"></footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/60126011607" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+  renderNav('../');
+  renderFooter('../');
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

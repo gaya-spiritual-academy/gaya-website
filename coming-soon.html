@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>即将上线 · Gaya Spiritual Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal-deep: #1B5F75; --teal-bright: #2AACB8; --teal-pale: #E3F6F8;
+      --gold: #C9A227; --gold-dark: #9A7A18;
+      --text-dark: #0E2A33; --text-mid: #3A6070; --text-soft: #7AADBE;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Jost', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background: linear-gradient(150deg, #EBF8FA 0%, #F4FAFB 55%, #FFFDF5 100%);
+      color: var(--text-dark); min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 40px 24px; overflow: hidden;
+    }
+    .bg-grid {
+      position: fixed; inset: 0;
+      background-image: linear-gradient(rgba(42,172,184,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(42,172,184,0.05) 1px, transparent 1px);
+      background-size: 48px 48px; pointer-events: none;
+    }
+    .bg-glow {
+      position: fixed; inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(42,172,184,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .content { position: relative; z-index: 2; max-width: 560px; }
+    .diamond { font-size: 2.5rem; color: var(--gold); margin-bottom: 32px; display: block; animation: glow 3s ease-in-out infinite; }
+    @keyframes glow { 0%,100%{text-shadow:0 0 20px rgba(201,162,39,0.2);opacity:0.7} 50%{text-shadow:0 0 48px rgba(201,162,39,0.6);opacity:1} }
+    .eyebrow { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal-bright); margin-bottom: 20px; }
+    h1 { font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 3.8rem); font-weight: 300; line-height: 1.15; color: var(--text-dark); margin-bottom: 8px; }
+    h1 em { font-style: italic; color: var(--teal-bright); }
+    .subtitle { font-family: var(--font-display); font-size: 1rem; color: var(--text-soft); margin-bottom: 32px; }
+    .divider { width: 48px; height: 2px; background: linear-gradient(90deg, var(--teal-bright), var(--gold)); margin: 0 auto 32px; border-radius: 2px; }
+    .message { font-size: 0.95rem; color: var(--text-mid); line-height: 1.9; margin-bottom: 48px; font-weight: 300; }
+    .actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-back { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; background: var(--teal-bright); color: white; font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: all 0.2s; box-shadow: 0 4px 16px rgba(42,172,184,0.3); }
+    .btn-back:hover { background: var(--teal-deep); transform: translateY(-1px); }
+    .btn-wa { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; background: transparent; color: var(--teal-deep); font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1.5px solid var(--teal-bright); border-radius: 2px; transition: all 0.2s; }
+    .btn-wa:hover { background: var(--teal-pale); }
+    .footer-note { position: fixed; bottom: 28px; left: 0; right: 0; text-align: center; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-soft); opacity: 0.5; }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+  <div class="content">
+    <span class="diamond">◆</span>
+    <div class="eyebrow" id="eyebrow">即将上线</div>
+    <h1>Coming <em>Soon</em></h1>
+    <div class="subtitle" id="subtitle">这个页面正在精心准备中</div>
+    <div class="divider"></div>
+    <p class="message">感谢你的耐心等候。<br>如有任何询问，欢迎透过 WhatsApp 直接联络我们。</p>
+    <div class="actions">
+      <a href="javascript:history.back()" class="btn-back">← 返回上一页</a>
+      <a href="https://wa.me/60126011607" target="_blank" class="btn-wa">WhatsApp 联络</a>
+    </div>
+  </div>
+  <div class="footer-note">Gaya Spiritual Academy · Dr. Bonshuwa Chua</div>
+  <script>
+    const path = window.location.pathname;
+    const pages = {
+      'about':    '关于我 · 即将上线',
+      'aquarius': '宝瓶世纪教练 · 即将上线',
+      'leadership': '新时代领导力 · 即将上线',
+      'insha':    'Insha 自然疗法 · 即将上线',
+      'piga':     'PIGA 黄金世纪之路 · 即将上线',
+      'services': '个人服务 · 即将上线',
+      '13months': '13个月陪伴计划 · 即将上线',
+      'leadership-workshop': '领导力工作坊 · 即将上线',
+      'contact':  '联络我们 · 即将上线',
+      'events':   '特别活动 · 即将上线',
+    };
+    for (const [key, label] of Object.entries(pages)) {
+      if (path.includes(key)) { document.getElementById('eyebrow').textContent = label; break; }
+    }
+  </script>
+
+<style>
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:all .25s;cursor:pointer;text-decoration:none;}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,0.6);}
+.wa-float svg{width:28px;height:28px;fill:white;}
+.wa-tooltip{position:absolute;right:68px;top:50%;transform:translateY(-50%);background:#0E2A33;color:white;font-size:.72rem;white-space:nowrap;padding:6px 12px;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .2s;font-family:var(--font-body);}
+.wa-float:hover .wa-tooltip{opacity:1;}
+</style>
+<a href="https://wa.me/60126011607" target="_blank" class="wa-float" aria-label="WhatsApp">
+<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+<span class="wa-tooltip" data-zh="WhatsApp 联络" data-en="Chat with us">WhatsApp 联络</span>
+</a>
+</body>
+</html>

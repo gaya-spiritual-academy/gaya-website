@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-zh="黄金光之路 · PIGA — Gaya Spiritual Academy" data-en="Golden Light Path · PIGA — Gaya Spiritual Academy">黄金光之路 · PIGA — Gaya Spiritual Academy</title>
+  <meta name="description" content="黄金光之路 (Golden Light Path™) — 原黄金世纪之路®。21天 · 6个区块，带你忆起灵魂蓝图，将天堂品质活现于地球。">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/course.css">
+  <style>
+    .nav-links a[href*="courses"] { color: var(--teal-deep); }
+    .nav-links a[href*="courses"]::after { transform: scaleX(1); }
+
+    .prog-hero {
+      min-height: 72vh; display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: var(--nav-h); background: #1a2a0a;
+    }
+    .prog-hero-img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      opacity: 0.28; filter: saturate(0.6) brightness(0.65);
+    }
+    .prog-hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(201,162,39,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(201,162,39,0.06) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    .prog-hero-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 20%, rgba(201,162,39,0.28) 0%, transparent 55%), radial-gradient(ellipse at 20% 80%, rgba(168,201,110,0.15) 0%, transparent 50%);
+    }
+    .prog-hero-inner {
+      position: relative; z-index: 2; max-width: var(--container); margin: 0 auto;
+      padding: 80px clamp(20px,4vw,60px) 72px;
+    }
+    .prog-hero-eyebrow {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold);
+      display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+      opacity: 0; animation: fadeUp 0.7s 0.1s var(--ease) forwards;
+    }
+    .prog-hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1.5px; background: var(--gold); }
+    .prog-hero-title {
+      font-family: var(--font-display); font-size: clamp(2.8rem, 5.5vw, 5.2rem);
+      font-weight: 300; line-height: 1.05; color: white; margin-bottom: 12px;
+      opacity: 0; animation: fadeUp 0.8s 0.25s var(--ease) forwards;
+    }
+    .prog-hero-title em { font-style: italic; color: var(--gold-bright); }
+    .prog-hero-subtitle {
+      font-size: clamp(1rem, 1.6vw, 1.2rem); color: rgba(255,255,255,0.45); font-weight: 300;
+      font-family: var(--font-display); font-style: italic; margin-bottom: 20px;
+      opacity: 0; animation: fadeUp 0.8s 0.38s var(--ease) forwards;
+    }
+    .prog-hero-desc {
+      font-size: 0.97rem; color: rgba(255,255,255,0.65); max-width: 580px;
+      line-height: 1.95; font-weight: 300; margin-bottom: 40px;
+      opacity: 0; animation: fadeUp 0.9s 0.5s var(--ease) forwards;
+    }
+    .prog-hero-tags {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 1s 0.62s var(--ease) forwards;
+    }
+    .prog-hero-tag {
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); padding: 6px 14px; border: 1px solid rgba(201,162,39,0.3);
+      border-radius: 20px; background: rgba(201,162,39,0.08);
+    }
+
+    /* Intro */
+    .piga-intro { padding: var(--section-pad) 0; background: var(--gold-pale); }
+    .piga-intro-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,80px); align-items: center; }
+    @media (max-width: 768px) { .piga-intro-inner { grid-template-columns: 1fr; } }
+    .piga-intro-img { width: 100%; max-width: 300px; margin: 0 auto; display: block; filter: drop-shadow(0 16px 40px rgba(201,162,39,0.2)); }
+    .piga-intro-quote {
+      font-family: var(--font-display); font-style: italic; font-size: clamp(1rem, 1.7vw, 1.25rem);
+      color: var(--gold-dark); line-height: 1.7; padding-left: 20px;
+      border-left: 2px solid var(--gold); margin-bottom: 24px;
+    }
+    .piga-name-badge {
+      display: inline-flex; align-items: center; gap: 8px; background: white;
+      border: 1px solid var(--border-gold); border-radius: 3px; padding: 8px 14px;
+      margin-bottom: 16px; font-size: 0.73rem; color: var(--gold-dark);
+    }
+
+    /* Structure */
+    .piga-structure { padding: var(--section-pad) 0; background: white; }
+    .piga-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin: clamp(28px,4vw,44px) 0; }
+    @media (max-width: 640px) { .piga-stats { grid-template-columns: repeat(2,1fr); } }
+    .piga-stat { background: var(--gold-pale); border: 1px solid var(--border-gold); border-radius: 4px; padding: 22px 16px; text-align: center; }
+    .piga-stat-num { font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--gold-dark); line-height: 1; margin-bottom: 5px; }
+    .piga-stat-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: var(--text-soft); }
+    .piga-methods { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 24px; }
+    @media (max-width: 640px) { .piga-methods { grid-template-columns: repeat(2,1fr); } }
+    .piga-method { text-align: center; padding: 18px 12px; border: 1px solid rgba(201,162,39,0.15); border-radius: 4px; background: var(--ivory); transition: all 0.3s; }
+    .piga-method:hover { transform: translateY(-3px); border-color: rgba(201,162,39,0.35); }
+    .piga-method-icon { font-size: 1.5rem; margin-bottom: 8px; }
+    .piga-method-label { font-size: 0.78rem; color: var(--text-mid); }
+
+    /* Blocks */
+    .piga-blocks { padding: var(--section-pad) 0; background: var(--off-white); }
+    .piga-blocks-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: clamp(32px,5vw,52px); }
+    @media (max-width: 900px) { .piga-blocks-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 560px) { .piga-blocks-grid { grid-template-columns: 1fr; } }
+    .piga-block {
+      background: white; border: 1px solid var(--border-gold); border-radius: 4px; padding: 26px 24px;
+      position: relative; overflow: hidden; transition: all 0.3s var(--ease);
+    }
+    .piga-block::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-bright)); }
+    .piga-block:hover { transform: translateY(-5px); box-shadow: 0 16px 44px rgba(201,162,39,0.13); }
+    .piga-block-num { font-family: var(--font-display); font-size: 2.2rem; font-weight: 300; color: rgba(201,162,39,0.2); line-height: 1; margin-bottom: 10px; }
+    .piga-block-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; color: var(--text-dark); margin-bottom: 4px; line-height: 1.3; }
+    .piga-block-title em { font-style: italic; color: var(--gold-dark); }
+    .piga-block-sub { font-size: 0.72rem; color: var(--text-soft); margin-bottom: 14px; line-height: 1.5; }
+    .piga-block-divider { width: 28px; height: 1.5px; background: linear-gradient(90deg, var(--gold), var(--teal-bright)); margin-bottom: 14px; }
+    .piga-block-list { list-style: none; }
+    .piga-block-list li { display: flex; gap: 8px; font-size: 0.81rem; color: var(--text-mid); margin-bottom: 6px; align-items: flex-start; line-height: 1.6; }
+    .piga-block-list li::before { content: '✦'; color: var(--gold); font-size: 0.5rem; margin-top: 5px; flex-shrink: 0; }
+
+    /* Highlights */
+    .piga-highlights { padding: var(--section-pad) 0; background: white; }
+    .piga-highlights-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; margin-top: clamp(32px,5vw,52px); }
+    @media (max-width: 640px) { .piga-highlights-grid { grid-template-columns: 1fr; } }
+    .piga-highlight { display: flex; gap: 14px; align-items: flex-start; padding: 20px 22px; background: var(--gold-pale); border: 1px solid var(--border-gold); border-radius: 4px; }
+    .piga-highlight-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+    .piga-highlight-title { font-family: var(--font-display); font-size: 0.98rem; font-weight: 400; color: var(--text-dark); margin-bottom: 4px; }
+    .piga-highlight-desc { font-size: 0.81rem; color: var(--text-mid); line-height: 1.8; }
+
+    /* For Whom */
+    .piga-forwhom { padding: var(--section-pad) 0; background: linear-gradient(160deg, #1a2a0a 0%, #0D3D4F 100%); position: relative; overflow: hidden; }
+    .piga-forwhom::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(201,162,39,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(201,162,39,0.05) 1px, transparent 1px); background-size: 52px 52px; }
+    .piga-forwhom .container { position: relative; z-index: 1; }
+    .piga-forwhom-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,6vw,80px); align-items: center; }
+    @media (max-width: 768px) { .piga-forwhom-inner { grid-template-columns: 1fr; } }
+    .piga-forwhom-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 3px; filter: saturate(0.8) brightness(0.9); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .piga-forwhom-list { list-style: none; margin-bottom: 28px; }
+    .piga-forwhom-list li { display: flex; gap: 12px; font-size: 0.88rem; color: rgba(255,255,255,0.6); padding: 11px 0; border-bottom: 1px solid rgba(201,162,39,0.1); align-items: flex-start; line-height: 1.7; }
+    .piga-forwhom-list li:last-child { border-bottom: none; }
+    .piga-forwhom-list li::before { content: '✦'; color: var(--gold); font-size: 0.5rem; margin-top: 5px; flex-shrink: 0; }
+
+    /* Enroll */
+    .piga-enroll { padding: clamp(60px,8vw,100px) 0; background: var(--ivory); text-align: center; }
+    .piga-enroll-box { max-width: 600px; margin: 0 auto; background: white; border: 1px solid var(--border-gold); border-radius: 4px; padding: 44px; box-shadow: 0 4px 24px rgba(201,162,39,0.08); }
+    .piga-enroll-title { font-family: var(--font-display); font-size: 1.7rem; font-weight: 300; color: var(--text-dark); margin-bottom: 8px; }
+    .piga-enroll-title em { font-style: italic; color: var(--gold); }
+    .piga-enroll-sub { font-family: var(--font-display); font-style: italic; font-size: 0.98rem; color: var(--text-soft); margin-bottom: 22px; }
+    .piga-enroll-divider { width: 40px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--teal-bright)); margin: 0 auto 22px; border-radius: 2px; }
+    .piga-enroll-details { list-style: none; margin-bottom: 20px; text-align: left; }
+    .piga-enroll-details li { display: flex; gap: 10px; font-size: 0.86rem; color: var(--text-mid); padding: 9px 0; border-bottom: 1px solid rgba(201,162,39,0.1); align-items: flex-start; }
+    .piga-enroll-details li:last-child { border-bottom: none; }
+    .piga-enroll-details li::before { content: '✦'; color: var(--gold); font-size: 0.5rem; margin-top: 4px; flex-shrink: 0; }
+    .piga-enroll-note { font-size: 0.82rem; color: var(--text-mid); line-height: 1.9; margin-bottom: 26px; padding: 13px 16px; background: var(--gold-pale); border-radius: 3px; border-left: 2px solid var(--gold); text-align: left; }
+    .piga-enroll-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 54px; height: 54px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.45); transition: transform 0.2s var(--ease), box-shadow 0.2s; }
+    .wa-float:hover { transform: scale(1.08); box-shadow: 0 8px 28px rgba(37,211,102,0.55); }
+    .wa-float svg { width: 28px; height: 28px; fill: white; }
+  </style>
+</head>
+<body>
+<header class="nav" id="nav"></header>
+
+<!-- HERO -->
+<section class="prog-hero">
+  <img class="prog-hero-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80&auto=format&fit=crop" alt="黄金光之路">
+  <div class="prog-hero-grid"></div>
+  <div class="prog-hero-glow"></div>
+  <div class="prog-hero-inner">
+    <div class="prog-hero-eyebrow" data-zh="宝瓶世纪 · 灵魂使命" data-en="Aquarian Age · Soul Mission">宝瓶世纪 · 灵魂使命</div>
+    <h1 class="prog-hero-title">
+      <em>Golden Light Path™</em><br>
+      <span style="font-size:clamp(1.4rem,3vw,2.2rem);color:rgba(255,255,255,0.4);" data-zh="黄金光之路" data-en="Golden Light Path">黄金光之路</span>
+    </h1>
+    <div class="prog-hero-subtitle" data-zh="原「黄金世纪之路®」进化版本 · PIGA" data-en="Evolved from Path into Golden Age® · PIGA">原「黄金世纪之路®」进化版本 · PIGA</div>
+    <p class="prog-hero-desc" data-zh="黄金世纪，是我们忆起灵魂蓝图的时刻——与神和自然界的终极计划重新连结，将天堂的品质与潜能整合于地球，活出自己，完成灵魂使命。现在是时候，在日常生活中认识并体现你的灵魂真实。" data-en="The Golden Age is the moment we remember our soul blueprint — reconnecting with God and nature's ultimate plan, integrating heavenly qualities into Earth, living as ourselves, and fulfilling our soul mission. Now is the time to recognize and embody your soul's truth in daily life.">黄金世纪，是我们忆起灵魂蓝图的时刻——与神和自然界的终极计划重新连结，将天堂的品质与潜能整合于地球，活出自己，完成灵魂使命。现在是时候，在日常生活中认识并体现你的灵魂真实。</p>
+    <div class="prog-hero-tags">
+      <span class="prog-hero-tag">21天 · 6区块</span>
+      <span class="prog-hero-tag" data-zh="冥想 · 点化 · 仪式" data-en="Meditation · Initiation · Ritual">冥想 · 点化 · 仪式</span>
+      <span class="prog-hero-tag" data-zh="9-12个月陪伴完成" data-en="9–12 months with accompaniment">9-12个月陪伴完成</span>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="piga-intro">
+  <div class="container">
+    <div class="piga-intro-inner">
+      <div class="reveal" style="display:flex;justify-content:center;">
+        <img class="piga-intro-img" src="../assets/img/pathintogoldenage_fullcolorlogo_1.jpg" alt="Golden Light Path Logo" onerror="this.src='https://images.unsplash.com/photo-1610296669228-602fa827fc1f?w=400&q=80'">
+      </div>
+      <div class="reveal">
+        <div class="piga-name-badge">✨ <span data-zh="Golden Light Path™（原 Path into Golden Age®）· 2025年更新版" data-en="Golden Light Path™ (formerly Path into Golden Age®) · Updated 2025">Golden Light Path™ · 2025年更新版</span></div>
+        <div class="section-label" data-zh="关于 PIGA" data-en="About PIGA">关于 PIGA</div>
+        <h2 class="section-title" data-zh="将<em>天堂品质</em>活现于地球" data-en="Manifest <em>Heavenly Qualities</em> on Earth">将<em>天堂品质</em>活现于地球</h2>
+        <div class="gold-line"></div>
+        <blockquote class="piga-intro-quote" data-zh="黄金世纪，是我们忆起灵魂蓝图的时刻，是我们与神与自然界终极计划重新连结的时期，因此我们能够从天堂获得资源，重新将自身天堂的品质和潜能整合于地球，活出自己，完成我们的灵魂使命。" data-en="The Golden Age is the moment we remember our soul blueprint, the time we reconnect with God and nature's ultimate plan — drawing resources from heaven, reintegrating our heavenly qualities and potential on Earth, living as ourselves, fulfilling our soul mission.">黄金世纪，是我们忆起灵魂蓝图的时刻，是我们与神与自然界终极计划重新连结的时期，因此我们能够从天堂获得资源，重新将自身天堂的品质和潜能整合于地球，活出自己，完成我们的灵魂使命。</blockquote>
+        <p style="font-size:0.92rem;color:var(--text-mid);line-height:1.95;margin-bottom:18px;" data-zh="PIGA 是 Gaya Spiritual Academy 的核心灵魂培训。整个培训透过冥想、练习、点化与仪式进行——这些点化是通往灵性层面与智慧领域的门户，使参与者透过直觉获取智慧、潜力与技能。" data-en="PIGA is the core soul training of Gaya Spiritual Academy. Training is conducted through meditation, practice, initiation and ritual — these initiations are gateways to spiritual levels and realms of wisdom, enabling participants to intuitively receive wisdom, potential and skills.">PIGA 是 Gaya Spiritual Academy 的核心灵魂培训。整个培训透过冥想、练习、点化与仪式进行——这些点化是通往灵性层面与智慧领域的门户，使参与者透过直觉获取智慧、潜力与技能。</p>
+        <p style="font-size:0.92rem;color:var(--text-mid);line-height:1.95;" data-zh="我们不再选择仅为了和平与生存而生活——我们还有更多隐藏的部分要在地球上发现和显现。如何发挥属于你的隐藏潜力与特质？如何将它们变成现实？如何体现你在地球上的生命任务？这正是 PIGA 带你探索的旅程。" data-en="We no longer choose to live merely for peace and survival — there are more hidden parts to discover and manifest on Earth. How to unfold your hidden potential? How to make it real? How to embody your life task on Earth? This is the journey PIGA takes you on.">我们不再选择仅为了和平与生存而生活——我们还有更多隐藏的部分要在地球上发现和显现。如何发挥属于你的隐藏潜力与特质？如何将它们变成现实？如何体现你在地球上的生命任务？这正是 PIGA 带你探索的旅程。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRUCTURE -->
+<section class="piga-structure">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" data-zh="培训结构" data-en="Training Structure">培训结构</div>
+      <h2 class="section-title" data-zh="<em>21天</em> · 6个区块 · 约9-12个月" data-en="<em>21 Days</em> · 6 Blocks · ~9–12 Months"><em>21天</em> · 6个区块 · 约9-12个月</h2>
+      <div class="gold-line"></div>
+      <p style="font-size:0.92rem;color:var(--text-mid);line-height:1.95;max-width:620px;" data-zh="共21天，6个区块，每区块约3.5天。整个培训约需9至12个月完成，每个区块之间有独立实习期，期间你将得到陪伴与引导，在日常生活中练习并实现所学。" data-en="21 days total, 6 blocks, approximately 3.5 days each. The full training takes about 9–12 months, with independent practice periods between blocks — accompanied and guided to practice what you learn in daily life.">共21天，6个区块，每区块约3.5天。整个培训约需9至12个月完成，每个区块之间有独立实习期，期间你将得到陪伴与引导，在日常生活中练习并实现所学。</p>
+    </div>
+    <div class="piga-stats reveal">
+      <div class="piga-stat"><div class="piga-stat-num">21</div><div class="piga-stat-label" data-zh="总天数" data-en="Total Days">总天数</div></div>
+      <div class="piga-stat"><div class="piga-stat-num">6</div><div class="piga-stat-label" data-zh="个区块" data-en="Blocks">个区块</div></div>
+      <div class="piga-stat"><div class="piga-stat-num">3.5</div><div class="piga-stat-label" data-zh="天/区块" data-en="Days / Block">天/区块</div></div>
+      <div class="piga-stat"><div class="piga-stat-num">9–12</div><div class="piga-stat-label" data-zh="个月完成" data-en="Months">个月完成</div></div>
+    </div>
+    <div class="reveal">
+      <p style="font-size:0.82rem;color:var(--text-mid);margin-bottom:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;" data-zh="培训方式" data-en="Training Methods">培训方式</p>
+      <div class="piga-methods">
+        <div class="piga-method"><div class="piga-method-icon">🧘</div><div class="piga-method-label" data-zh="引导式冥想" data-en="Guided Meditation">引导式冥想</div></div>
+        <div class="piga-method"><div class="piga-method-icon">✨</div><div class="piga-method-label" data-zh="灵性点化" data-en="Spiritual Initiation">灵性点化</div></div>
+        <div class="piga-method"><div class="piga-method-icon">🔥</div><div class="piga-method-label" data-zh="神圣仪式" data-en="Sacred Ritual">神圣仪式</div></div>
+        <div class="piga-method"><div class="piga-method-icon">🤝</div><div class="piga-method-label" data-zh="伙伴练习" data-en="Partner Practice">伙伴练习</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 BLOCKS -->
+<section class="piga-blocks">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" data-zh="六个区块" data-en="Six Blocks">六个区块</div>
+      <h2 class="section-title" data-zh="你的<em>灵魂旅程</em>地图" data-en="The Map of Your <em>Soul Journey</em>">你的<em>灵魂旅程</em>地图</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="piga-blocks-grid">
+      <div class="piga-block reveal">
+        <div class="piga-block-num">01</div>
+        <div class="piga-block-title"><em data-zh="拿回自身的力量" data-en="Empowerment">拿回自身的力量</em></div>
+        <div class="piga-block-sub" data-zh="强化自身力量，带回自身品质和天赋，并将之活出" data-en="Empower, bring back your qualities and gifts, and live them">强化自身力量，带回自身品质和天赋，并将之活出</div>
+        <div class="piga-block-divider"></div>
+        <ul class="piga-block-list">
+          <li data-zh="冥想：回到自身天堂，觉察今生转世意愿与灵魂渴望、使命与远景" data-en="Meditation: return to heaven, aware of soul wish, mission and vision">冥想：回到自身天堂，觉察今生转世意愿与灵魂渴望、使命与远景</li>
+          <li data-zh="忆起潜能种子的显化、成长与成果" data-en="Remembering potential seeds: manifestation, growth and results">忆起潜能种子的显化、成长与成果</li>
+          <li data-zh="伙伴练习：爱的社区" data-en="Partner exercise: Loving community">伙伴练习：爱的社区</li>
+          <li data-zh="黄金世纪疗愈服务：大自然和大地母亲" data-en="Golden Age healing work: nature and Mother Earth">黄金世纪疗愈服务：大自然和大地母亲</li>
+          <li data-zh="启动黄金金字塔 · 个人黄金世纪仪式" data-en="Initiation of Golden Pyramid · Personal Golden Age ceremony">启动黄金金字塔 · 个人黄金世纪仪式</li>
+        </ul>
+      </div>
+      <div class="piga-block reveal">
+        <div class="piga-block-num">02</div>
+        <div class="piga-block-title"><em data-zh="灵性家族与指引" data-en="Spiritual Family & Guidance">灵性家族与指引</em></div>
+        <div class="piga-block-sub" data-zh="探索并激活来自灵性家族的指引、力量与能量" data-en="Explore and activate guidance, power and energy from your spiritual home">探索并激活来自灵性家族的指引、力量与能量</div>
+        <div class="piga-block-divider"></div>
+        <ul class="piga-block-list">
+          <li data-zh="曼陀罗仪式：迎接灵性指引" data-en="Mandala ceremony: inviting spiritual guides">曼陀罗仪式：迎接灵性指引</li>
+          <li data-zh="冥想：与灵性指引的深层接触 · 点化激活" data-en="Meditation: deep connection with spiritual guide · Initiation">冥想：与灵性指引的深层接触 · 点化激活</li>
+          <li data-zh="祖先业力释放：六代消融 · 祖先基因结构消融" data-en="Ancestor karma release: 6 generations · dissolving genetic structures">祖先业力释放：六代消融 · 祖先基因结构消融</li>
+          <li data-zh="灵性部落连结冥想" data-en="Spiritual tribe connection meditation">灵性部落连结冥想</li>
+          <li data-zh="来自未来的礼物 · 过去与未来合一" data-en="Gifts from the future · unity of past and future">来自未来的礼物 · 过去与未来合一</li>
+        </ul>
+      </div>
+      <div class="piga-block reveal">
+        <div class="piga-block-num">03</div>
+        <div class="piga-block-title"><em data-zh="黄金世纪之光" data-en="Light of the Golden Age">黄金世纪之光</em></div>
+        <div class="piga-block-sub" data-zh="提升自身能量和振动，与黄金世纪之光保持一致" data-en="Increase energy and vibration to align with Golden Age light">提升自身能量和振动，与黄金世纪之光保持一致</div>
+        <div class="piga-block-divider"></div>
+        <ul class="piga-block-list">
+          <li data-zh="建立神人十字祭坛 · 点化黄金世纪之光" data-en="Build Avatar Cross altar · Initiation into Golden Age light">建立神人十字祭坛 · 点化黄金世纪之光</li>
+          <li data-zh="赛巴巴 · 耶稣 · 阿格尼 · 巴巴吉火典" data-en="Sai Baba · Jesus · Agni · Babaji arathi">赛巴巴 · 耶稣 · 阿格尼 · 巴巴吉火典</li>
+          <li data-zh="激活神人面向 · 黄金世纪面向合一与扩展" data-en="Activation of Avatar aspects · unity and expansion of Golden Age aspects">激活神人面向 · 黄金世纪面向合一与扩展</li>
+          <li data-zh="宇宙旅程：行星 · 宇宙网格 · 神人十字架巩固" data-en="Cosmic journey: planets · cosmic network · Avatar Cross consolidation">宇宙旅程：行星 · 宇宙网格 · 神人十字架巩固</li>
+          <li data-zh="黄金世纪力量的显化与稳定仪式" data-en="Manifestation and stabilization of Golden Age energy">黄金世纪力量的显化与稳定仪式</li>
+        </ul>
+      </div>
+      <div class="piga-block reveal">
+        <div class="piga-block-num">04</div>
+        <div class="piga-block-title"><em data-zh="疗愈 · 转化 · 显化" data-en="Healing · Transformation · Manifestation">疗愈 · 转化 · 显化</em></div>
+        <div class="piga-block-sub" data-zh="黄金世纪之光的实践旅程" data-en="The application journey of Golden Age light">黄金世纪之光的实践旅程</div>
+        <div class="piga-block-divider"></div>
+        <ul class="piga-block-list">
+          <li data-zh="太阳圣殿冥想：接收专属黄金世纪光之工具" data-en="Sun Temple meditation: receive your personal Golden Age light tool">太阳圣殿冥想：接收专属黄金世纪光之工具</li>
+          <li data-zh="黄金世纪光之大使疗程 · 个人灵魂技巧的诞生" data-en="Ambassador of Golden Age Light healing · birth of personal soul technique">黄金世纪光之大使疗程 · 个人灵魂技巧的诞生</li>
+          <li data-zh="宇宙旅程绘画：唤醒你是谁" data-en="Cosmic journey painting: awakening who you are">宇宙旅程绘画：唤醒你是谁</li>
+          <li data-zh="认识8种灵性部落类型（疗愈师·萨满·导师·天使等）" data-en="Recognise 8 spiritual tribe types (healers, shamans, teachers, angels etc.)">认识8种灵性部落类型</li>
+          <li data-zh="黄金世纪部落成立 · 黄金光大使承诺仪式" data-en="Initiation of Golden Age tribe · Ambassador's commitment ceremony">黄金世纪部落成立 · 承诺仪式</li>
+        </ul>
+      </div>
+      <div class="piga-block reveal">
+        <div class="piga-block-num">05</div>
+        <div class="piga-block-title"><em data-zh="水晶世界" data-en="The Crystal World">水晶世界</em></div>
+        <div class="piga-block-sub" data-zh="展现在地球的神性存在与无限可能" data-en="Unfolding the divine being on Earth with limitless possibilities">展现在地球的神性存在与无限可能</div>
+        <div class="piga-block-divider"></div>
+        <ul class="piga-block-list">
+          <li data-zh="水晶意识激活 · 水晶力量之地" data-en="Crystal consciousness activation · Crystal power place">水晶意识激活 · 水晶力量之地</li>
+          <li data-zh="深化黄金光大使疗程与个人技巧应用" data-en="Deepen Golden Age Light healing and personal technique application">深化黄金光大使疗程与个人技巧应用</li>
+          <li data-zh="疗愈面向成立与深化旅程" data-en="Healing aspect formation and deepening journey">疗愈面向成立与深化旅程</li>
+          <li data-zh="宇宙与地球合一冥想" data-en="Universe and Earth unity meditation">宇宙与地球合一冥想</li>
+          <li data-zh="集体冥想：传送黄金光至地球与全体众生" data-en="Collective meditation: transmit Golden Light to Earth and all beings">集体冥想：传送黄金光至地球与全体众生</li>
+        </ul>
+      </div>
+      <div class="piga-block reveal">
+        <div class="piga-block-num">06</div>
+        <div class="piga-block-title"><em data-zh="成为黄金光大使" data-en="Becoming a Golden Light Ambassador">成为黄金光大使</em></div>
+        <div class="piga-block-sub" data-zh="圆满整合 · 成为光之使者" data-en="Completion and integration · becoming a messenger of light">圆满整合 · 成为光之使者</div>
+        <div class="piga-block-divider"></div>
+        <ul class="piga-block-list">
+          <li data-zh="回溯：灵魂种子的收成与黄金世纪果实" data-en="Regression: harvesting soul seeds and Golden Age fruits">回溯：灵魂种子的收成与黄金世纪果实</li>
+          <li data-zh="深化个人技巧 · 伙伴服务练习" data-en="Deepen personal technique · partner service practice">深化个人技巧 · 伙伴服务练习</li>
+          <li data-zh="黄金光的喜悦与创造火典" data-en="Joy and creation fire ceremony of Golden Light">黄金光的喜悦与创造火典</li>
+          <li data-zh="承诺仪式：我愿成为黄金世纪大使" data-en="Commitment ritual: I choose to be a Golden Age Ambassador">承诺仪式：我愿成为黄金世纪大使</li>
+          <li data-zh="结业庆典 · 颁发黄金光之路文凭" data-en="Graduation ceremony · Golden Light Path certificate awarded">结业庆典 · 颁发黄金光之路文凭</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section class="piga-highlights">
+  <div class="container">
+    <div class="reveal text-center">
+      <div class="section-label" style="justify-content:center;" data-zh="培训亮点" data-en="Training Highlights">培训亮点</div>
+      <h2 class="section-title" data-zh="你将<em>发现与实现</em>" data-en="You Will <em>Discover & Realize</em>">你将<em>发现与实现</em></h2>
+      <div class="gold-line center"></div>
+    </div>
+    <div class="piga-highlights-grid">
+      <div class="piga-highlight reveal">
+        <div class="piga-highlight-icon">💡</div>
+        <div>
+          <div class="piga-highlight-title" data-zh="揭开日常生活中看不见的礼物" data-en="Unveil invisible gifts in daily life">揭开日常生活中看不见的礼物</div>
+          <p class="piga-highlight-desc" data-zh="突破日常障碍，发现并认出那些隐藏在内在、尚未被看见的天赋与潜能。" data-en="Break through daily barriers and discover gifts and potentials hidden within you.">突破日常障碍，发现并认出那些隐藏在内在、尚未被看见的天赋与潜能。</p>
+        </div>
+      </div>
+      <div class="piga-highlight reveal">
+        <div class="piga-highlight-icon">🌟</div>
+        <div>
+          <div class="piga-highlight-title" data-zh="找到并实现自己独特的灵魂特质" data-en="Find and realize your unique soul qualities">找到并实现自己独特的灵魂特质</div>
+          <p class="piga-highlight-desc" data-zh="如和平、爱、力量等——将这些灵魂品质真实活现在家庭、关系与事业中。" data-en="Such as peace, love, strength — bring these soul qualities to life in family, relationships and career.">如和平、爱、力量等——将这些灵魂品质真实活现在家庭、关系与事业中。</p>
+        </div>
+      </div>
+      <div class="piga-highlight reveal">
+        <div class="piga-highlight-icon">🔮</div>
+        <div>
+          <div class="piga-highlight-title" data-zh="感知成功之道 · 显化内在渴望" data-en="Perceive your path · manifest inner desires">感知成功之道 · 显化内在渴望</div>
+          <p class="piga-highlight-desc" data-zh="学习如何改变生活环境，连结自身的智慧与知识，在日常创造中得到支持。" data-en="Learn to change life circumstances, connect to your wisdom, and be supported in daily creation.">学习如何改变生活环境，连结自身的智慧与知识，在日常创造中得到支持。</p>
+        </div>
+      </div>
+      <div class="piga-highlight reveal">
+        <div class="piga-highlight-icon">👑</div>
+        <div>
+          <div class="piga-highlight-title" data-zh="成为黄金光之大使" data-en="Become a Golden Light Ambassador">成为黄金光之大使</div>
+          <p class="piga-highlight-desc" data-zh="完成培训后具备黄金光大使资格，可进行大使疗程与专属个人技巧服务。" data-en="Upon completion, qualified as Golden Light Ambassador — able to offer Ambassador healing and personal technique services.">完成培训后具备黄金光大使资格，可进行大使疗程与专属个人技巧服务。</p>
+        </div>
+      </div>
+      <div class="piga-highlight reveal">
+        <div class="piga-highlight-icon">🤝</div>
+        <div>
+          <div class="piga-highlight-title" data-zh="加入黄金世纪灵性部落" data-en="Join the Golden Age Spiritual Tribe">加入黄金世纪灵性部落</div>
+          <p class="piga-highlight-desc" data-zh="成为充满爱、光与喜悦的灵性社区一份子，每个人找到自己的独特使命与表达方式。" data-en="Become part of a spiritual community of love, light and joy — each person finding their unique mission and expression.">成为充满爱、光与喜悦的灵性社区一份子，每个人找到自己的独特使命与表达方式。</p>
+        </div>
+      </div>
+      <div class="piga-highlight reveal">
+        <div class="piga-highlight-icon">🔥</div>
+        <div>
+          <div class="piga-highlight-title" data-zh="神圣火典 · 成为生命的真正创造者" data-en="Sacred fire ceremony · become the true creator of your life">神圣火典 · 成为生命的真正创造者</div>
+          <p class="piga-highlight-desc" data-zh="透过黄金光的喜悦与创造火典，突破旧有限制，体验深层觉性的喜悦，活出天堂品质。" data-en="Through the joy and creation fire ceremony, break old limitations, experience deep joy of awareness, live your heavenly qualities.">透过黄金光的喜悦与创造火典，突破旧有限制，体验深层觉性的喜悦，活出天堂品质。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section class="piga-forwhom">
+  <div class="container">
+    <div class="piga-forwhom-inner">
+      <div class="reveal">
+        <img class="piga-forwhom-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80&auto=format&fit=crop" alt="黄金世纪使命">
+      </div>
+      <div class="reveal">
+        <div class="section-label" data-zh="适合谁参加" data-en="Who Is This For">适合谁参加</div>
+        <h2 class="section-title" style="color:white;" data-zh="你是否感觉到<em>内在的召唤？</em>" data-en="Do You Feel the <em>Inner Calling?</em>">你是否感觉到<em>内在的召唤？</em></h2>
+        <div class="gold-line"></div>
+        <p style="font-size:0.92rem;color:rgba(255,255,255,0.55);line-height:1.95;margin-bottom:24px;" data-zh="如何发挥所有属于你的隐藏潜力和特质？如何将它们变成现实？如何体现你在地球上的生活任务？这正是 PIGA 所探索的核心课题。" data-en="How to unfold all your hidden potential and qualities? How to make them real? How to embody your life task on Earth? These are the core questions PIGA explores.">如何发挥所有属于你的隐藏潜力和特质？如何将它们变成现实？如何体现你在地球上的生活任务？这正是 PIGA 所探索的核心课题。</p>
+        <ul class="piga-forwhom-list">
+          <li data-zh="感受到内在使命呼唤，渴望活出更真实的自己" data-en="Feel an inner calling, longing to live more authentically">感受到内在使命呼唤，渴望活出更真实的自己</li>
+          <li data-zh="想将灵性品质真实落地于家庭、关系与事业" data-en="Want to ground spiritual qualities into family, relationships and career">想将灵性品质真实落地于家庭、关系与事业</li>
+          <li data-zh="愿意透过冥想、点化与仪式进行深度灵性工作" data-en="Willing to do deep spiritual work through meditation, initiation and ritual">愿意透过冥想、点化与仪式进行深度灵性工作</li>
+          <li data-zh="渴望成为黄金世纪灵性社区的一份子" data-en="Yearn to become part of the Golden Age spiritual community">渴望成为黄金世纪灵性社区的一份子</li>
+          <li data-zh="准备好为大地母亲与地球意识转化贡献力量" data-en="Ready to contribute to Mother Earth and the consciousness transformation of the planet">准备好为大地母亲与地球意识转化贡献力量</li>
+        </ul>
+        <a href="https://wa.me/60126011607?text=您好，我想了解黄金光之路（PIGA）培训的详情" class="btn-gold" target="_blank" data-zh="WhatsApp 咨询详情" data-en="WhatsApp Enquiry">WhatsApp 咨询详情</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENROLL -->
+<section class="piga-enroll">
+  <div class="container">
+    <div class="reveal">
+      <div class="piga-enroll-box">
+        <div class="piga-enroll-title" data-zh="准备好踏上<em>黄金光之路？</em>" data-en="Ready to Step onto the <em>Golden Light Path?</em>">准备好踏上<em>黄金光之路？</em></div>
+        <div class="piga-enroll-sub" data-zh="你的天堂品质，一直都在。" data-en="Your heavenly qualities have always been there.">你的天堂品质，一直都在。</div>
+        <div class="piga-enroll-divider"></div>
+        <ul class="piga-enroll-details">
+          <li data-zh="培训：Golden Light Path™（黄金光之路）· 原 Path into Golden Age®" data-en="Training: Golden Light Path™ · formerly Path into Golden Age®">培训：Golden Light Path™（黄金光之路）</li>
+          <li data-zh="结构：21天 · 6个区块 · 每区块约3.5天" data-en="Structure: 21 days · 6 blocks · ~3.5 days each">结构：21天 · 6个区块 · 每区块约3.5天</li>
+          <li data-zh="时长：约9-12个月（含区块间实习期）" data-en="Duration: approx. 9–12 months (incl. inter-block practice periods)">时长：约9-12个月（含区块间实习期）</li>
+          <li data-zh="方式：冥想 · 点化 · 神圣仪式 · 伙伴练习" data-en="Method: meditation · initiation · sacred ritual · partner practice">方式：冥想 · 点化 · 神圣仪式 · 伙伴练习</li>
+          <li data-zh="完成后：具备黄金光大使资格，可进行相关疗愈服务" data-en="Upon completion: qualified as Golden Light Ambassador, eligible to offer related services">完成后：具备黄金光大使资格</li>
+          <li data-zh="导师：Dr. Bonshuwa Chua · Ashaya · Gaya Spiritual Academy" data-en="Trainer: Dr. Bonshuwa Chua · Ashaya · Gaya Spiritual Academy">导师：Dr. Bonshuwa Chua · Gaya Spiritual Academy</li>
+        </ul>
+        <div class="piga-enroll-note" data-zh="💬 学费与最新排期请直接联络我们。每一段黄金光之路的旅程都是独特的，我们将根据您的准备状态，为您提供最适合的引领与陪伴。" data-en="💬 Please contact us directly for tuition and the latest schedule. Every Golden Light Path journey is unique — we provide guidance best suited to your readiness.">💬 学费与最新排期请直接联络我们。每一段黄金光之路的旅程都是独特的，我们将根据您的准备状态，为您提供最适合的引领与陪伴。</div>
+        <div class="piga-enroll-btns">
+          <a href="https://wa.me/60126011607?text=您好，我想了解黄金光之路（PIGA）的培训详情与报名资讯" class="btn-gold" target="_blank" data-zh="WhatsApp 直接咨询" data-en="WhatsApp Direct Enquiry">WhatsApp 直接咨询</a>
+          <a href="mailto:info@gayaspiritualacademy.com" class="btn-outline" data-zh="发送邮件" data-en="Send Email">发送邮件</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="footer"></footer>
+
+<a href="https://wa.me/60126011607" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+  renderNav('../');
+  renderFooter('../');
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.09 });
+  reveals.forEach(el => io.observe(el));
+  document.addEventListener('click', e => {
+    if (e.target.closest('.nav-hamburger')) document.querySelector('.nav-links')?.classList.toggle('open');
+  });
+</script>
+</body>
+</html>
