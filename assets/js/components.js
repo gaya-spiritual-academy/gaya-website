@@ -5,6 +5,7 @@
 function renderNav(basePath = '') {
   const nav = document.getElementById('nav');
   if (!nav) return;
+
   nav.innerHTML = `
     <div class="nav-logo">
       <a href="${basePath}index.html">
@@ -12,7 +13,7 @@ function renderNav(basePath = '') {
       </a>
     </div>
     <nav>
-      <ul class="nav-links">
+      <ul class="nav-links" id="navLinksList">
         <li><a href="${basePath}index.html" data-zh="首页" data-en="Home">首页</a></li>
         <li><a href="${basePath}about.html" data-zh="关于我" data-en="About">关于我</a></li>
         <li class="nav-dropdown">
@@ -34,6 +35,7 @@ function renderNav(basePath = '') {
             <li><a href="${basePath}events/leadership-workshop.html" data-zh="领导力工作坊" data-en="Leadership Workshop">领导力工作坊</a></li>
           </ul>
         </li>
+        <li><a href="${basePath}gallery.html" data-zh="光迹" data-en="Gallery">光迹</a></li>
         <li><a href="${basePath}contact.html" data-zh="联络" data-en="Contact">联络</a></li>
       </ul>
     </nav>
@@ -41,27 +43,59 @@ function renderNav(basePath = '') {
       <button class="lang-btn" data-lang="zh">中文</button>
       <button class="lang-btn" data-lang="en">EN</button>
     </div>
-    <button class="nav-hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
   `;
 
-  // Dropdown hover + mobile click behaviour
-  document.querySelectorAll('.nav-dropdown').forEach(item => {
-    item.addEventListener('mouseenter', () => item.classList.add('open'));
-    item.addEventListener('mouseleave', () => item.classList.remove('open'));
-    // 移动端点击展开
-    item.querySelector('a').addEventListener('click', e => {
+  // ── Hamburger: direct reference, no document delegation ──
+  const hamburgerBtn = document.getElementById('navHamburger');
+  const navLinksList = document.getElementById('navLinksList');
+
+  hamburgerBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var isOpen = navLinksList.classList.toggle('open');
+    hamburgerBtn.classList.toggle('open', isOpen);
+  });
+
+  // ── Desktop dropdown: hover only ──
+  document.querySelectorAll('.nav-dropdown').forEach(function (item) {
+    item.addEventListener('mouseenter', function () {
+      if (window.innerWidth > 768) item.classList.add('open');
+    });
+    item.addEventListener('mouseleave', function () {
+      if (window.innerWidth > 768) item.classList.remove('open');
+    });
+  });
+
+  // ── Mobile dropdown: first tap = expand, second tap = navigate ──
+  document.querySelectorAll('.nav-dropdown > a').forEach(function (link) {
+    link.addEventListener('click', function (e) {
       if (window.innerWidth <= 768) {
-        e.preventDefault();
-        item.classList.toggle('open');
+        var parent = this.parentElement;
+        if (!parent.classList.contains('open')) {
+          // First tap: just open the sub-menu, don't navigate
+          e.preventDefault();
+          e.stopPropagation();
+          // Close any other open dropdowns first
+          document.querySelectorAll('.nav-dropdown').forEach(function(d) {
+            if (d !== parent) d.classList.remove('open');
+          });
+          parent.classList.add('open');
+        }
+        // Second tap (already open): allow navigation naturally
       }
     });
   });
-  // 点击外部关闭所有下拉
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.nav-dropdown')) {
-      document.querySelectorAll('.nav-dropdown').forEach(i => i.classList.remove('open'));
+
+  // ── Click outside: close desktop dropdowns only ──
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.nav-dropdown') && !e.target.closest('#navHamburger')) {
+      document.querySelectorAll('.nav-dropdown').forEach(function (i) {
+        i.classList.remove('open');
+      });
     }
   });
 }

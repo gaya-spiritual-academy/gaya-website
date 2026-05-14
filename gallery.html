@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>光迹 Gallery · Gaya Spiritual Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* ── Gallery Hero ── */
+    .gallery-hero {
+      min-height: 44vh;
+      display: flex; align-items: flex-end;
+      position: relative; overflow: hidden;
+      padding-top: var(--nav-h);
+      background: #0A2E3C;
+    }
+    .gallery-hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(42,172,184,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42,172,184,0.06) 1px, transparent 1px);
+      background-size: 56px 56px;
+    }
+    .gallery-hero-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 0%, rgba(42,172,184,0.18) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 100%, rgba(201,162,39,0.08) 0%, transparent 50%);
+    }
+    .gallery-hero-inner {
+      position: relative; z-index: 2;
+      width: 100%; max-width: var(--container);
+      margin: 0 auto;
+      padding: clamp(40px,6vw,80px) clamp(20px,4vw,60px);
+    }
+    .gallery-hero-label {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .gallery-hero-label::before {
+      content: ''; display: inline-block;
+      width: 28px; height: 1.5px; background: var(--gold);
+    }
+    .gallery-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300; line-height: 1.05;
+      color: white; margin-bottom: 8px;
+    }
+    .gallery-hero-title em {
+      font-style: italic; color: var(--teal-bright);
+    }
+    .gallery-hero-sub {
+      font-size: 0.9rem; color: rgba(255,255,255,0.38);
+      letter-spacing: 0.06em; font-weight: 300;
+      margin-top: 16px;
+    }
+
+    /* ── Filter Tabs ── */
+    .gallery-filter {
+      position: sticky; top: var(--nav-h); z-index: 50;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(42,172,184,0.1);
+      padding: 0 clamp(20px,4vw,60px);
+    }
+    .gallery-filter-inner {
+      max-width: var(--container); margin: 0 auto;
+      display: flex; gap: 0; overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .gallery-filter-inner::-webkit-scrollbar { display: none; }
+    .filter-btn {
+      flex-shrink: 0;
+      padding: 18px 24px;
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-soft); background: none; border: none;
+      cursor: pointer; transition: all 0.2s;
+      position: relative;
+    }
+    .filter-btn::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--teal-bright);
+      transform: scaleX(0); transition: transform 0.2s;
+    }
+    .filter-btn:hover { color: var(--teal-deep); }
+    .filter-btn.active { color: var(--teal-deep); }
+    .filter-btn.active::after { transform: scaleX(1); }
+
+    /* ── Gallery Grid ── */
+    .gallery-section { padding: 60px 0 100px; background: var(--off-white); }
+    .gallery-container {
+      max-width: var(--container); margin: 0 auto;
+      padding: 0 clamp(20px,4vw,60px);
+    }
+
+    /* Category group */
+    .gallery-group { margin-bottom: 72px; }
+    .gallery-group[data-cat] { display: block; }
+    .gallery-group.hidden { display: none; }
+
+    .gallery-group-header {
+      display: flex; align-items: baseline; gap: 20px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(42,172,184,0.12);
+    }
+    .gallery-group-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 300; color: var(--text-dark);
+    }
+    .gallery-group-name em { font-style: italic; color: var(--teal-bright); }
+    .gallery-group-count {
+      font-size: 0.72rem; letter-spacing: 0.15em;
+      color: var(--text-soft); text-transform: uppercase;
+    }
+
+    /* Masonry grid */
+    .gallery-grid {
+      columns: 3;
+      column-gap: 16px;
+    }
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      position: relative; overflow: hidden;
+      border-radius: 8px;
+      cursor: pointer;
+      background: var(--teal-pale);
+    }
+    .gallery-item img {
+      width: 100%; display: block;
+      transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+      border-radius: 8px;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-item-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,46,60,0.7) 0%, transparent 50%);
+      opacity: 0; transition: opacity 0.3s;
+      border-radius: 8px;
+      display: flex; align-items: flex-end;
+      padding: 16px;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-label {
+      font-size: 0.7rem; color: rgba(255,255,255,0.8);
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    /* Reveal animation */
+    .gallery-item {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+    }
+    .gallery-item.visible { opacity: 1; transform: translateY(0); }
+    .gallery-item:hover {
+      box-shadow: 0 12px 40px rgba(10,46,60,0.15);
+    }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(8,28,38,0.96);
+      align-items: center; justify-content: center;
+      padding: 20px;
+      cursor: zoom-out;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox-img {
+      max-width: 90vw; max-height: 88vh;
+      object-fit: contain; border-radius: 6px;
+      box-shadow: 0 0 80px rgba(0,0,0,0.5);
+      cursor: default;
+    }
+    .lightbox-close {
+      position: fixed; top: 24px; right: 28px;
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,0.5); font-size: 1.8rem;
+      line-height: 1; transition: color 0.2s;
+      z-index: 1000;
+    }
+    .lightbox-close:hover { color: white; }
+    .lightbox-caption {
+      position: fixed; bottom: 28px; left: 0; right: 0;
+      text-align: center;
+      font-size: 0.72rem; letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.3); text-transform: uppercase;
+    }
+    .lightbox-nav {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,0.35); font-size: 2rem;
+      padding: 16px; transition: color 0.2s; z-index: 1000;
+    }
+    .lightbox-nav:hover { color: white; }
+    .lightbox-prev { left: 12px; }
+    .lightbox-next { right: 12px; }
+
+    /* ── Empty state ── */
+    .gallery-empty {
+      text-align: center; padding: 80px 20px;
+      color: var(--text-soft);
+      font-size: 0.9rem; letter-spacing: 0.05em;
+      display: none;
+    }
+    .gallery-empty.visible { display: block; }
+
+    /* ── Add more note ── */
+    .gallery-add-note {
+      text-align: center;
+      padding: 48px 20px 0;
+      border-top: 1px solid rgba(42,172,184,0.1);
+      margin-top: 40px;
+    }
+    .gallery-add-note p {
+      font-size: 0.8rem; color: var(--text-soft);
+      line-height: 1.8; max-width: 480px; margin: 0 auto;
+    }
+    .gallery-add-note code {
+      font-size: 0.75rem; background: rgba(42,172,184,0.08);
+      border: 1px solid rgba(42,172,184,0.15);
+      padding: 2px 8px; border-radius: 3px;
+      color: var(--teal-deep);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .gallery-grid { columns: 2; }
+    }
+    @media (max-width: 540px) {
+      .gallery-grid { columns: 2; column-gap: 10px; }
+      .gallery-item { margin-bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="nav" id="nav"></header>
+
+<!-- Hero -->
+<section class="gallery-hero">
+  <div class="gallery-hero-grid"></div>
+  <div class="gallery-hero-glow"></div>
+  <div class="gallery-hero-inner">
+    <div class="gallery-hero-label" data-zh="迦雅灵性学院 · 影像记录" data-en="Gaya Spiritual Academy · Visual Archive">迦雅灵性学院 · 影像记录</div>
+    <h1 class="gallery-hero-title">光迹 <em>Gallery</em></h1>
+    <p class="gallery-hero-sub" data-zh="记录每一个真实发生的转化瞬间" data-en="Moments of genuine transformation, captured in light">记录每一个真实发生的转化瞬间</p>
+  </div>
+</section>
+
+<!-- Filter Tabs -->
+<div class="gallery-filter">
+  <div class="gallery-filter-inner">
+    <button class="filter-btn active" data-filter="all" data-zh="全部" data-en="All">全部</button>
+    <button class="filter-btn" data-filter="insha" data-zh="INSHA 疗愈" data-en="INSHA Healing">INSHA 疗愈</button>
+    <button class="filter-btn" data-filter="cif" data-zh="CIF 先修" data-en="CIF Foundation">CIF 先修</button>
+    <button class="filter-btn" data-filter="aquarius" data-zh="宝瓶教练" data-en="Aquarius Coach">宝瓶教练</button>
+    <button class="filter-btn" data-filter="leadership" data-zh="领导力" data-en="Leadership">领导力</button>
+    <button class="filter-btn" data-filter="events" data-zh="旗舰活动" data-en="Signature Events">旗舰活动</button>
+  </div>
+</div>
+
+<!-- Gallery -->
+<section class="gallery-section">
+  <div class="gallery-container">
+
+    <!-- ══ INSHA 疗愈 ══
+         要增加照片：复制下面的 <div class="gallery-item"> 块，
+         改 src 为新照片路径，data-label 为说明文字
+    -->
+    <div class="gallery-group" data-cat="insha">
+      <div class="gallery-group-header">
+        <h2 class="gallery-group-name">INSHA <em>自然疗法</em></h2>
+        <span class="gallery-group-count" data-zh="5 张" data-en="5 photos">5 张</span>
+      </div>
+      <div class="gallery-grid">
+
+        <div class="gallery-item" data-cat="insha" data-label="INSHA 疗愈培训">
+          <img src="assets/img/Insha1.jpg" alt="INSHA 自然疗法培训" loading="lazy">
+          <div class="gallery-item-overlay"><span class="gallery-item-label">INSHA · 疗愈培训</span></div>
+        </div>
+
+        <div class="gallery-item" data-cat="insha" data-label="INSHA 疗愈培训">
+          <img src="assets/img/Insha2.jpg" alt="INSHA 自然疗法培训" loading="lazy">
+          <div class="gallery-item-overlay"><span class="gallery-item-label">INSHA · 疗愈培训</span></div>
+        </div>
+
+        <div class="gallery-item" data-cat="insha" data-label="INSHA 疗愈培训">
+          <img src="assets/img/Insha3.jpg" alt="INSHA 自然疗法培训" loading="lazy">
+          <div class="gallery-item-overlay"><span class="gallery-item-label">INSHA · 疗愈培训</span></div>
+        </div>
+
+        <div class="gallery-item" data-cat="insha" data-label="INSHA 疗愈培训">
+          <img src="assets/img/Insha4.jpg" alt="INSHA 自然疗法培训" loading="lazy">
+          <div class="gallery-item-overlay"><span class="gallery-item-label">INSHA · 疗愈培训</span></div>
+        </div>
+
+        <div class="gallery-item" data-cat="insha" data-label="INSHA 疗愈培训">
+          <img src="assets/img/Insha5.jpg" alt="INSHA 自然疗法培训" loading="lazy">
+          <div class="gallery-item-overlay"><span class="gallery-item-label">INSHA · 疗愈培训</span></div>
+        </div>
+
+      </div><!-- /gallery-grid -->
+    </div><!-- /gallery-group insha -->
+
+
+    <!-- ══ CIF 先修培训 ══
+         照片就绪后取消注释，把 src 换成真实路径
+    -->
+    <!--
+    <div class="gallery-group" data-cat="cif">
+      <div class="gallery-group-header">
+        <h2 class="gallery-group-name">CIF <em>意识智能先修</em></h2>
+        <span class="gallery-group-count">N 张</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" data-cat="cif" data-label="CIF 2025">
+          <img src="assets/img/CIF1.jpg" alt="CIF 意识智能先修培训" loading="lazy">
+          <div class="gallery-item-overlay"><span class="gallery-item-label">CIF · 2025</span></div>
+        </div>
+      </div>
+    </div>
+    -->
+
+
+    <!-- ══ 宝瓶世纪教练 ══ -->
+    <!--
+    <div class="gallery-group" data-cat="aquarius">
+      <div class="gallery-group-header">
+        <h2 class="gallery-group-name">Aquarius <em>宝瓶世纪教练</em></h2>
+        <span class="gallery-group-count">N 张</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" data-cat="aquarius" data-label="宝瓶营">
+          <img src="assets/img/Aquarius1.jpg" alt="宝瓶世纪教练培训" loading="lazy">
+          <div class="gallery-item-overlay"><span class="gallery-item-label">Aquarius · 宝瓶营</span></div>
+        </div>
+      </div>
+    </div>
+    -->
+
+
+    <!-- ══ 新时代领导力 ══ -->
+    <!--
+    <div class="gallery-group" data-cat="leadership">
+      <div class="gallery-group-header">
+        <h2 class="gallery-group-name">Leadership <em>新时代领导力</em></h2>
+        <span class="gallery-group-count">N 张</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" data-cat="leadership" data-label="领导力工作坊">
+          <img src="assets/img/Leadership1.jpg" alt="新时代领导力培训" loading="lazy">
+          <div class="gallery-item-overlay"><span class="gallery-item-label">Leadership · 工作坊</span></div>
+        </div>
+      </div>
+    </div>
+    -->
+
+
+    <!-- ══ 旗舰活动 ══ -->
+    <!--
+    <div class="gallery-group" data-cat="events">
+      <div class="gallery-group-header">
+        <h2 class="gallery-group-name">Signature <em>旗舰活动</em></h2>
+        <span class="gallery-group-count">N 张</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" data-cat="events" data-label="Gaya Congress">
+          <img src="assets/img/Congress1.jpg" alt="Gaya Congress" loading="lazy">
+          <div class="gallery-item-overlay"><span class="gallery-item-label">Gaya Congress</span></div>
+        </div>
+      </div>
+    </div>
+    -->
+
+
+    <div class="gallery-empty" id="galleryEmpty">
+      <p data-zh="此分类暂无照片" data-en="No photos in this category yet">此分类暂无照片</p>
+    </div>
+
+  </div><!-- /gallery-container -->
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
+<!-- Footer -->
+<footer class="footer" id="footer"></footer>
+
+<!-- WhatsApp Float -->
+<style>
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:998;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:all .25s;text-decoration:none;}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,0.6);}
+.wa-float svg{width:28px;height:28px;fill:white;}
+</style>
+<a href="https://wa.me/60126011607" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script src="assets/js/components.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  renderNav('');
+  renderFooter('');
+
+  // ── Filter logic ──
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const groups = document.querySelectorAll('.gallery-group');
+  const emptyMsg = document.getElementById('galleryEmpty');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const filter = this.dataset.filter;
+
+      // Update active button
+      filterBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+
+      // Show/hide groups
+      let anyVisible = false;
+      groups.forEach(group => {
+        const cat = group.dataset.cat;
+        const show = filter === 'all' || cat === filter;
+        group.classList.toggle('hidden', !show);
+        if (show) anyVisible = true;
+      });
+
+      emptyMsg.classList.toggle('visible', !anyVisible);
+    });
+  });
+
+  // ── Lightbox ──
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  let allItems = [];
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    const item = allItems[index];
+    lightboxImg.src = item.querySelector('img').src;
+    lightboxCaption.textContent = item.dataset.label || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function updateVisibleItems() {
+    allItems = Array.from(document.querySelectorAll('.gallery-group:not(.hidden) .gallery-item'));
+  }
+
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', function() {
+      updateVisibleItems();
+      const index = allItems.indexOf(this);
+      if (index !== -1) openLightbox(index);
+    });
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.getElementById('lightboxPrev').addEventListener('click', function(e) {
+    e.stopPropagation();
+    currentIndex = (currentIndex - 1 + allItems.length) % allItems.length;
+    openLightbox(currentIndex);
+  });
+  document.getElementById('lightboxNext').addEventListener('click', function(e) {
+    e.stopPropagation();
+    currentIndex = (currentIndex + 1) % allItems.length;
+    openLightbox(currentIndex);
+  });
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') document.getElementById('lightboxPrev').click();
+    if (e.key === 'ArrowRight') document.getElementById('lightboxNext').click();
+  });
+
+  // ── Scroll reveal ──
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.gallery-item').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

@@ -384,11 +384,7 @@
   }, { threshold: 0.08 });
   reveals.forEach(el => io.observe(el));
 
-  document.addEventListener('click', e => {
-    if (e.target.closest('.nav-hamburger')) {
-      document.querySelector('.nav-links')?.classList.toggle('open');
-    }
-  });
+  // Hamburger handled by components.js
 </script>
 </body>
 </html>

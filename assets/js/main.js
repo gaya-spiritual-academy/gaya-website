@@ -2,7 +2,6 @@
 // GAYA SPIRITUAL ACADEMY — Global JavaScript
 // ============================================================
 
-// Language toggle
 const LANG_KEY = 'gaya_lang';
 let currentLang = localStorage.getItem(LANG_KEY) || 'zh';
 
@@ -25,34 +24,19 @@ function setLang(lang) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Init language
   setLang(currentLang);
 
-  // Lang buttons
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => setLang(btn.dataset.lang));
   });
 
-  // Mobile menu
-  const hamburger = document.querySelector('.nav-hamburger');
-  const navLinks = document.querySelector('.nav-links');
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      const spans = hamburger.querySelectorAll('span');
-      const isOpen = navLinks.classList.contains('open');
-      spans[0].style.transform = isOpen ? 'rotate(45deg) translate(4px, 4.5px)' : '';
-      spans[1].style.opacity = isOpen ? '0' : '1';
-      spans[2].style.transform = isOpen ? 'rotate(-45deg) translate(4px, -4.5px)' : '';
-    });
-    navLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => navLinks.classList.remove('open'));
-    });
-  }
+  // NOTE: Hamburger is handled inside components.js renderNav()
+  // Do NOT add hamburger logic here — nav HTML is injected dynamically
+  // so querySelector('.nav-hamburger') returns null at DOMContentLoaded time
 
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const delay = entry.target.dataset.delay || 0;
         setTimeout(() => entry.target.classList.add('visible'), delay);
@@ -65,16 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!el.dataset.delay) el.dataset.delay = (i % 4) * 80;
     observer.observe(el);
   });
-
-  // Nav background on scroll
-  const nav = document.querySelector('.nav');
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      nav.style.background = window.scrollY > 60
-        ? 'rgba(13, 17, 23, 0.98)'
-        : 'rgba(13, 17, 23, 0.92)';
-    });
-  }
 
   // Active nav link
   const path = window.location.pathname;

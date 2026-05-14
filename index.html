@@ -439,7 +439,7 @@
         <span class="zh" data-zh="Gaya Spiritual Academy" data-en="Gaya Spiritual Academy">Gaya Spiritual Academy</span>
       </h1>
       <p class="home-hero-tagline" data-zh="让灵性生活化，让生活灵性化" data-en="Making spirituality alive, making life spiritual">让灵性生活化，让生活灵性化</p>
-      <p class="home-hero-desc" data-zh="由 Dr. Bonshuwa Chua 创立，帮助领导者、疗愈师与觉醒探索者，从意识深处发掘自身美好的品质与潜能，创建充满爱、光与喜悦的灵性生命。" data-en="Founded by Dr. Bonshuwa Chua to help leaders, healers, and awakening seekers discover their beautiful qualities and potential from within, creating a life filled with love, light, and joy.">由 Dr. Bonshuwa Chua 创立，帮助领导者、疗愈师与觉醒探索者，从意识深处发掘自身美好的品质与潜能，创建充满爱、光与喜悦的灵性生命。</p>
+      <p class="home-hero-desc" data-zh="迦雅灵性学院结合意识成长、能量疗愈、内在领导力与灵性实践，帮助人们从迷失、压抑与混乱中，重新找回真实、稳定与创造力。由 Dr. Bonshuwa Chua 创立，服务领导者、疗愈师与一切渴望真实转化的觉醒探索者。" data-en="Gaya Spiritual Academy integrates conscious growth, energy healing, inner leadership, and spiritual practice — helping people move from confusion and suppression back to clarity, stability, and creative power. Founded by Dr. Bonshuwa Chua, serving leaders, healers, and all who seek genuine transformation.">迦雅灵性学院结合意识成长、能量疗愈、内在领导力与灵性实践，帮助人们从迷失、压抑与混乱中，重新找回真实、稳定与创造力。由 Dr. Bonshuwa Chua 创立，服务领导者、疗愈师与一切渴望真实转化的觉醒探索者。</p>
       <div class="home-hero-cta">
         <a href="courses/index.html" class="btn-primary" data-zh="探索培训项目" data-en="Explore Programmes">探索培训项目</a>
         <a href="services/index.html" class="btn-outline" style="color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.25);" data-zh="疗愈与咨询" data-en="Healing &amp; Consultation">疗愈与咨询</a>
@@ -762,12 +762,7 @@
   }, { threshold: 0.09 });
   reveals.forEach(el => io.observe(el));
 
-  // Hamburger
-  document.addEventListener('click', e => {
-    if (e.target.closest('.nav-hamburger')) {
-      document.querySelector('.nav-links')?.classList.toggle('open');
-    }
-  });
+  // Hamburger handled by components.js
 </script>
 </body>
 </html>
