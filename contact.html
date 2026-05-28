@@ -1,14 +1,43 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-MY">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-zh="联络我们 — Gaya Spiritual Academy" data-en="Contact Us — Gaya Spiritual Academy">联络我们 — Gaya Spiritual Academy</title>
-  <meta name="description" content="联络 Gaya Spiritual Academy — 预约咨询、培训报名或一般查询。">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Contact Gaya Spiritual Academy — Conscious Leadership & Healing Asia | KL Malaysia</title>
+  <meta name="description" content="Contact Gaya Spiritual Academy — serving clients across Malaysia, Singapore, Hong Kong, Taiwan, China, Australia & 9 countries. WhatsApp +60126011607 · info@gayaspiritualacademy.com. Kelana Jaya, Petaling Jaya.">
+  <meta name="keywords" content="Gaya Spiritual Academy contact, conscious leadership Asia enquiry, spiritual healing consultation Malaysia Singapore, 迦雅灵性学院联络, spiritual academy Asia contact, energy healing consultation KL">
+  <link rel="canonical" href="https://gayaspiritualacademy.com/contact.html">
+  <link rel="alternate" hreflang="zh" href="https://gayaspiritualacademy.com/contact.html">
+  <link rel="alternate" hreflang="en" href="https://gayaspiritualacademy.com/contact.html">
+  <link rel="alternate" hreflang="zh-MY" href="https://gayaspiritualacademy.com/contact.html">
+  <link rel="alternate" hreflang="zh-SG" href="https://gayaspiritualacademy.com/contact.html">
+  <link rel="alternate" hreflang="zh-TW" href="https://gayaspiritualacademy.com/contact.html">
+  <link rel="alternate" hreflang="zh-HK" href="https://gayaspiritualacademy.com/contact.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://gayaspiritualacademy.com/contact.html">
+  <link rel="alternate" hreflang="en-AU" href="https://gayaspiritualacademy.com/contact.html">
+  <link rel="alternate" hreflang="en-NZ" href="https://gayaspiritualacademy.com/contact.html">
+  <link rel="alternate" hreflang="x-default" href="https://gayaspiritualacademy.com/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gayaspiritualacademy.com/contact.html">
+  <meta property="og:site_name" content="Gaya Spiritual Academy 迦雅灵性学院">
+  <meta property="og:title" content="Contact Gaya Spiritual Academy — Conscious Leadership & Healing Asia | KL Malaysia">
+  <meta property="og:description" content="Contact Gaya Spiritual Academy — serving clients across Malaysia, Singapore, Hong Kong, Taiwan, China, Australia & 9 countries. WhatsApp +60126011607 · info@gayaspiritualacademy.com. Kelana Jaya, Petaling Jaya.">
+  <meta property="og:image" content="https://gayaspiritualacademy.com/assets/img/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="zh_MY">
+  <meta property="og:locale:alternate" content="en_MY">
+  <meta property="og:locale:alternate" content="zh_SG">
+  <meta property="og:locale:alternate" content="zh_TW">
+  <meta property="og:locale:alternate" content="zh_HK">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact Gaya Spiritual Academy — Conscious Leadership & Healing Asia | KL Malaysia">
+  <meta name="twitter:description" content="Contact Gaya Spiritual Academy — serving clients across Malaysia, Singapore, Hong Kong, Taiwan, China, Australia & 9 countries. WhatsApp +60126011607 · info@gayaspiritualacademy.com. Kelana Jaya, Petaling Jaya.">
+  <meta name="twitter:image" content="https://gayaspiritualacademy.com/assets/img/og-cover.jpg">
+  <meta name="geo.region" content="MY-10">
+  <meta name="geo.placename" content="Petaling Jaya, Selangor, Malaysia">
+  <meta name="geo.position" content="3.0941;101.5826">
+  <meta name="ICBM" content="3.0941, 101.5826">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- Global styles -->
@@ -721,10 +750,24 @@
   </svg>
 </a>
 
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <!-- Scripts -->
 <script src="assets/js/components.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
+  // ── EmailJS Config — replace with your actual IDs ──
+  const EJS_PUBLIC_KEY  = 'UmWGqr9yh_ZTI-h2c';
+  const EJS_SERVICE_ID  = 'service_icd8ld7';
+  const EJS_TEMPLATE_ID = 'template_c9by7c4';
+
+  // ── Mailchimp URL ──
+  const MC_URL = 'https://clicksummits.us11.list-manage.com/subscribe/post?u=c39b88a16808ce2df654cfa2b&id=8c6c6e2288&f_id=006ba6e1f0';
+
+  // Init EmailJS
+  emailjs.init({ publicKey: EJS_PUBLIC_KEY });
+
   // Init nav & footer
   renderNav('');
   renderFooter('');
@@ -740,24 +783,31 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // ── Mailchimp Embedded Form URL (official, no API key needed) ──
-  const MC_URL = 'https://clicksummits.us11.list-manage.com/subscribe/post?u=c39b88a16808ce2df654cfa2b&id=8c6c6e2288&f_id=006ba6e1f0';
+  // ── Form Submit ──
+  const form       = document.getElementById('contactForm');
+  const formBody   = document.getElementById('formBody');
+  const formSuccess= document.getElementById('formSuccess');
+  const submitBtn  = document.getElementById('submitBtn');
 
-  // ── Form Submit via hidden iframe (sends all fields to Mailchimp) ──
-  const form = document.getElementById('contactForm');
-  const formBody = document.getElementById('formBody');
-  const formSuccess = document.getElementById('formSuccess');
-  const submitBtn = document.getElementById('submitBtn');
+  // Interest label map for readable email notifications
+  const interestLabels = {
+    cif: 'CIF 意识智能', aquarius: '宝瓶世纪教练', insha: 'INSHA 疗愈',
+    fengshui: '能量风水', akasha: '阿卡莎阅读', corporate: '企业咨询',
+    events: '旗舰活动', other: '其他'
+  };
 
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    const name      = form.querySelector('#fname').value.trim();
-    const email     = form.querySelector('#femail').value.trim();
-    const phone     = form.querySelector('#fphone').value.trim();
-    const message   = form.querySelector('#fmsg').value.trim();
-    const interests = [...form.querySelectorAll('input[name=interest]:checked')]
-      .map(cb => cb.value).join(', ');
+    const name     = form.querySelector('#fname').value.trim();
+    const email    = form.querySelector('#femail').value.trim();
+    const phone    = form.querySelector('#fphone').value.trim();
+    const message  = form.querySelector('#fmsg').value.trim();
+    const lang     = form.querySelector('#flang').value;
+    const source   = form.querySelector('#fhear').value;
+    const checkedBoxes = [...form.querySelectorAll('input[name=interest]:checked')];
+    const interestValues = checkedBoxes.map(cb => cb.value).join(', ');
+    const interestDisplay = checkedBoxes.map(cb => interestLabels[cb.value] || cb.value).join(' · ') || '（未选择）';
 
     // Validation
     if (!name || !email || !message) {
@@ -783,7 +833,24 @@
     const firstName = nameParts[0];
     const lastName  = nameParts.slice(1).join(' ') || '';
 
-    // Create hidden iframe as target (avoids page redirect)
+    // ── 1. EmailJS — send notification email to info@gayaspiritualacademy.com ──
+    const ejsParams = {
+      from_name:    name,
+      from_email:   email,
+      phone:        phone || '（未填写）',
+      language:     lang || '（未选择）',
+      source:       source || '（未选择）',
+      interests:    interestDisplay,
+      message:      message,
+      reply_to:     email
+    };
+
+    // Fire EmailJS (don't await — don't block success flow if it's slow)
+    emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, ejsParams).catch(err => {
+      console.warn('EmailJS send failed (non-critical):', err);
+    });
+
+    // ── 2. Mailchimp — add contact to audience list via hidden iframe ──
     const iframeName = 'mc-hidden-iframe';
     let iframe = document.getElementById(iframeName);
     if (!iframe) {
@@ -794,28 +861,25 @@
       document.body.appendChild(iframe);
     }
 
-    // Build a hidden form and submit it into the iframe
     const mcForm = document.createElement('form');
     mcForm.method = 'POST';
     mcForm.action = MC_URL;
     mcForm.target = iframeName;
     mcForm.style.display = 'none';
 
-    const fields = {
-      'EMAIL':    email,
-      'FNAME':    firstName,
-      'LNAME':    lastName,
-      'PHONE':    phone,
-      'MESSAGE':  message,
-      'INTERESTS2': interests,
-      'b_c39b88a16808ce2df654cfa2b_8c6c6e2288': '' // honeypot
+    const mcFields = {
+      'EMAIL':      email,
+      'FNAME':      firstName,
+      'LNAME':      lastName,
+      'PHONE':      phone,
+      'MESSAGE':    message,
+      'INTERESTS2': interestDisplay,   // human-readable labels
+      'b_c39b88a16808ce2df654cfa2b_8c6c6e2288': '' // honeypot (required by Mailchimp)
     };
 
-    Object.entries(fields).forEach(([key, val]) => {
+    Object.entries(mcFields).forEach(([key, val]) => {
       const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = key;
-      input.value = val;
+      input.type = 'hidden'; input.name = key; input.value = val;
       mcForm.appendChild(input);
     });
 
@@ -823,16 +887,16 @@
     mcForm.submit();
     document.body.removeChild(mcForm);
 
-    // Show success after short delay
+    // ── 3. Show success + prefill WhatsApp ──
     setTimeout(() => {
       formBody.style.display = 'none';
       formSuccess.classList.add('visible');
 
       const waMsg = encodeURIComponent(
-        `您好，我是 ${name}。\n邮件：${email}\n兴趣：${interests || '（未选择）'}\n\n${message}`
+        `您好，我是 ${name}。\n电邮：${email}${phone ? '\n电话：' + phone : ''}\n感兴趣：${interestDisplay}\n\n${message}`
       );
       formSuccess.querySelector('a').href = `https://wa.me/60126011607?text=${waMsg}`;
-    }, 1500);
+    }, 1200);
   });
 
   // Placeholder i18n for select options
@@ -840,9 +904,6 @@
     document.querySelectorAll('select option[data-zh],[data-en]').forEach(opt => {
       const lang = document.documentElement.lang || 'zh';
       opt.textContent = opt.getAttribute(`data-${lang}`) || opt.textContent;
-    });
-    document.querySelectorAll('input[placeholder]').forEach(inp => {
-      // Re-apply placeholder based on lang if needed
     });
   });
 </script>

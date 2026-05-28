@@ -1,11 +1,43 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-MY">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>宝瓶世纪教练 Aquarius Coach · Gaya Spiritual Academy</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Aquarius Coach Certification — Conscious Coach & Spiritual Coach Training Asia | Gaya Spiritual Academy</title>
+  <meta name="description" content="Conscious coach certification Asia — Aquarius Coach: 10 blocks, 5 levels. Become a certified conscious coach and energy healer. Participants from Malaysia, Singapore, Hong Kong, Taiwan, Australia & across Asia. By Dr. Bonshuwa Chua.">
+  <meta name="keywords" content="conscious coach certification Asia, spiritual coach certification Malaysia Singapore, Aquarius Coach Asia, energy healer certification Asia Pacific, coach certification Asia, 意识教练认证亚洲, spiritual coach Asia, holistic coach certification Asia, conscious coaching Asia Pacific">
+  <link rel="canonical" href="https://gayaspiritualacademy.com/courses/aquarius.html">
+  <link rel="alternate" hreflang="zh" href="https://gayaspiritualacademy.com/courses/aquarius.html">
+  <link rel="alternate" hreflang="en" href="https://gayaspiritualacademy.com/courses/aquarius.html">
+  <link rel="alternate" hreflang="zh-MY" href="https://gayaspiritualacademy.com/courses/aquarius.html">
+  <link rel="alternate" hreflang="zh-SG" href="https://gayaspiritualacademy.com/courses/aquarius.html">
+  <link rel="alternate" hreflang="zh-TW" href="https://gayaspiritualacademy.com/courses/aquarius.html">
+  <link rel="alternate" hreflang="zh-HK" href="https://gayaspiritualacademy.com/courses/aquarius.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://gayaspiritualacademy.com/courses/aquarius.html">
+  <link rel="alternate" hreflang="en-AU" href="https://gayaspiritualacademy.com/courses/aquarius.html">
+  <link rel="alternate" hreflang="en-NZ" href="https://gayaspiritualacademy.com/courses/aquarius.html">
+  <link rel="alternate" hreflang="x-default" href="https://gayaspiritualacademy.com/courses/aquarius.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gayaspiritualacademy.com/courses/aquarius.html">
+  <meta property="og:site_name" content="Gaya Spiritual Academy 迦雅灵性学院">
+  <meta property="og:title" content="Aquarius Coach Certification — Conscious Coach & Spiritual Coach Training Asia | Gaya Spiritual Academy">
+  <meta property="og:description" content="Conscious coach certification Asia — Aquarius Coach: 10 blocks, 5 levels. Become a certified conscious coach and energy healer. Participants from Malaysia, Singapore, Hong Kong, Taiwan, Australia & across Asia. By Dr. Bonshuwa Chua.">
+  <meta property="og:image" content="https://gayaspiritualacademy.com/assets/img/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="zh_MY">
+  <meta property="og:locale:alternate" content="en_MY">
+  <meta property="og:locale:alternate" content="zh_SG">
+  <meta property="og:locale:alternate" content="zh_TW">
+  <meta property="og:locale:alternate" content="zh_HK">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aquarius Coach Certification — Conscious Coach & Spiritual Coach Training Asia | Gaya Spiritual Academy">
+  <meta name="twitter:description" content="Conscious coach certification Asia — Aquarius Coach: 10 blocks, 5 levels. Become a certified conscious coach and energy healer. Participants from Malaysia, Singapore, Hong Kong, Taiwan, Australia & across Asia. By Dr. Bonshuwa Chua.">
+  <meta name="twitter:image" content="https://gayaspiritualacademy.com/assets/img/og-cover.jpg">
+  <meta name="geo.region" content="MY-10">
+  <meta name="geo.placename" content="Petaling Jaya, Selangor, Malaysia">
+  <meta name="geo.position" content="3.0941;101.5826">
+  <meta name="ICBM" content="3.0941, 101.5826">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="course.css">
   <style>
@@ -108,8 +140,34 @@
       padding: 0; margin-bottom: 16px; transition: all 0.3s var(--ease);
       position: relative; overflow: hidden;
     }
-    .ac-level-card-body { padding: 28px 36px 32px; }
-    .ac-level-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; }
+    .ac-level-card-img {
+      width: 100%; height: 220px;
+      object-fit: cover; object-position: center;
+      display: block; flex-shrink: 0;
+      filter: saturate(0.8) brightness(0.92);
+      transition: transform 0.5s ease, filter 0.4s;
+    }
+    .ac-level-card:hover .ac-level-card-img {
+      transform: scale(1.03);
+      filter: saturate(0.95) brightness(1.0);
+    }
+    .ac-level-card-img-wrap {
+      overflow: hidden; position: relative; flex-shrink: 0;
+    }
+    .ac-level-card-img-wrap::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, white);
+      pointer-events: none;
+    }
+    .ac-level-card.gold .ac-level-card-img-wrap::after {
+      background: linear-gradient(to bottom, transparent, white);
+    }
+    .ac-level-card.mentor .ac-level-card-img-wrap::after {
+      background: linear-gradient(to bottom, transparent, rgba(240,238,255,0.8));
+    }
+    .ac-level-card-body { padding: 20px 36px 32px; }
+    .ac-level-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; z-index: 3; }
     .ac-level-card.teal::before { background: var(--teal-bright); }
     .ac-level-card.gold::before { background: var(--gold); }
     .ac-level-card.mentor::before { background: linear-gradient(to bottom, var(--indigo), var(--teal-bright)); }
@@ -229,7 +287,9 @@
     }
     @media (max-width: 560px) {
       .ac-level-badge { width: 40px; height: 40px; font-size: 0.85rem; }
-      .ac-level-card { padding: 24px 18px; }
+      .ac-level-card { padding: 0; }
+      .ac-level-card-body { padding: 16px 20px 24px; }
+      .ac-level-card-img { height: 180px; }
       .ac-level-header { flex-direction: column; }
     }
   </style>
@@ -386,9 +446,10 @@
           <div class="ac-level-line"></div>
         </div>
         <div class="ac-level-card teal">
-          <div style="overflow:hidden;height:200px;border-radius:0;">
-            <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=800&q=80"
-              alt="Space Feng Shui" style="width:100%;height:100%;object-fit:cover;filter:saturate(0.75) brightness(0.9);">
+<div class="ac-level-card-img-wrap">
+            <img class="ac-level-card-img"
+              src="../assets/img/level1-banner.jpg"
+              alt="L1">
           </div>
           <div class="ac-level-card-body">
           <div class="ac-level-header">
@@ -429,9 +490,10 @@
           <div class="ac-level-line"></div>
         </div>
         <div class="ac-level-card teal">
-          <div style="overflow:hidden;height:200px;border-radius:0;">
-            <img src="https://images.unsplash.com/photo-1474418397713-7ede21d49118?w=800&q=80"
-              alt="Healing constellation" style="width:100%;height:100%;object-fit:cover;filter:saturate(0.75) brightness(0.9);">
+<div class="ac-level-card-img-wrap">
+            <img class="ac-level-card-img"
+              src="../assets/img/level2-banner.jpg"
+              alt="L2">
           </div>
           <div class="ac-level-card-body">
           <div class="ac-level-header">
@@ -472,9 +534,10 @@
           <div class="ac-level-line"></div>
         </div>
         <div class="ac-level-card teal">
-          <div style="overflow:hidden;height:200px;border-radius:0;">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
-              alt="Transformation leadership" style="width:100%;height:100%;object-fit:cover;filter:saturate(0.75) brightness(0.88);object-position:center top;">
+<div class="ac-level-card-img-wrap">
+            <img class="ac-level-card-img"
+              src="../assets/img/level3-banner.jpg"
+              alt="L3">
           </div>
           <div class="ac-level-card-body">
           <div class="ac-level-header">
@@ -515,9 +578,10 @@
           <div class="ac-level-line"></div>
         </div>
         <div class="ac-level-card gold">
-          <div style="overflow:hidden;height:200px;border-radius:0;">
-            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
-              alt="Vision integration" style="width:100%;height:100%;object-fit:cover;filter:saturate(0.8) brightness(0.85);">
+<div class="ac-level-card-img-wrap">
+            <img class="ac-level-card-img"
+              src="../assets/img/level4-banner.jpg"
+              alt="L4">
           </div>
           <div class="ac-level-card-body">
           <div class="ac-level-header">
@@ -557,9 +621,10 @@
           <div class="ac-level-line last"></div>
         </div>
         <div class="ac-level-card mentor">
-          <div style="overflow:hidden;height:200px;border-radius:0;">
-            <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80"
-              alt="Legacy mentor stars" style="width:100%;height:100%;object-fit:cover;filter:saturate(0.6) brightness(0.8);">
+<div class="ac-level-card-img-wrap">
+            <img class="ac-level-card-img"
+              src="../assets/img/level5-banner.jpg"
+              alt="L5">
           </div>
           <div class="ac-level-card-body">
           <div class="ac-level-header">
@@ -617,12 +682,11 @@
 <!-- WHAT YOU GAIN -->
 <section class="section section-offwhite">
   <div class="container">
-    <div class="cif-resonance-grid reveal">
-      <div>
+    <div class="reveal">
         <div class="section-label" data-zh="完成认证，你将具备" data-en="Upon Certification, You Will Have">完成认证，你将具备</div>
         <h2 class="section-title" data-zh="真实的<em>执业能力</em>" data-en="Real <em>Practice Abilities</em>">真实的<em>执业能力</em></h2>
         <div class="gold-line"></div>
-        <p style="color:var(--text-mid);font-size:0.95rem;line-height:1.9;margin-bottom:28px;font-weight:300;" data-zh="这不只是一套技能认证——这是你整个存在的转化。每一项能力都经过真实实践、个案服务与导师评估验证。" data-en="This is not just a skills certification — it is the transformation of your whole being. Every ability is validated through real practice, client service and mentor assessment.">这不只是一套技能认证——这是你整个存在的转化。每一项能力都经过真实实践、个案服务与导师评估验证。</p>
+        <p style="color:var(--text-mid);font-size:0.95rem;line-height:1.9;margin-bottom:28px;font-weight:300;max-width:640px;" data-zh="这不只是一套技能认证——这是你整个存在的转化。每一项能力都经过真实实践、个案服务与导师评估验证。" data-en="This is not just a skills certification — it is the transformation of your whole being. Every ability is validated through real practice, client service and mentor assessment.">这不只是一套技能认证——这是你整个存在的转化。每一项能力都经过真实实践、个案服务与导师评估验证。</p>
         <div class="cif-pain-points">
           <div class="pain-item" data-zh="✦ 能量风水执业能力 — 疗愈住宅、商业与大地空间" data-en="✦ Energy Feng Shui practice — homes, businesses & land">✦ 能量风水执业能力 — 疗愈住宅、商业与大地空间</div>
           <div class="pain-item" data-zh="✦ 萨满工具 — 发声、力量动物、回溯" data-en="✦ Shamanic tools — toning, power animals, regression">✦ 萨满工具 — 发声、力量动物、回溯</div>
@@ -632,10 +696,6 @@
           <div class="pain-item" data-zh="✦ 个人服务路线图与真实收费服务体系" data-en="✦ Personal service roadmap & real charged service system">✦ 个人服务路线图与真实收费服务体系</div>
           <div class="pain-item" data-zh="✦ 宝瓶世纪教练国际认证证书" data-en="✦ International Aquarius Coach Certification Certificate">✦ 宝瓶世纪教练国际认证证书</div>
         </div>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:center;">
-        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=520&q=80" alt="Aquarius Coach journey" style="width:100%;max-width:420px;border-radius:2px;object-fit:cover;height:420px;filter:saturate(0.85);">
-      </div>
     </div>
   </div>
 </section>

@@ -1,0 +1,32 @@
+# =============================================
+# Gaya Spiritual Academy — Netlify Redirects
+# 全部旧URL → 新页面 (301)
+# =============================================
+
+# ── www → non-www 统一域名 ──────────────────
+https://www.gayaspiritualacademy.com/*   https://gayaspiritualacademy.com/:splat   301!
+
+# ── 旧博客/post 页面 ───────────────────────
+/blog                                    /blog/conscious-leadership-asia-perspective.html   301
+/post/*                                  /blog/conscious-leadership-asia-perspective.html   301
+
+# ── 旧课程/疗愈页面 ───────────────────────
+/insha                                   /courses/insha.html                                301
+/insha疗愈                               /courses/insha.html                                301
+/副本-副本-insha-自然神圣疗法            /courses/insha.html                                301
+/副本-副本-insha*                        /courses/insha.html                                301
+/piga疗愈                                /courses/piga.html                                 301
+/黄金世纪                                /courses/piga.html                                 301
+/副本-黄金世纪                           /courses/piga.html                                 301
+/疗愈项目                                /services/index.html                               301
+
+# ── 旧 About / Contact 页面 ───────────────
+/about-1                                 /about.html                                        301
+/about-2                                 /about.html                                        301
+/about-3                                 /about.html                                        301
+/contact-4                               /contact.html                                      301
+
+# ── 其他旧路径 ────────────────────────────
+/宝瓶世纪                                /courses/aquarius.html                             301
+/领导力                                  /courses/leadership.html                           301
+/黄金世纪光之小孩                        /courses/index.html                                301
