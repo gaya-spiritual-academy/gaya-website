@@ -372,7 +372,10 @@ function renderFooter(basePath = '') {
       </div>
       <div class="footer-bottom">
         <span>© 2026 Gaya Spiritual Academy Sdn Bhd. <span data-zh="版权所有" data-en="All rights reserved.">版权所有</span></span>
-        <span style="font-size:0.72rem;letter-spacing:0.1em;color:rgba(247,243,236,0.25);">FOUNDED BY DR. BONSHUWA CHUA</span>
+        <span style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
+          <a href="${basePath}legal.html" style="font-size:0.72rem;color:rgba(247,243,236,0.35);transition:color 0.2s;" onmouseover="this.style.color='var(--teal-bright)'" onmouseout="this.style.color='rgba(247,243,236,0.35)'" data-zh="服务条款 · 隐私权 · 退款政策" data-en="Terms · Privacy · Refund">服务条款 · 隐私权 · 退款政策</a>
+          <span style="font-size:0.72rem;letter-spacing:0.1em;color:rgba(247,243,236,0.25);">FOUNDED BY DR. BONSHUWA CHUA</span>
+        </span>
       </div>
     </div>
   `;
