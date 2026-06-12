@@ -293,6 +293,17 @@
   </div>
 </section>
 
+<!-- ── UPCOMING EVENTS ── -->
+<section style="background:var(--off-white);padding:64px 0 48px;">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:32px;">
+      <div class="section-label" data-zh="即将举办" data-en="Upcoming Events">即将举办</div>
+      <h2 class="section-title" data-zh="近期活动 · <em>立即报名</em>" data-en="Coming Up · <em>Register Now</em>">近期活动 · <em>立即报名</em></h2>
+    </div>
+    <div id="upcoming-events-cards"></div>
+  </div>
+</section>
+
 <!-- ── Event Features ── -->
 <section class="evt-features">
   <div class="evt-features-grid">
@@ -410,6 +421,7 @@
 <script>
   renderNav('../');
   renderFooter('../');
+  renderUpcomingEvents('upcoming-events-cards', '../', { style: 'cards' });
 
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {

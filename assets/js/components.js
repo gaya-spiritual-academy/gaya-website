@@ -214,6 +214,158 @@ function renderBlogGrid(containerId, basePath, options) {
 }
 
 
+// ============================================================
+// UPCOMING EVENTS — Single Source of Truth
+// 新增活动只需在这里加一条记录，全站自动更新
+// type: 'workshop' | 'training' | 'event'
+// ============================================================
+const UPCOMING_EVENTS = [
+  {
+    id: 'workshop-pj-jul2026',
+    type: 'workshop',
+    titleZh: '领导力工作坊',
+    titleEn: 'Leadership Workshop',
+    dateDisplay: '7月11日, 2026',
+    dateDisplayEn: 'Jul 11, 2026',
+    date: '2026-07-11',
+    venueZh: 'Petaling Jaya · 马来西亚',
+    venueEn: 'Petaling Jaya · Malaysia',
+    url: 'events/leadership-workshop.html',
+    seats: null,
+    priceEarlybird: null,
+    priceFull: 1222,
+    highlight: true,
+  },
+  {
+    id: 'workshop-jb-jul2026',
+    type: 'workshop',
+    titleZh: '领导力工作坊',
+    titleEn: 'Leadership Workshop',
+    dateDisplay: '7月25日, 2026',
+    dateDisplayEn: 'Jul 25, 2026',
+    date: '2026-07-25',
+    venueZh: 'Johor Bahru · 马来西亚',
+    venueEn: 'Johor Bahru · Malaysia',
+    url: 'events/leadership-workshop.html',
+    seats: null,
+    priceEarlybird: null,
+    priceFull: 1222,
+    highlight: true,
+  },
+  {
+    id: 'cif-oct2026',
+    type: 'training',
+    titleZh: 'CIF 意识智能先修培训',
+    titleEn: 'Conscious Intelligence Foundation',
+    dateDisplay: '10月15–18日, 2026',
+    dateDisplayEn: 'Oct 15–18, 2026',
+    date: '2026-10-15',
+    venueZh: 'Kuala Lumpur · 马来西亚',
+    venueEn: 'Kuala Lumpur · Malaysia',
+    url: 'courses/cif.html',
+    seats: 25,
+    priceEarlybird: 10000,
+    priceFull: 10800,
+    highlight: true,
+  },
+];
+
+// ============================================================
+// renderUpcomingEvents(containerId, basePath, options)
+// options.limit      = 显示几条 (default: 全部未过期)
+// options.style      = 'banner' | 'cards' (default: 'banner')
+// options.typeFilter = 'workshop'|'training'|'event'|null
+// ============================================================
+function renderUpcomingEvents(containerId, basePath, options) {
+  options = options || {};
+  var container = document.getElementById(containerId);
+  if (!container) return;
+
+  var today = new Date(); today.setHours(0,0,0,0);
+  var style = options.style || 'banner';
+  var typeFilter = options.typeFilter || null;
+  var lang = 'zh';
+  try { lang = localStorage.getItem('gaya-lang') || 'zh'; } catch(e) {}
+
+  // 过滤已过期，按日期排序
+  var events = UPCOMING_EVENTS.filter(function(e) {
+    var d = new Date(e.date); d.setHours(0,0,0,0);
+    if (d < today) return false;
+    if (typeFilter && e.type !== typeFilter) return false;
+    return true;
+  }).sort(function(a,b){ return new Date(a.date) - new Date(b.date); });
+
+  if (options.limit) events = events.slice(0, options.limit);
+  if (!events.length) { container.style.display = 'none'; return; }
+
+  if (style === 'banner') {
+    // ── 横幅样式（首页 Hero 下方）──
+    container.innerHTML = '<div class="ue-banner-inner">'
+      + '<div class="ue-banner-label" data-zh="即将举办" data-en="Upcoming">即将举办</div>'
+      + '<div class="ue-banner-scroll">'
+      + events.map(function(e) {
+          var typeColor = e.type === 'training' ? 'var(--gold)' : 'var(--teal-bright)';
+          var title = lang === 'en' ? e.titleEn : e.titleZh;
+          var date  = lang === 'en' ? e.dateDisplayEn : e.dateDisplay;
+          var venue = lang === 'en' ? e.venueEn : e.venueZh;
+          var price = e.priceEarlybird
+            ? '<span class="ue-price" data-zh="早鸟 RM ' + e.priceEarlybird.toLocaleString() + '" data-en="Early Bird RM ' + e.priceEarlybird.toLocaleString() + '">早鸟 RM ' + e.priceEarlybird.toLocaleString() + '</span>'
+            : e.priceFull
+            ? '<span class="ue-price">RM ' + e.priceFull.toLocaleString() + '</span>'
+            : '';
+          var seats = e.seats ? '<span class="ue-seats" data-zh="限 ' + e.seats + ' 位" data-en="' + e.seats + ' seats">限 ' + e.seats + ' 位</span>' : '';
+          return '<a href="' + basePath + e.url + '" class="ue-banner-item">'
+            + '<span class="ue-dot" style="background:' + typeColor + '"></span>'
+            + '<span class="ue-title" data-zh="' + e.titleZh + '" data-en="' + e.titleEn + '">' + title + '</span>'
+            + '<span class="ue-date" data-zh="📅 ' + e.dateDisplay + '" data-en="📅 ' + e.dateDisplayEn + '">📅 ' + date + '</span>'
+            + '<span class="ue-venue" data-zh="📍 ' + e.venueZh + '" data-en="📍 ' + e.venueEn + '">📍 ' + venue + '</span>'
+            + price + seats
+            + '<span class="ue-arrow">→</span>'
+            + '</a>';
+        }).join('<span class="ue-divider" aria-hidden="true">|</span>')
+      + '</div></div>';
+
+  } else {
+    // ── 卡片样式（events/index 用）──
+    container.innerHTML = '<div class="ue-cards-grid">'
+      + events.map(function(e) {
+          var typeLabel = e.type === 'training' ? '培训' : e.type === 'workshop' ? '工作坊' : '活动';
+          var typeLabelEn = e.type === 'training' ? 'Training' : e.type === 'workshop' ? 'Workshop' : 'Event';
+          var typeStyle = e.type === 'training'
+            ? 'background:var(--gold-pale);color:var(--gold-dark);'
+            : 'background:var(--teal-pale);color:var(--teal-bright);';
+          var priceHtml = '';
+          if (e.priceEarlybird) {
+            priceHtml = '<div class="ue-card-price">'
+              + '<span class="ue-card-price-early" data-zh="早鸟 RM ' + e.priceEarlybird.toLocaleString() + '" data-en="Early Bird RM ' + e.priceEarlybird.toLocaleString() + '">早鸟 RM ' + e.priceEarlybird.toLocaleString() + '</span>'
+              + (e.priceFull ? '<span class="ue-card-price-full" data-zh="原价 RM ' + e.priceFull.toLocaleString() + '" data-en="Full RM ' + e.priceFull.toLocaleString() + '">原价 RM ' + e.priceFull.toLocaleString() + '</span>' : '')
+              + '</div>';
+          } else if (e.priceFull) {
+            priceHtml = '<div class="ue-card-price"><span class="ue-card-price-early">RM ' + e.priceFull.toLocaleString() + '</span></div>';
+          }
+          var seatsHtml = e.seats ? '<span class="ue-card-seats" data-zh="⚠️ 限 ' + e.seats + ' 位" data-en="⚠️ ' + e.seats + ' seats only">⚠️ 限 ' + e.seats + ' 位</span>' : '';
+          return '<a href="' + basePath + e.url + '" class="ue-card reveal">'
+            + '<div class="ue-card-top">'
+            + '<span class="ue-card-tag" style="' + typeStyle + '" data-zh="' + typeLabel + '" data-en="' + typeLabelEn + '">' + typeLabel + '</span>'
+            + seatsHtml
+            + '</div>'
+            + '<h3 class="ue-card-title" data-zh="' + e.titleZh + '" data-en="' + e.titleEn + '">' + e.titleZh + '</h3>'
+            + '<div class="ue-card-meta">'
+            + '<span data-zh="📅 ' + e.dateDisplay + '" data-en="📅 ' + e.dateDisplayEn + '">📅 ' + e.dateDisplay + '</span>'
+            + '<span data-zh="📍 ' + e.venueZh + '" data-en="📍 ' + e.venueEn + '">📍 ' + e.venueZh + '</span>'
+            + '</div>'
+            + priceHtml
+            + '<span class="ue-card-cta" data-zh="了解详情 →" data-en="Learn More →">了解详情 →</span>'
+            + '</a>';
+        }).join('')
+      + '</div>';
+  }
+
+  if (typeof applyLang === 'function') {
+    applyLang(localStorage.getItem('gaya-lang') || 'zh');
+  }
+}
+
 function renderNav(basePath = '') {
   const nav = document.getElementById('nav');
   if (!nav) return;

@@ -649,7 +649,13 @@
         <div class="ws-hero-meta">
           <div class="ws-meta-pill">
             <span>📅</span>
-            <div><span class="label" data-zh="日期" data-en="Date">日期</span><span class="val" data-zh="敬请期待" data-en="Coming Soon">敬请期待</span></div>
+            <div>
+              <span class="label" data-zh="即将举办 · 两场" data-en="Upcoming · 2 Sessions">即将举办 · 两场</span>
+              <span class="val" style="display:block;line-height:1.6;">
+                <span style="color:var(--teal-bright);">7月11日</span> · Petaling Jaya<br>
+                <span style="color:var(--gold-bright);">7月25日</span> · Johor Bahru
+              </span>
+            </div>
           </div>
           <div class="ws-meta-pill">
             <span>🕘</span>
@@ -947,7 +953,7 @@
       <div class="ws-next-card teal">
         <div class="ws-next-card-icon">💎</div>
         <h3 class="ws-next-card-title" data-zh="意识智能先修培训 CIF" data-en="Conscious Intelligence Foundation">意识智能先修培训 CIF</h3>
-        <p class="ws-next-card-sub" data-zh="3天 · 2026年6月5–7日 · 限25位" data-en="3 Days · 5–7 June 2026 · Limited to 25">3天 · 2026年6月5–7日 · 限25位</p>
+        <p class="ws-next-card-sub" data-zh="4天 · 2026年10月15–18日 · 限25位" data-en="4 Days · Oct 15–18, 2026 · Limited to 25">4天 · 2026年10月15–18日 · 限25位</p>
         <p class="ws-next-card-desc" data-zh="唤醒领导力钻石，掌握四个细微体（情绪、思维、能量、灵性），连接你的阿卡莎生命蓝图。这是进入所有深度培训的核心基础。" data-en="Awaken the Leadership Diamond, master four subtle bodies (emotional, mental, energetic, spiritual), and connect to your Akasha life blueprint. The foundational core for all deep training.">唤醒领导力钻石，掌握四个细微体（情绪、思维、能量、灵性），连接你的阿卡莎生命蓝图。这是进入所有深度培训的核心基础。</p>
         <a href="../courses/cif.html" class="btn-white-outline" data-zh="了解更多" data-en="Learn More">了解更多</a>
       </div>
@@ -970,8 +976,12 @@
     <p class="ws-register-sub" data-zh="如果你心里有一个「是」——请不要让它等太久。" data-en="If something in you is saying yes — don't let it wait too long.">如果你心里有一个「是」——请不要让它等太久。</p>
     <div class="ws-register-detail">
       <div class="ws-reg-item">
-        <span class="reg-label" data-zh="日期" data-en="Date">日期</span>
-        <span class="reg-val" data-zh="下一场即将公布" data-en="Next Date Coming Soon">下一场即将公布</span>
+        <span class="reg-label" data-zh="场次一" data-en="Session 1">场次一</span>
+        <span class="reg-val">7月11日 · Petaling Jaya</span>
+      </div>
+      <div class="ws-reg-item">
+        <span class="reg-label" data-zh="场次二" data-en="Session 2">场次二</span>
+        <span class="reg-val">7月25日 · Johor Bahru</span>
       </div>
       <div class="ws-reg-item">
         <span class="reg-label" data-zh="时间" data-en="Time">时间</span>
@@ -981,13 +991,9 @@
         <span class="reg-label" data-zh="语言" data-en="Language">语言</span>
         <span class="reg-val" data-zh="中文 & 英文" data-en="Chinese & English">中文 & 英文</span>
       </div>
-      <div class="ws-reg-item">
-        <span class="reg-label" data-zh="地点" data-en="Venue">地点</span>
-        <span class="reg-val" data-zh="马来西亚" data-en="Malaysia">马来西亚</span>
-      </div>
     </div>
     <div class="ws-register-ctas">
-      <a href="https://wa.me/60126011607" class="btn-gold" data-zh="WhatsApp 查询 · 预留席位" data-en="WhatsApp · Reserve Your Seat">WhatsApp 查询 · 预留席位</a>
+      <a href="https://wa.me/60126011607?text=您好，我想报名领导力工作坊（7月11日 PJ 或 7月25日 JB）" class="btn-gold" data-zh="WhatsApp 查询 · 预留席位" data-en="WhatsApp · Reserve Your Seat">WhatsApp 查询 · 预留席位</a>
       <a href="mailto:info@gayaspiritualacademy.com" class="btn-teal" data-zh="Email 查询" data-en="Email Enquiry">Email 查询</a>
     </div>
     <p style="margin-top:24px;font-size:0.75rem;color:rgba(255,255,255,0.25);letter-spacing:0.04em;" data-zh="「商业模式可以被复制。领导力意识，无法被复制。」— Bonshuwa Chua & Insha Gabriele Holz" data-en="&ldquo;Business models can be copied. Leadership consciousness cannot.&rdquo; — Bonshuwa Chua & Insha Gabriele Holz">「商业模式可以被复制。领导力意识，无法被复制。」— Bonshuwa Chua & Insha Gabriele Holz</p>
@@ -1008,6 +1014,20 @@
 <script>
   renderNav('../');
   renderFooter('../');
+
+  // 从 UPCOMING_EVENTS 动态读取工作坊日期
+  (function() {
+    var workshops = (UPCOMING_EVENTS || []).filter(function(e){ return e.type === 'workshop'; });
+    if (!workshops.length) return;
+    var lang = localStorage.getItem('gaya-lang') || 'zh';
+    var lines = workshops.map(function(e){
+      return (lang === 'en' ? e.dateDisplayEn : e.dateDisplay)
+        + ' · ' + (lang === 'en' ? e.venueEn : e.venueZh);
+    });
+    document.querySelectorAll('.ws-dynamic-dates').forEach(function(el){
+      el.innerHTML = lines.join('<br>');
+    });
+  })();
 </script>
 </body>
 </html>
