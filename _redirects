@@ -3,6 +3,10 @@
 # 全部旧URL → 新页面 (301)
 # =============================================
 
+# ── http → https 强制加密 ───────────────────
+http://gayaspiritualacademy.com/*        https://gayaspiritualacademy.com/:splat   301!
+http://www.gayaspiritualacademy.com/*    https://gayaspiritualacademy.com/:splat   301!
+
 # ── www → non-www 统一域名 ──────────────────
 https://www.gayaspiritualacademy.com/*   https://gayaspiritualacademy.com/:splat   301!
 
