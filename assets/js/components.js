@@ -8,6 +8,58 @@
 // ============================================================
 const BLOG_POSTS = [
   {
+    slug: 'beyond-the-mind-chakras-subtle-bodies',
+    title: 'Beyond the Mind: How Chakras and Subtle Bodies Shape the Way We Lead',
+    titleEm: 'Why Consciousness Must Be Experienced in the Body, Not Just Understood in the Mind',
+    excerpt: 'Most leaders already know they should trust more and react less. Knowing rarely guarantees doing — because the body learns differently from the mind.',
+    excerptZh: '很多人都曾有这样的经验：明明知道自己应该更信任、更放松，却总是在压力来临时回到旧有的反应模式。',
+    date: 'June 22, 2026',
+    category: 'Conscious Leadership',
+    categoryZh: '意识领导力',
+    categoryColor: 'gold',
+    readTime: '10',
+    image: 'https://images.unsplash.com/photo-1643319127773-c622d9fc371f?w=600&q=80&auto=format&fit=crop'
+  },
+  {
+    slug: 'leader-inner-world-business-shifts',
+    title: "When the Leader's Inner World Shifts, the Business Shifts With It",
+    titleEm: 'Why Sustainable Organizations Are Built From the Inside Out',
+    excerpt: 'Many business challenges are not actually business problems. They are human problems expressing themselves through a business.',
+    excerptZh: '许多企业面对的问题，看起来发生在组织里，但根源往往来自领导者的内在状态。',
+    date: 'June 22, 2026',
+    category: 'Conscious Leadership',
+    categoryZh: '意识领导力',
+    categoryColor: 'teal',
+    readTime: '11',
+    image: 'https://images.unsplash.com/photo-1576005391034-242dd8f40823?w=600&q=80&auto=format&fit=crop'
+  },
+  {
+    slug: 'how-consciousness-allows-life-to-flow',
+    title: 'How Consciousness Allows Life to Flow Again',
+    titleEm: 'When We Stop Fighting Ourselves, Life Moves Differently',
+    excerpt: 'What blocks abundance, creativity, and direction is rarely external. More often, it is the resistance we carry without realizing it.',
+    excerptZh: '阻挡丰盛、创造力与方向的，往往不是外在环境，而是我们尚未察觉的内在抗拒。',
+    date: 'June 22, 2026',
+    category: 'Conscious Awareness',
+    categoryZh: '意识觉察',
+    categoryColor: 'gold',
+    readTime: '10',
+    image: 'https://images.unsplash.com/photo-1761587058857-70acd41e9e35?w=600&q=80&auto=format&fit=crop'
+  },
+  {
+    slug: 'what-does-it-mean-to-be-conscious',
+    title: 'What Does It Mean to Be Conscious?',
+    titleEm: 'When Patterns Repeat, Perhaps Life Is Trying to Show You Something',
+    excerpt: 'Why do the same patterns of fear, attachment, and struggle keep returning in different forms? Perhaps they are not punishment — but an invitation.',
+    excerptZh: '为什么同样的恐惧、抓紧与纠结，换了场景却始终没变？也许这不是惩罚，而是一种提醒。',
+    date: 'June 22, 2026',
+    category: 'Conscious Awareness',
+    categoryZh: '意识觉察',
+    categoryColor: 'teal',
+    readTime: '9',
+    image: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80&auto=format&fit=crop'
+  },
+  {
     slug: 'what-is-cif',
     title: 'What Is CIF?',
     titleEm: 'The Inner Foundation Every Conscious Leader Needs',
