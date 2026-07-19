@@ -305,22 +305,170 @@ const UPCOMING_EVENTS = [
     highlight: true,
   },
   {
+    id: 'golden-children-kl-group2',
+    courseSlug: 'golden-children',
+    type: 'training',
+    titleZh: '黄金世纪光之小孩 · KL Group 2',
+    titleEn: 'Golden Age Golden Children · KL Group 2',
+    dateDisplay: '8月29日起 · 共5区块',
+    dateDisplayEn: 'Starts Aug 29 · 5 Blocks',
+    date: '2026-08-29',
+    venueZh: 'Kuala Lumpur · 马来西亚',
+    venueEn: 'Kuala Lumpur · Malaysia',
+    url: 'courses/golden-children.html',
+    seats: null,
+    priceEarlybird: null,
+    priceFull: 11000,
+    highlight: true,
+  },
+  {
     id: 'cif-oct2026',
+    courseSlug: 'cif',
     type: 'training',
     titleZh: 'CIF 意识智能先修培训',
     titleEn: 'Conscious Intelligence Foundation',
     dateDisplay: '10月15–18日, 2026',
     dateDisplayEn: 'Oct 15–18, 2026',
+    dateDots: '15 · 16 · 17 · 18 Oct 2026',
+    dateBigHtml: '15 · 16 · 17 · 18<br>October 2026',
+    dateShortZh: '10月15-18日',
+    dateShortEn: 'Oct 15–18',
+    scheduleZh: '周四 · 周五 · 周六 · 周日 · 9:00am–7:00pm',
+    scheduleEn: 'Thu · Fri · Sat · Sun · 9:00am–7:00pm',
     date: '2026-10-15',
+    countdownTarget: '2026-10-15T09:00:00+08:00',
     venueZh: 'Kuala Lumpur · 马来西亚',
     venueEn: 'Kuala Lumpur · Malaysia',
+    cityZh: '吉隆坡',
+    cityEn: 'KL',
+    venueDetail: 'Gaya Spiritual Academy, KL',
     url: 'courses/cif.html',
     seats: 25,
     priceEarlybird: 10000,
     priceFull: 10800,
+    earlybirdDeadlineZh: '2026年8月31日',
+    earlybirdDeadlineEn: '31 August 2026',
+    earlybirdDeadlineShortZh: '8月31日',
+    earlybirdDeadlineShortEn: 'Aug 31',
     highlight: true,
   },
 ];
+
+// ============================================================
+// COURSES — 课程日期/价格 唯一数据源
+// courses/index.html、courses/cif.html、首页课程相关区块都从这里读取
+// 以后 CIF（或其他课程）的日期/价格变动，只需要改上面 UPCOMING_EVENTS
+// 里对应条目（courseSlug 一致），下面这两个函数会自动把新值套用到
+// 所有标了 data-course / data-field 的地方。
+// ============================================================
+
+// 取得某个课程「最近一期未过期」的数据
+function getCourseData(slug) {
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var matches = UPCOMING_EVENTS.filter(function (e) {
+    if (e.courseSlug !== slug) return false;
+    var d = new Date(e.date); d.setHours(0, 0, 0, 0);
+    return d >= today;
+  }).sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
+  return matches[0] || null;
+}
+
+// 扫描页面上所有 [data-course][data-field]，自动填入最新日期/价格
+// 用法：<span data-course="cif" data-field="priceEarlybird">RM 10,000</span>
+// 页面加载时跟 renderNav()/renderFooter() 放在一起调用一次即可
+function applyCourseData(basePath) {
+  basePath = basePath || '';
+  var lang = 'zh';
+  try { lang = localStorage.getItem('gaya-lang') || 'zh'; } catch (e) {}
+
+  document.querySelectorAll('[data-course]').forEach(function (el) {
+    var slug = el.getAttribute('data-course');
+    var field = el.getAttribute('data-field');
+    var c = getCourseData(slug);
+    if (!c || !field) return;
+
+    var zh, en, isHtml = false;
+
+    switch (field) {
+      case 'dateDisplay': zh = c.dateDisplay; en = c.dateDisplayEn; break;
+      case 'dateDots': zh = c.dateDots; en = c.dateDots; break;
+      case 'dateBig': zh = c.dateBigHtml; en = c.dateBigHtml; isHtml = true; break;
+      case 'venue': zh = c.venueZh; en = c.venueEn; break;
+      case 'city': zh = c.cityZh; en = c.cityEn; break;
+      case 'venueDetail': zh = c.venueDetail; en = c.venueDetail; break;
+      case 'schedule': zh = c.scheduleZh; en = c.scheduleEn; break;
+      case 'priceFull': zh = 'RM ' + c.priceFull.toLocaleString(); en = zh; break;
+      case 'priceEarlybird': zh = 'RM ' + c.priceEarlybird.toLocaleString(); en = zh; break;
+      case 'earlybirdDeadline': zh = c.earlybirdDeadlineZh; en = c.earlybirdDeadlineEn; break;
+      case 'earlybirdDeadlineShort': zh = c.earlybirdDeadlineShortZh; en = c.earlybirdDeadlineShortEn; break;
+      case 'seats': zh = String(c.seats); en = zh; break;
+      case 'seatsStrict':
+        zh = '严格限额 ' + c.seats + ' 位'; en = 'Strictly ' + c.seats + ' only'; break;
+      case 'seatsPill':
+        zh = '👥 限' + c.seats + '位'; en = '👥 ' + c.seats + ' seats only'; break;
+      case 'ctaEarlybird':
+        zh = '立即报名 · 早鸟 RM ' + c.priceEarlybird.toLocaleString();
+        en = 'Register Now · Early Bird RM ' + c.priceEarlybird.toLocaleString(); break;
+      case 'earlybirdPillLabel':
+        zh = '⭐ 早鸟截止 ' + c.earlybirdDeadlineShortZh; en = '⭐ Early Bird by ' + c.earlybirdDeadlineShortEn; break;
+      case 'earlybirdPriceLabel':
+        zh = '早鸟价 · ' + c.earlybirdDeadlineShortZh + '前'; en = 'Early Bird · by ' + c.earlybirdDeadlineShortEn; break;
+      case 'earlybirdDeadlineLine':
+        zh = '⏰ 早鸟截止：' + c.earlybirdDeadlineZh; en = '⏰ Early Bird closes: ' + c.earlybirdDeadlineEn; break;
+      case 'seatsWarning':
+        zh = '⚠️ 仅限 ' + c.seats + ' 位 · 早鸟 RM ' + c.priceEarlybird.toLocaleString() + ' 截止 ' + c.earlybirdDeadlineShortZh + ' · 原价 RM ' + c.priceFull.toLocaleString();
+        en = '⚠️ ' + c.seats + ' places only · Early Bird RM ' + c.priceEarlybird.toLocaleString() + ' by ' + c.earlybirdDeadlineShortEn + ' · Full price RM ' + c.priceFull.toLocaleString();
+        break;
+      case 'countdownLabel':
+        zh = '席位有限 · ' + c.dateShortZh + '开课'; en = 'Limited Seats · Opens ' + c.dateShortEn; break;
+      case 'countdownFullLine':
+        zh = '仅限 ' + c.seats + ' 位 · 早鸟 RM ' + c.priceEarlybird.toLocaleString() + '（截止' + c.earlybirdDeadlineShortZh + '）· 原价 RM ' + c.priceFull.toLocaleString() + ' · ' + c.dateDisplay + ' · ' + c.cityZh;
+        en = c.seats + ' places only · Early Bird RM ' + c.priceEarlybird.toLocaleString() + ' (by ' + c.earlybirdDeadlineShortEn + ') · Full price RM ' + c.priceFull.toLocaleString() + ' · ' + c.dateDisplayEn + ' · ' + c.cityEn;
+        break;
+      case 'tickerLine':
+        zh = 'Wireless Love 进行中 · CIF ' + c.dateShortZh + ' · ' + c.cityZh;
+        en = 'Wireless Love Live · CIF ' + c.dateShortEn + ' · ' + c.cityEn;
+        break;
+      case 'featuredDesc':
+        zh = c.dateDisplay + ' · ' + c.cityZh + ' · 早鸟 RM ' + c.priceEarlybird.toLocaleString();
+        en = c.dateDisplayEn + ' · ' + c.cityEn + ' · Early Bird RM ' + c.priceEarlybird.toLocaleString();
+        break;
+      default:
+        zh = (c[field] !== undefined) ? c[field] : null;
+        en = zh;
+    }
+
+    if (zh === null || zh === undefined) return;
+
+    el.setAttribute('data-zh', zh);
+    el.setAttribute('data-en', en);
+    if (isHtml) {
+      el.innerHTML = (lang === 'en') ? en : zh;
+    } else {
+      el.textContent = (lang === 'en') ? en : zh;
+    }
+  });
+
+  document.querySelectorAll('[data-course-link]').forEach(function (el) {
+    var slug = el.getAttribute('data-course-link');
+    var c = getCourseData(slug);
+    if (c && c.url) el.setAttribute('href', basePath + c.url);
+  });
+
+  // 通用「近期开课」标签：有对应 courseSlug 数据才显示，没有就保持隐藏
+  // 用法：<div class="course-meta-pill" data-course-badge="leadership" style="display:none;">
+  //         📅 <span data-course="leadership" data-field="dateDisplay">近期开课</span>
+  //       </div>
+  document.querySelectorAll('[data-course-badge]').forEach(function (el) {
+    var slug = el.getAttribute('data-course-badge');
+    var c = getCourseData(slug);
+    el.style.display = c ? '' : 'none';
+  });
+
+  if (typeof applyLang === 'function') {
+    applyLang(lang);
+  }
+}
 
 // ============================================================
 // renderUpcomingEvents(containerId, basePath, options)
@@ -340,10 +488,14 @@ function renderUpcomingEvents(containerId, basePath, options) {
   try { lang = localStorage.getItem('gaya-lang') || 'zh'; } catch(e) {}
 
   // 过滤已过期，按日期排序
+  // bannerOnly: true 的活动只在首页横幅出现，不进 events 页卡片
+  // typeFilter 可以是单一字符串，也可以是字符串数组（例如 ['workshop','event']）
+  var typeFilters = typeFilter ? (Array.isArray(typeFilter) ? typeFilter : [typeFilter]) : null;
   var events = UPCOMING_EVENTS.filter(function(e) {
     var d = new Date(e.date); d.setHours(0,0,0,0);
     if (d < today) return false;
-    if (typeFilter && e.type !== typeFilter) return false;
+    if (typeFilters && typeFilters.indexOf(e.type) === -1) return false;
+    if (e.bannerOnly && style !== 'banner') return false;
     return true;
   }).sort(function(a,b){ return new Date(a.date) - new Date(b.date); });
 
@@ -447,7 +599,8 @@ function renderNav(basePath = '') {
         <li class="nav-dropdown">
           <a href="${basePath}events/index.html" data-zh="旗舰活动" data-en="Signature Events">旗舰活动</a>
           <ul class="dropdown-menu">
-            <li><a href="https://gayacongress.clicksummits.com/gaya-congress/" target="_blank">Gaya Congress</a></li>
+            <li><a href="${basePath}events/gaya-congress.html">Gaya Congress</a></li>
+            <li><a href="${basePath}events/gaya-festival.html" data-zh="Gaya Festival" data-en="Gaya Festival">Gaya Festival</a></li>
             <li><a href="https://wirelesslovemalaysia.com" target="_blank" data-zh="无线爱疗愈" data-en="Wireless Love">无线爱疗愈</a></li>
             <li><a href="${basePath}events/leadership-workshop.html" data-zh="领导力工作坊" data-en="Leadership Workshop">领导力工作坊</a></li>
           </ul>
@@ -546,7 +699,8 @@ function renderFooter(basePath = '') {
         <div>
           <div class="footer-heading" data-zh="旗舰活动" data-en="Signature Events">旗舰活动</div>
           <ul class="footer-links">
-            <li><a href="https://gayacongress.clicksummits.com/gaya-congress/" target="_blank">Gaya Congress</a></li>
+            <li><a href="${basePath}events/gaya-congress.html">Gaya Congress</a></li>
+            <li><a href="${basePath}events/gaya-festival.html" data-zh="Gaya Festival" data-en="Gaya Festival">Gaya Festival</a></li>
             <li><a href="https://wirelesslovemalaysia.com" target="_blank" data-zh="无线爱疗愈" data-en="Wireless Love">无线爱疗愈</a></li>
             <li><a href="${basePath}events/leadership-workshop.html" data-zh="领导力工作坊" data-en="Leadership Workshop">领导力工作坊</a></li>
           </ul>

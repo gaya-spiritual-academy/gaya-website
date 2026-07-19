@@ -619,7 +619,7 @@
         <div class="home-hero-qn-fire-dot"></div>
         <div class="home-hero-qn-fire-text">
           <strong data-zh="✦ 现正进行中 · 即将开课" data-en="✦ Now Live · Upcoming">✦ 现正进行中 · 即将开课</strong>
-          <span data-zh="Wireless Love 进行中 · CIF 10月15-18日 · 吉隆坡" data-en="Wireless Love Live · CIF Oct 15–18 · KL">Wireless Love 进行中 · CIF 10月15-18日 · 吉隆坡</span>
+          <span data-course="cif" data-field="tickerLine" data-zh="Wireless Love 进行中 · CIF 10月15-18日 · 吉隆坡" data-en="Wireless Love Live · CIF Oct 15–18 · KL">Wireless Love 进行中 · CIF 10月15-18日 · 吉隆坡</span>
         </div>
       </a>
     </div>
@@ -766,7 +766,7 @@
           <span class="home-prog-card-tag" data-zh="入门 · 先修培训" data-en="Foundation Course">入门 · 先修培训</span>
           <div class="home-prog-card-title">CIF</div>
           <div class="home-prog-card-zh" data-zh="意识智能先修培训" data-en="Conscious Intelligence Foundation">意识智能先修培训</div>
-          <p class="home-prog-card-desc" data-zh="踏上灵性意识旅程的第一步。深度探索意识的本质，建立稳固的灵性基础。2026年10月15-18日 · 吉隆坡 · 早鸟 RM 10,000" data-en="Your first step on the spiritual consciousness journey. Build a solid inner foundation. Oct 15–18, 2026 · KL · Early Bird RM 10,000">踏上灵性意识旅程的第一步。深度探索意识的本质，建立稳固的灵性基础。2026年10月15-18日 · 吉隆坡 · 早鸟 RM 10,000</p>
+          <p class="home-prog-card-desc"><span data-zh="踏上灵性意识旅程的第一步。深度探索意识的本质，建立稳固的灵性基础。" data-en="Your first step on the spiritual consciousness journey. Build a solid inner foundation. ">踏上灵性意识旅程的第一步。深度探索意识的本质，建立稳固的灵性基础。</span><span data-course="cif" data-field="featuredDesc" data-zh="2026年10月15-18日 · 吉隆坡 · 早鸟 RM 10,000" data-en="Oct 15–18, 2026 · KL · Early Bird RM 10,000">2026年10月15-18日 · 吉隆坡 · 早鸟 RM 10,000</span></p>
           <span class="home-prog-card-cta" data-zh="了解详情" data-en="Learn More">了解详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
       </a>
@@ -1164,6 +1164,7 @@
   renderNav('');
   renderFooter('');
   renderUpcomingEvents('upcoming-events-banner', '', { style: 'banner' });
+  applyCourseData('');
   // Render latest 2 blog posts on homepage
   renderBlogGrid('homepage-blog-grid', '', { homepage: true, limit: 2 });
 
