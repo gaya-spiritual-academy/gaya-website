@@ -325,8 +325,8 @@ const UPCOMING_EVENTS = [
     id: 'cif-oct2026',
     courseSlug: 'cif',
     type: 'training',
-    titleZh: 'CIF 意识智能先修培训',
-    titleEn: 'Conscious Intelligence Foundation',
+    titleZh: 'CLF 意识领导力先修',
+    titleEn: 'Conscious Leadership Foundation',
     dateDisplay: '10月15–18日, 2026',
     dateDisplayEn: 'Oct 15–18, 2026',
     dateDots: '15 · 16 · 17 · 18 Oct 2026',
@@ -344,12 +344,8 @@ const UPCOMING_EVENTS = [
     venueDetail: 'Gaya Spiritual Academy, KL',
     url: 'courses/cif.html',
     seats: 25,
-    priceEarlybird: 10000,
+    priceEarlybird: null,
     priceFull: 10800,
-    earlybirdDeadlineZh: '2026年8月31日',
-    earlybirdDeadlineEn: '31 August 2026',
-    earlybirdDeadlineShortZh: '8月31日',
-    earlybirdDeadlineShortEn: 'Aug 31',
     highlight: true,
   },
 ];
@@ -357,7 +353,7 @@ const UPCOMING_EVENTS = [
 // ============================================================
 // COURSES — 课程日期/价格 唯一数据源
 // courses/index.html、courses/cif.html、首页课程相关区块都从这里读取
-// 以后 CIF（或其他课程）的日期/价格变动，只需要改上面 UPCOMING_EVENTS
+// 以后 CLF（或其他课程）的日期/价格变动，只需要改上面 UPCOMING_EVENTS
 // 里对应条目（courseSlug 一致），下面这两个函数会自动把新值套用到
 // 所有标了 data-course / data-field 的地方。
 // ============================================================
@@ -407,8 +403,14 @@ function applyCourseData(basePath) {
       case 'seatsPill':
         zh = '👥 限' + c.seats + '位'; en = '👥 ' + c.seats + ' seats only'; break;
       case 'ctaEarlybird':
-        zh = '立即报名 · 早鸟 RM ' + c.priceEarlybird.toLocaleString();
-        en = 'Register Now · Early Bird RM ' + c.priceEarlybird.toLocaleString(); break;
+        if (c.priceEarlybird) {
+          zh = '立即报名 · 早鸟 RM ' + c.priceEarlybird.toLocaleString();
+          en = 'Register Now · Early Bird RM ' + c.priceEarlybird.toLocaleString();
+        } else {
+          zh = '立即报名 · RM ' + c.priceFull.toLocaleString();
+          en = 'Register Now · RM ' + c.priceFull.toLocaleString();
+        }
+        break;
       case 'earlybirdPillLabel':
         zh = '⭐ 早鸟截止 ' + c.earlybirdDeadlineShortZh; en = '⭐ Early Bird by ' + c.earlybirdDeadlineShortEn; break;
       case 'earlybirdPriceLabel':
@@ -416,22 +418,37 @@ function applyCourseData(basePath) {
       case 'earlybirdDeadlineLine':
         zh = '⏰ 早鸟截止：' + c.earlybirdDeadlineZh; en = '⏰ Early Bird closes: ' + c.earlybirdDeadlineEn; break;
       case 'seatsWarning':
-        zh = '⚠️ 仅限 ' + c.seats + ' 位 · 早鸟 RM ' + c.priceEarlybird.toLocaleString() + ' 截止 ' + c.earlybirdDeadlineShortZh + ' · 原价 RM ' + c.priceFull.toLocaleString();
-        en = '⚠️ ' + c.seats + ' places only · Early Bird RM ' + c.priceEarlybird.toLocaleString() + ' by ' + c.earlybirdDeadlineShortEn + ' · Full price RM ' + c.priceFull.toLocaleString();
+        if (c.priceEarlybird) {
+          zh = '⚠️ 仅限 ' + c.seats + ' 位 · 早鸟 RM ' + c.priceEarlybird.toLocaleString() + ' 截止 ' + c.earlybirdDeadlineShortZh + ' · 原价 RM ' + c.priceFull.toLocaleString();
+          en = '⚠️ ' + c.seats + ' places only · Early Bird RM ' + c.priceEarlybird.toLocaleString() + ' by ' + c.earlybirdDeadlineShortEn + ' · Full price RM ' + c.priceFull.toLocaleString();
+        } else {
+          zh = '⚠️ 仅限 ' + c.seats + ' 位 · RM ' + c.priceFull.toLocaleString();
+          en = '⚠️ ' + c.seats + ' places only · RM ' + c.priceFull.toLocaleString();
+        }
         break;
       case 'countdownLabel':
         zh = '席位有限 · ' + c.dateShortZh + '开课'; en = 'Limited Seats · Opens ' + c.dateShortEn; break;
       case 'countdownFullLine':
-        zh = '仅限 ' + c.seats + ' 位 · 早鸟 RM ' + c.priceEarlybird.toLocaleString() + '（截止' + c.earlybirdDeadlineShortZh + '）· 原价 RM ' + c.priceFull.toLocaleString() + ' · ' + c.dateDisplay + ' · ' + c.cityZh;
-        en = c.seats + ' places only · Early Bird RM ' + c.priceEarlybird.toLocaleString() + ' (by ' + c.earlybirdDeadlineShortEn + ') · Full price RM ' + c.priceFull.toLocaleString() + ' · ' + c.dateDisplayEn + ' · ' + c.cityEn;
+        if (c.priceEarlybird) {
+          zh = '仅限 ' + c.seats + ' 位 · 早鸟 RM ' + c.priceEarlybird.toLocaleString() + '（截止' + c.earlybirdDeadlineShortZh + '）· 原价 RM ' + c.priceFull.toLocaleString() + ' · ' + c.dateDisplay + ' · ' + c.cityZh;
+          en = c.seats + ' places only · Early Bird RM ' + c.priceEarlybird.toLocaleString() + ' (by ' + c.earlybirdDeadlineShortEn + ') · Full price RM ' + c.priceFull.toLocaleString() + ' · ' + c.dateDisplayEn + ' · ' + c.cityEn;
+        } else {
+          zh = '仅限 ' + c.seats + ' 位 · RM ' + c.priceFull.toLocaleString() + ' · ' + c.dateDisplay + ' · ' + c.cityZh;
+          en = c.seats + ' places only · RM ' + c.priceFull.toLocaleString() + ' · ' + c.dateDisplayEn + ' · ' + c.cityEn;
+        }
         break;
       case 'tickerLine':
-        zh = 'Wireless Love 进行中 · CIF ' + c.dateShortZh + ' · ' + c.cityZh;
-        en = 'Wireless Love Live · CIF ' + c.dateShortEn + ' · ' + c.cityEn;
+        zh = 'Wireless Love 进行中 · CLF ' + c.dateShortZh + ' · ' + c.cityZh;
+        en = 'Wireless Love Live · CLF ' + c.dateShortEn + ' · ' + c.cityEn;
         break;
       case 'featuredDesc':
-        zh = c.dateDisplay + ' · ' + c.cityZh + ' · 早鸟 RM ' + c.priceEarlybird.toLocaleString();
-        en = c.dateDisplayEn + ' · ' + c.cityEn + ' · Early Bird RM ' + c.priceEarlybird.toLocaleString();
+        if (c.priceEarlybird) {
+          zh = c.dateDisplay + ' · ' + c.cityZh + ' · 早鸟 RM ' + c.priceEarlybird.toLocaleString();
+          en = c.dateDisplayEn + ' · ' + c.cityEn + ' · Early Bird RM ' + c.priceEarlybird.toLocaleString();
+        } else {
+          zh = c.dateDisplay + ' · ' + c.cityZh + ' · RM ' + c.priceFull.toLocaleString();
+          en = c.dateDisplayEn + ' · ' + c.cityEn + ' · RM ' + c.priceFull.toLocaleString();
+        }
         break;
       default:
         zh = (c[field] !== undefined) ? c[field] : null;
@@ -587,7 +604,7 @@ function renderNav(basePath = '') {
         <li class="nav-dropdown">
           <a href="${basePath}courses/index.html" data-zh="培训" data-en="Programmes">培训</a>
           <ul class="dropdown-menu">
-            <li><a href="${basePath}courses/cif.html" data-zh="意识智能先修培训 CIF" data-en="Conscious Intelligence Foundation">意识智能先修培训 CIF</a></li>
+            <li><a href="${basePath}courses/cif.html" data-zh="意识领导力先修 CLF" data-en="Conscious Leadership Foundation">意识领导力先修 CLF</a></li>
             <li><a href="${basePath}courses/aquarius.html" data-zh="宝瓶世纪教练" data-en="Aquarius Coach">宝瓶世纪教练</a></li>
             <li><a href="${basePath}courses/leadership.html" data-zh="新时代领导力" data-en="Leadership from Within">新时代领导力</a></li>
             <li><a href="${basePath}courses/insha.html" data-zh="INSHA 自然疗法" data-en="INSHA Healing">INSHA 自然疗法</a></li>
@@ -688,7 +705,7 @@ function renderFooter(basePath = '') {
         <div>
           <div class="footer-heading" data-zh="培训项目" data-en="Programmes">培训项目</div>
           <ul class="footer-links">
-            <li><a href="${basePath}courses/cif.html" data-zh="意识智能先修培训 CIF" data-en="Conscious Intelligence Foundation">意识智能先修培训 CIF</a></li>
+            <li><a href="${basePath}courses/cif.html" data-zh="意识领导力先修 CLF" data-en="Conscious Leadership Foundation">意识领导力先修 CLF</a></li>
             <li><a href="${basePath}courses/aquarius.html" data-zh="宝瓶世纪教练" data-en="Aquarius Coach">宝瓶世纪教练</a></li>
             <li><a href="${basePath}courses/leadership.html" data-zh="新时代领导力" data-en="Leadership from Within">新时代领导力</a></li>
             <li><a href="${basePath}courses/insha.html" data-zh="INSHA 自然疗法" data-en="INSHA Healing">INSHA 自然疗法</a></li>
