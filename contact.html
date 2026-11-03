@@ -798,6 +798,7 @@
 <script src="assets/js/components.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
+(function () {
   // ── EmailJS Config ──
   const EJS_PUBLIC_KEY  = 'UmWGqr9yh_ZTI-h2c';
   const EJS_SERVICE_ID  = 'service_icd8ld7';
@@ -828,7 +829,12 @@
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   // ── Current language helper ──
-  function currentLang() {
+  // NOTE: main.js already declares a global variable named `currentLang`,
+  // so this helper must use a different name (uiLang).
+  function uiLang() {
+    try {
+      if (typeof currentLang === 'string') return currentLang === 'en' ? 'en' : 'zh';
+    } catch (e) {}
     return (document.documentElement.lang || 'zh').toLowerCase().startsWith('en') ? 'en' : 'zh';
   }
 
@@ -837,7 +843,7 @@
   window.onRecaptchaLoad = function () {
     recaptchaWidgetId = grecaptcha.render('recaptchaBox', {
       sitekey: RECAPTCHA_SITE_KEY,
-      hl: currentLang() === 'en' ? 'en' : 'zh-CN'
+      hl: uiLang() === 'en' ? 'en' : 'zh-CN'
     });
   };
   function getRecaptchaToken() {
@@ -859,7 +865,7 @@
   };
   const formError = document.getElementById('formError');
   function showError(key) {
-    formError.textContent = ERR[key][currentLang()];
+    formError.textContent = ERR[key][uiLang()];
     formError.classList.add('visible');
   }
   function clearError() {
@@ -973,7 +979,7 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 0.8s linear infinite">
         <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
       </svg>
-      <span>${currentLang() === 'en' ? 'Sending…' : '提交中…'}</span>`;
+      <span>${uiLang() === 'en' ? 'Sending…' : '提交中…'}</span>`;
 
     const nameParts = name.split(' ');
     const firstName = nameParts[0];
@@ -1045,12 +1051,13 @@
 
   // Placeholder i18n for select options
   window.addEventListener('langChanged', () => {
-    const lang = currentLang();
+    const lang = uiLang();
     document.querySelectorAll('select option[data-zh]').forEach(opt => {
       opt.textContent = opt.getAttribute(`data-${lang}`) || opt.textContent;
     });
     if (formError.classList.contains('visible')) clearError();
   });
+})();
 </script>
 
 <!-- reCAPTCHA (recaptcha.net works in China too) — loaded after onRecaptchaLoad is defined -->
