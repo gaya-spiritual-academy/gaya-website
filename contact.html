@@ -294,6 +294,33 @@
       flex: 1; min-width: 200px;
     }
 
+    /* ── Anti-spam ── */
+    /* Honeypot: invisible to humans, filled in by bots */
+    .hp-field {
+      position: absolute !important;
+      left: -10000px !important;
+      top: auto;
+      width: 1px; height: 1px;
+      overflow: hidden;
+    }
+    /* reCAPTCHA checkbox */
+    .recaptcha-wrap { margin: 4px 0 22px; min-height: 78px; }
+    @media (max-width: 360px) {
+      .recaptcha-wrap { transform: scale(0.88); transform-origin: 0 0; }
+    }
+    /* Error message */
+    .form-error {
+      display: none;
+      margin: 0 0 18px;
+      padding: 12px 16px;
+      background: #fdf1f1;
+      border-left: 3px solid #e05252;
+      border-radius: 3px;
+      color: #a83a3a;
+      font-size: 0.85rem; line-height: 1.6;
+    }
+    .form-error.visible { display: block; }
+
     /* Success state */
     .form-success {
       display: none;
@@ -552,6 +579,12 @@
                 </div>
               </div>
 
+              <!-- Honeypot (anti-spam): hidden from humans, bots fill it in -->
+              <div class="hp-field" aria-hidden="true">
+                <label for="fwebsite">Website</label>
+                <input type="text" id="fwebsite" name="website" tabindex="-1" autocomplete="off" value="">
+              </div>
+
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label" for="fphone" data-zh="电话 / WhatsApp" data-en="Phone / WhatsApp">电话 / WhatsApp</label>
@@ -633,6 +666,14 @@
                   <option value="other" data-zh="其他" data-en="Other">其他</option>
                 </select>
               </div>
+
+              <!-- reCAPTCHA v2 checkbox -->
+              <div class="recaptcha-wrap">
+                <div id="recaptchaBox"></div>
+              </div>
+
+              <!-- Error message -->
+              <p class="form-error" id="formError" role="alert"></p>
 
               <div class="form-submit-row">
                 <button type="submit" class="btn-primary" id="submitBtn">
@@ -757,10 +798,13 @@
 <script src="assets/js/components.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
-  // ── EmailJS Config — replace with your actual IDs ──
+  // ── EmailJS Config ──
   const EJS_PUBLIC_KEY  = 'UmWGqr9yh_ZTI-h2c';
   const EJS_SERVICE_ID  = 'service_icd8ld7';
   const EJS_TEMPLATE_ID = 'template_c9by7c4';
+
+  // ── reCAPTCHA v2 Site Key (public, safe to keep in page source) ──
+  const RECAPTCHA_SITE_KEY = '6LdLmg0uAAAAAEnxaOG-rl6bTZwxLmJXV6LDASdl';
 
   // ── Mailchimp URL ──
   const MC_URL = 'https://clicksummits.us11.list-manage.com/subscribe/post?u=c39b88a16808ce2df654cfa2b&id=8c6c6e2288&f_id=006ba6e1f0';
@@ -783,11 +827,75 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+  // ── Current language helper ──
+  function currentLang() {
+    return (document.documentElement.lang || 'zh').toLowerCase().startsWith('en') ? 'en' : 'zh';
+  }
+
+  // ── reCAPTCHA (explicit render; loaded via recaptcha.net so it also works in China) ──
+  let recaptchaWidgetId = null;
+  window.onRecaptchaLoad = function () {
+    recaptchaWidgetId = grecaptcha.render('recaptchaBox', {
+      sitekey: RECAPTCHA_SITE_KEY,
+      hl: currentLang() === 'en' ? 'en' : 'zh-CN'
+    });
+  };
+  function getRecaptchaToken() {
+    if (typeof grecaptcha === 'undefined' || recaptchaWidgetId === null) return null;
+    return grecaptcha.getResponse(recaptchaWidgetId);
+  }
+  function resetRecaptcha() {
+    if (typeof grecaptcha !== 'undefined' && recaptchaWidgetId !== null) grecaptcha.reset(recaptchaWidgetId);
+  }
+
+  // ── Bilingual error messages ──
+  const ERR = {
+    required:    { zh: '请填写姓名、电邮和留言。', en: 'Please fill in your name, email and message.' },
+    email:       { zh: '请输入正确的电邮地址。', en: 'Please enter a valid email address.' },
+    phone:       { zh: '电话号码格式不正确，请只填写数字（可包含 + 号、空格或 -）。', en: 'Please check your phone number — digits only (+, spaces and - are fine).' },
+    captcha:     { zh: '请先勾选「我不是机器人」，再发送留言。', en: 'Please tick "I\'m not a robot" before sending.' },
+    captchaLoad: { zh: '验证组件未能载入，请重新整理页面，或直接 WhatsApp 我们 +60 12-601 1607。', en: 'The verification box did not load. Please refresh the page, or WhatsApp us at +60 12-601 1607.' },
+    send:        { zh: '发送失败，请稍后再试，或直接 WhatsApp 我们 +60 12-601 1607。', en: 'Sending failed. Please try again later, or WhatsApp us at +60 12-601 1607.' }
+  };
+  const formError = document.getElementById('formError');
+  function showError(key) {
+    formError.textContent = ERR[key][currentLang()];
+    formError.classList.add('visible');
+  }
+  function clearError() {
+    formError.textContent = '';
+    formError.classList.remove('visible');
+  }
+
+  // ── Anti-spam checks ──
+  const formLoadedAt = Date.now();
+  const MIN_FILL_MS  = 3000; // humans need more than 3 seconds to fill the form
+
+  // Detects random-string names such as "wpuLWEhcTx" or "VIt8gy76cp"
+  function looksLikeGibberish(str) {
+    const s = str.trim();
+    if (/[\u3400-\u9fff\uf900-\ufaff]/.test(s)) return false; // contains Chinese → OK
+    if (/\s/.test(s)) return false;                           // multi-word names → OK
+    if (s.length < 6) return false;                           // short names → OK
+    if (/\d/.test(s)) return true;                            // digits inside a single-word name
+    if (s === s.toUpperCase() || s === s.toLowerCase()) return false; // ALLCAPS / lowercase → OK
+    const innerUpper = (s.slice(1).match(/[A-Z]/g) || []).length;
+    return innerUpper >= 2;                                   // e.g. "uNFiZraoxD"
+  }
+  function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+  function isValidPhone(v) {
+    if (!v) return true; // optional field
+    if (!/^[+\d\s\-()]+$/.test(v)) return false;
+    const digits = v.replace(/\D/g, '').length;
+    return digits >= 7 && digits <= 15;
+  }
+
   // ── Form Submit ──
-  const form       = document.getElementById('contactForm');
-  const formBody   = document.getElementById('formBody');
-  const formSuccess= document.getElementById('formSuccess');
-  const submitBtn  = document.getElementById('submitBtn');
+  const form        = document.getElementById('contactForm');
+  const formBody    = document.getElementById('formBody');
+  const formSuccess = document.getElementById('formSuccess');
+  const submitBtn   = document.getElementById('submitBtn');
+  const submitBtnHTML = submitBtn.innerHTML;
 
   // Interest label map for readable email notifications
   const interestLabels = {
@@ -796,8 +904,25 @@
     events: '旗舰活动', other: '其他'
   };
 
+  function showSuccess(name, email, phone, interestDisplay, message) {
+    setTimeout(() => {
+      formBody.style.display = 'none';
+      formSuccess.classList.add('visible');
+      const waMsg = encodeURIComponent(
+        `您好，我是 ${name}。\n电邮：${email}${phone ? '\n电话：' + phone : ''}\n感兴趣：${interestDisplay}\n\n${message}`
+      );
+      formSuccess.querySelector('a').href = `https://wa.me/60126011607?text=${waMsg}`;
+    }, 1200);
+  }
+
+  function restoreButton() {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = submitBtnHTML;
+  }
+
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
+    clearError();
 
     const name     = form.querySelector('#fname').value.trim();
     const email    = form.querySelector('#femail').value.trim();
@@ -805,11 +930,17 @@
     const message  = form.querySelector('#fmsg').value.trim();
     const lang     = form.querySelector('#flang').value;
     const source   = form.querySelector('#fhear').value;
+    const honeypot = form.querySelector('#fwebsite').value.trim();
     const checkedBoxes = [...form.querySelectorAll('input[name=interest]:checked')];
-    const interestValues = checkedBoxes.map(cb => cb.value).join(', ');
     const interestDisplay = checkedBoxes.map(cb => interestLabels[cb.value] || cb.value).join(' · ') || '（未选择）';
 
-    // Validation
+    // ── Layer 1 & 2: honeypot + timing → silently drop (bot sees a "success" page) ──
+    if (honeypot || (Date.now() - formLoadedAt) < MIN_FILL_MS) {
+      showSuccess(name, email, phone, interestDisplay, message);
+      return;
+    }
+
+    // Required fields
     if (!name || !email || !message) {
       [form.querySelector('#fname'), form.querySelector('#femail'), form.querySelector('#fmsg')]
         .forEach(field => {
@@ -818,8 +949,23 @@
             field.addEventListener('input', () => field.style.borderColor = '', { once: true });
           }
         });
+      showError('required');
       return;
     }
+
+    // ── Layer 3: format checks ──
+    if (!isValidEmail(email)) { showError('email'); return; }
+    if (!isValidPhone(phone)) { showError('phone'); return; }
+    if (looksLikeGibberish(name)) {
+      // Random-string name → silently drop
+      showSuccess(name, email, phone, interestDisplay, message);
+      return;
+    }
+
+    // ── Layer 4: reCAPTCHA ──
+    const token = getRecaptchaToken();
+    if (token === null) { showError('captchaLoad'); return; }
+    if (!token)         { showError('captcha');     return; }
 
     // Loading state
     submitBtn.disabled = true;
@@ -827,13 +973,13 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 0.8s linear infinite">
         <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
       </svg>
-      <span>提交中…</span>`;
+      <span>${currentLang() === 'en' ? 'Sending…' : '提交中…'}</span>`;
 
     const nameParts = name.split(' ');
     const firstName = nameParts[0];
     const lastName  = nameParts.slice(1).join(' ') || '';
 
-    // ── 1. EmailJS — send notification email to info@gayaspiritualacademy.com ──
+    // ── 1. EmailJS — notification email to info@gayaspiritualacademy.com ──
     const ejsParams = {
       from_name:    name,
       from_email:   email,
@@ -842,15 +988,21 @@
       source:       source || '（未选择）',
       interests:    interestDisplay,
       message:      message,
-      reply_to:     email
+      reply_to:     email,
+      'g-recaptcha-response': token
     };
 
-    // Fire EmailJS (don't await — don't block success flow if it's slow)
-    emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, ejsParams).catch(err => {
-      console.warn('EmailJS send failed (non-critical):', err);
-    });
+    try {
+      await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, ejsParams);
+    } catch (err) {
+      console.warn('EmailJS send failed:', err);
+      showError('send');
+      resetRecaptcha();
+      restoreButton();
+      return;
+    }
 
-    // ── 2. Mailchimp — add contact to audience list via hidden iframe ──
+    // ── 2. Mailchimp — add contact to audience via hidden iframe (only after EmailJS succeeds) ──
     const iframeName = 'mc-hidden-iframe';
     let iframe = document.getElementById(iframeName);
     if (!iframe) {
@@ -873,8 +1025,8 @@
       'LNAME':      lastName,
       'PHONE':      phone,
       'MESSAGE':    message,
-      'INTERESTS2': interestDisplay,   // human-readable labels
-      'b_c39b88a16808ce2df654cfa2b_8c6c6e2288': '' // honeypot (required by Mailchimp)
+      'INTERESTS2': interestDisplay,
+      'b_c39b88a16808ce2df654cfa2b_8c6c6e2288': '' // Mailchimp's own honeypot (must stay empty)
     };
 
     Object.entries(mcFields).forEach(([key, val]) => {
@@ -888,24 +1040,20 @@
     document.body.removeChild(mcForm);
 
     // ── 3. Show success + prefill WhatsApp ──
-    setTimeout(() => {
-      formBody.style.display = 'none';
-      formSuccess.classList.add('visible');
-
-      const waMsg = encodeURIComponent(
-        `您好，我是 ${name}。\n电邮：${email}${phone ? '\n电话：' + phone : ''}\n感兴趣：${interestDisplay}\n\n${message}`
-      );
-      formSuccess.querySelector('a').href = `https://wa.me/60126011607?text=${waMsg}`;
-    }, 1200);
+    showSuccess(name, email, phone, interestDisplay, message);
   });
 
   // Placeholder i18n for select options
   window.addEventListener('langChanged', () => {
-    document.querySelectorAll('select option[data-zh],[data-en]').forEach(opt => {
-      const lang = document.documentElement.lang || 'zh';
+    const lang = currentLang();
+    document.querySelectorAll('select option[data-zh]').forEach(opt => {
       opt.textContent = opt.getAttribute(`data-${lang}`) || opt.textContent;
     });
+    if (formError.classList.contains('visible')) clearError();
   });
 </script>
+
+<!-- reCAPTCHA (recaptcha.net works in China too) — loaded after onRecaptchaLoad is defined -->
+<script src="https://www.recaptcha.net/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
 </body>
 </html>
